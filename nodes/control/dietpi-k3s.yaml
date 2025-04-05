@@ -1,0 +1,12 @@
+write-kubeconfig-mode: "644"
+disable:
+  - "servicelb"
+  - "local-storage"
+token:
+  - "some_random_password"
+node-taint:
+  - "CriticalAddonsOnly=true:NoExecute"
+bind-address:
+  - "192.168.178.201"
+disable-cloud-controller: true
+
