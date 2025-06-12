@@ -1,4 +1,12 @@
 argo-cd:
+  redis-ha:
+    enabled: true
+  controller:
+    replicas: 1
+  server:
+    replicas: 2
+  repoServer:
+    replicas: 2
   dex:
     enabled: false
   notifications:
