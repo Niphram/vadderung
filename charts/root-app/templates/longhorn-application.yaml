@@ -4,9 +4,6 @@ metadata:
   name: longhorn
   namespace: default
 spec:
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
   project: default
   sources:
     - chart: longhorn
@@ -19,3 +16,9 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
