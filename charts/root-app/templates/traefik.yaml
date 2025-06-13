@@ -8,7 +8,7 @@ spec:
   sources:
     - chart: traefik/traefik
       repoURL: https://traefik.github.io/charts
-      targetRevision: v36.1.0
+      targetRevision: 36.1.0
 
   destination:
     server: https://kubernetes.default.svc
