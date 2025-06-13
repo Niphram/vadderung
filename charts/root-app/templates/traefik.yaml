@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: default
+spec:
+  project: default
+  sources:
+    - chart: traefik/traefik
+      repoURL: https://traefik.github.io/charts
+      targetRevision: v36.1.0
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: traefik-system
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

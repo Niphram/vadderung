@@ -6,7 +6,5 @@ argo-cd:
   applicationSet:
     enabled: false
   server:
-    service:
-      type: LoadBalancer
     extraArgs:
       - --insecure
