@@ -18,12 +18,18 @@ spec:
           ports:
             - containerPort: 9000
           env:
-            - ALLOW_SIGNUP: false
-            - PUID: 1000
-            - PGID: 1000
-            - TZ: Europe/Berlin
-            - MAX_WORKERS: 1
-            - WEB_CONCURRENCY: 1
+          - name: ALLOW_SIGNUP
+            value: false
+          - name: PUID
+            value: 1000
+          - name: PGID
+            value: 1000
+          - name: TZ
+            value: Europe/Berlin
+          - name: MAX_WORKERS
+            value: 1
+          - name: WEB_CONCURRENCY
+            value: 1
 ---
 kind: Service
 apiVersion: v1
