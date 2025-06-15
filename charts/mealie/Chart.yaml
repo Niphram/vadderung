@@ -1,0 +1,9 @@
+apiVersion: v2
+appVersion: v1.10.2
+description: Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
+name: mealie
+version: 1.0.0
+dependencies:
+  - name: postgresql
+    version: 15.5.21
+    repository: https://charts.bitnami.com/bitnami
