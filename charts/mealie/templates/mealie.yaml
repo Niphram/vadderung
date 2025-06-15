@@ -1,22 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mealie
-
+  name: mealie-deployment
 spec:
+  selector:
+    matchLabels:
+      app: mealie-app
   replicas: 1
   template:
+    metadata:
+      labels:
+        app: mealie-app
     spec:
       containers:
-      - name: mealie
-        image: ghcr.io/mealie-recipes/mealie:2.8.0
-        ports:
-        - containerPort: 9000
-        env:
-          - ALLOW_SIGNUP: false
-          - PUID: 1000
-          - PGID: 1000
-          - TZ: Europe/Berlin
-          - MAX_WORKERS: 1
-          - WEB_CONCURRENCY: 1
-        
+        - name: mealie-app
+          image: ghcr.io/mealie-recipes/mealie:2.8.0
+          ports:
+            - containerPort: 9000
+          env:
+            - ALLOW_SIGNUP: false
+            - PUID: 1000
+            - PGID: 1000
+            - TZ: Europe/Berlin
+            - MAX_WORKERS: 1
+            - WEB_CONCURRENCY: 1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mealie-app-service
+spec:
+  selector:
+    app: mealie-app
+  ports:
+    - protocol: TCP
+      targetPort: 9000
+      port: 9000
+  type: LoadBalancer
