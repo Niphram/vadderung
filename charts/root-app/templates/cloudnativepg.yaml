@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudnativepg
+  namespace: default
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/cloudnative-pg/cloudnative-pg.git
+      targetRevision: HEAD
+      path: releases/cnpg-1.15.0.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cloudnativepg-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
