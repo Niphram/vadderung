@@ -18,7 +18,7 @@ spec:
           ports:
             - containerPort: 9000
           volumeMounts:
-          - name: mealie-data-pvc
+          - name: mealie-data
             mountPath: /app/data/
           env:
           - name: ALLOW_SIGNUP
@@ -61,6 +61,10 @@ spec:
               secretKeyRef:
                 name: {{ .Values.mealie.pgsecrets }}
                 key: dbname
+      volumes:
+        - name: mealie-data
+          persistentVolumeClaim:
+            claimName: mealie-data-pvc
 ---
 kind: Service
 apiVersion: v1
