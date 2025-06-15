@@ -17,6 +17,9 @@ spec:
           image: ghcr.io/mealie-recipes/mealie:v2.8.0
           ports:
             - containerPort: 9000
+          volumeMounts:
+          - name: mealie-data-pvc
+            mountPath: /app/data/
           env:
           - name: ALLOW_SIGNUP
             value: "false"
@@ -54,11 +57,10 @@ spec:
                 name: {{ .Values.mealie.pgsecrets }}
                 key: port
           - name: POSTGRES_DB
-            value: app
-            # valueFrom:
-            #   secretKeyRef:
-            #     name: {{ .Values.mealie.pgsecrets }}
-            #     key: dbname
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.mealie.pgsecrets }}
+                key: dbname
 ---
 kind: Service
 apiVersion: v1
