@@ -1,6 +1,9 @@
 mealie:
+  image: ghcr.io/mealie-recipes/mealie:v2.8.0
   replicas: 1 # Mealie doesn't play well with multiple pods
   pgsecrets: mealie-data-app
+  timezone: Europe/Berlin
+  allowSignup: false
 
 postgres:
   instances: 3

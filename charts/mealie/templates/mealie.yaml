@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mealie-app
-          image: ghcr.io/mealie-recipes/mealie:v2.8.0
+          image: {{ .Values.mealie.image }}
           ports:
             - containerPort: 9000
           volumeMounts:
@@ -22,17 +22,15 @@ spec:
             mountPath: /app/data/
           env:
           - name: ALLOW_SIGNUP
-            value: "false"
+            value: {{ .Values.mealie.allowSignup | quote }}
           - name: PUID
             value: "1000"
           - name: PGID
             value: "1000"
           - name: TZ
-            value: Europe/Berlin
-          - name: MAX_WORKERS
-            value: "1"
-          - name: WEB_CONCURRENCY
-            value: "1"
+            value: {{ .Values.mealie.timezone | default "" }}
+          - name: BASE_URL
+            value: {{ .Values.mealie.baseURL | default "" }}
           # Postgres Variables
           - name: DB_ENGINE
             value: postgres
@@ -76,5 +74,5 @@ spec:
   ports:
     - protocol: TCP
       targetPort: 9000
-      port: 9000
+      port: 80
   type: LoadBalancer
