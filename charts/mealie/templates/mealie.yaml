@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: mealie-app
-  replicas: 2
+  replicas: {{ .Values.mealie.replicas }}
   template:
     metadata:
       labels:
@@ -36,28 +36,29 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.pgsecrets }}
+                name: {{ .Values.mealie.pgsecrets }}
                 key: username
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.pgsecrets }}
+                name: {{ .Values.mealie.pgsecrets }}
                 key: password
           - name: POSTGRES_SERVER
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.pgsecrets }}
+                name: {{ .Values.mealie.pgsecrets }}
                 key: host
           - name: POSTGRES_PORT
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.pgsecrets }}
+                name: {{ .Values.mealie.pgsecrets }}
                 key: port
           - name: POSTGRES_DB
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.pgsecrets }}
-                key: dbname
+            value: app
+            # valueFrom:
+            #   secretKeyRef:
+            #     name: {{ .Values.mealie.pgsecrets }}
+            #     key: dbname
 ---
 kind: Service
 apiVersion: v1

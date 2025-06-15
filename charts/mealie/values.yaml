@@ -1,5 +1,7 @@
+mealie:
+  replicas: 1 # Mealie doesn't play well with multiple pods
+  pgsecrets: mealie-data-superuser
+
 postgres:
   instances: 3
   superuser: true
-
-pgsecrets: mealie-data-superuser
