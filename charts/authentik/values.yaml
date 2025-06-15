@@ -9,15 +9,17 @@ authentik:
       password: "ThisIsNotASecurePassword"
 
   server:
+    service:
+      type: LoadBalancer
     ingress:
       enabled: false
       hosts:
         - authentik.domain.tld
 
   postgresql:
-    enabled: false
+    enabled: true
     auth:
       password: "ThisIsNotASecurePassword"
 
   redis:
-    enabled: false
+    enabled: true
