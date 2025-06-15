@@ -21,15 +21,15 @@ spec:
           - name: ALLOW_SIGNUP
             value: "false"
           - name: PUID
-            value: 1000
+            value: "1000"
           - name: PGID
-            value: 1000
+            value: "1000"
           - name: TZ
             value: Europe/Berlin
           - name: MAX_WORKERS
-            value: 1
+            value: "1"
           - name: WEB_CONCURRENCY
-            value: 1
+            value: "1"
 ---
 kind: Service
 apiVersion: v1
