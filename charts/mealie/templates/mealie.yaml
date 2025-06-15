@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mealie
+
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: mealie
+        image: ghcr.io/mealie-recipes/mealie:2.8.0
+        ports:
+        - containerPort: 9000
+        env:
+          - ALLOW_SIGNUP: false
+          - PUID: 1000
+          - PGID: 1000
+          - TZ: Europe/Berlin
+          - MAX_WORKERS: 1
+          - WEB_CONCURRENCY: 1
+        
