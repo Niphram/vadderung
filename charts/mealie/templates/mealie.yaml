@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: mealie-app
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -30,6 +30,34 @@ spec:
             value: "1"
           - name: WEB_CONCURRENCY
             value: "1"
+          # Postgres Variables
+          - name: DB_ENGINE
+            value: postgres
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: mealie-data-app
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mealie-data-app
+                key: password
+          - name: POSTGRES_SERVER
+            valueFrom:
+              secretKeyRef:
+                name: mealie-data-app
+                key: host
+          - name: POSTGRES_PORT
+            valueFrom:
+              secretKeyRef:
+                name: mealie-data-app
+                key: port
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: mealie-data-app
+                key: dbname
 ---
 kind: Service
 apiVersion: v1
