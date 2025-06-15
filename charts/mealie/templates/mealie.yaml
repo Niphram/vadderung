@@ -7,6 +7,8 @@ spec:
     matchLabels:
       app: mealie-app
   replicas: {{ .Values.mealie.replicas }}
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -17,6 +19,12 @@ spec:
           image: {{ .Values.mealie.image }}
           ports:
             - containerPort: 9000
+          livenessProbe:
+            httpGet:
+              path: /api/app/about
+              port: liveness-port
+            failureThreshold: 5
+            periodSeconds: 10
           volumeMounts:
           - name: mealie-data
             mountPath: /app/data/
