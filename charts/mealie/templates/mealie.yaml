@@ -36,27 +36,27 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: mealie-data-app
+                name: {{ .Values.pgsecrets }}
                 key: username
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: mealie-data-app
+                name: {{ .Values.pgsecrets }}
                 key: password
           - name: POSTGRES_SERVER
             valueFrom:
               secretKeyRef:
-                name: mealie-data-app
+                name: {{ .Values.pgsecrets }}
                 key: host
           - name: POSTGRES_PORT
             valueFrom:
               secretKeyRef:
-                name: mealie-data-app
+                name: {{ .Values.pgsecrets }}
                 key: port
           - name: POSTGRES_DB
             valueFrom:
               secretKeyRef:
-                name: mealie-data-app
+                name: {{ .Values.pgsecrets }}
                 key: dbname
 ---
 kind: Service

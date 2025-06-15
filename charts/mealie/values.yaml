@@ -1,2 +1,5 @@
-mealie:
-  image: ghcr.io/mealie-recipes/mealie:latest
+postgres:
+  instances: 3
+  superuser: true
+
+pgsecrets: mealie-data-superuser
