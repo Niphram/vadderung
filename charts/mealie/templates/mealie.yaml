@@ -18,13 +18,15 @@ spec:
         - name: mealie-app
           image: {{ .Values.mealie.image }}
           ports:
-            - containerPort: 9000
+            - name: liveness-port
+              containerPort: 9000
           livenessProbe:
             httpGet:
               path: /api/app/about
               port: liveness-port
             failureThreshold: 5
             periodSeconds: 10
+            port: liveness-port
           volumeMounts:
           - name: mealie-data
             mountPath: /app/data/
