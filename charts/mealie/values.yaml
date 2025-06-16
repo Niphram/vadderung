@@ -6,5 +6,5 @@ mealie:
   allowSignup: false
 
 postgres:
-  instances: 3
+  instances: 1
   superuser: false # Enables superuser rights for the app user (needed to restore mealie backups)
