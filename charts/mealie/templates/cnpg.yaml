@@ -13,16 +13,6 @@ spec:
       ensure: present
       login: true
       superuser: {{ .Values.postgres.superuser }}
-  affinity:
-    enablePodAntiAffinity: true
-    topologyKey: kubernetes.io/hostname
-    podAntiAffinityType: required
-    nodeSelector:
-      node-role.kubernetes.io/postgres: ""
-    tolerations:
-    - key: node-role.kubernetes.io/postgres
-      operator: Exists
-      effect: NoSchedule
 
   # configure storage types used
   storage:
