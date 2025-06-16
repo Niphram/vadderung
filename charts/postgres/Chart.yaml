@@ -1,0 +1,5 @@
+apiVersion: v2
+appVersion: v1.0.0
+description: Deploy my custom version of CloudnativePG
+name: postgres
+version: 1.0.0

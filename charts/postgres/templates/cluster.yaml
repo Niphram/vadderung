@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ .Release.Name }}-test-data
+spec:
+  instances: {{ .Values.postgres.instances }}
+  imageName: {{ .Values.postgres.imageName }}
+  
+  managed:
+    roles:
+    - name: app
+      ensure: present
+      login: true
+      superuser: {{ .Values.postgres.superuser }}
+
+  # configure storage types used
+  storage:
+    storageClass: {{ .Values.postgres.storage.storageClass }}
+    size: {{ .Values.postgres.storage.size }}
+  walStorage:
+    storageClass: {{ .Values.postgres.walStorage.storageClass }}
+    size: {{ .Values.postgres.walStorage.size }}
+
+  # see https://cloudnative-pg.io/documentation/1.22/kubernetes_upgrade/
+  nodeMaintenanceWindow:
+    reusePVC: false # rebuild from other replica instead
