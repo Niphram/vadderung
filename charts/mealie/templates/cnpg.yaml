@@ -13,3 +13,25 @@ spec:
       ensure: present
       login: true
       superuser: {{ .Values.postgres.superuser }}
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+    tolerations:
+    - key: node-role.kubernetes.io/postgres
+      operator: Exists
+      effect: NoSchedule
+
+  # configure storage types used
+  storage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 2Gi
+  walStorage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 2Gi
+
+  # see https://cloudnative-pg.io/documentation/1.22/kubernetes_upgrade/
+  nodeMaintenanceWindow:
+    reusePVC: false # rebuild from other replica instead
