@@ -74,9 +74,9 @@ spec:
           - name: OIDC_CONFIGURATION_URL
             value: http://192.168.178.214/application/o/mealie/.well-known/openid-configuration
           - name: OIDC_CLIENT_ID
-            value: GbkBsQzwXgzF3uwX8LnowmbaxT11YLUgDGZ85Bbx
-          - name: OIDC_CLIENT_SECRET
-            value: 6FFQ0xxyPtqHXmQcnB4F3jJ8aeJ2ExrtQeMzXvStrRbQxSFUVoy6eoI3opT2pwsrQJsr4ykboEt79qtvmduvgSkapVXrH6ssX8NgceF2Fh2bjjbS2vCMb2bs2yE0xlNS
+            value: Qjr91Uspd3pDpYzXLOoZTbTofENMz0HWE3Yx61Ig
+          # - name: OIDC_CLIENT_SECRET
+          #   value: 6FFQ0xxyPtqHXmQcnB4F3jJ8aeJ2ExrtQeMzXvStrRbQxSFUVoy6eoI3opT2pwsrQJsr4ykboEt79qtvmduvgSkapVXrH6ssX8NgceF2Fh2bjjbS2vCMb2bs2yE0xlNS
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
