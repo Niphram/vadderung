@@ -5,6 +5,5 @@ name: mealie
 version: 1.0.0
 dependencies:
   - name: postgres
-    alias: mealie-data
-    version: 1.0.0
+    version: HEAD
     repository: file://../postgres

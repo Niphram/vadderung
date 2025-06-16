@@ -1,10 +1,10 @@
 mealie:
   image: ghcr.io/mealie-recipes/mealie:v2.8.0
   replicas: 1 # Mealie doesn't play well with multiple pods
-  pgsecrets: mealie-data-app
+  pgsecrets: mealie-postgres-cluster-app
   timezone: Europe/Berlin
   allowSignup: false
 
 postgres:
   instances: 1
-  superuser: false # Enables superuser rights for the app user (needed to restore mealie backups)
+  superuser: true # Enables superuser rights for the app user (needed to restore mealie backups)
