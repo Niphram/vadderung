@@ -13,7 +13,6 @@ parameters:
   numberOfReplicas: "1"
   staleReplicaTimeout: "1440" # 1 day
   fsType: "ext4"
-  diskSelector: "nvme"
   dataLocality: "strict-local"
   recurringJobSelector: '[
       {
