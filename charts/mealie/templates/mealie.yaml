@@ -72,7 +72,7 @@ spec:
           - name: OIDC_AUTH_ENABLED
             value: "true"
           - name: OIDC_CONFIGURATION_URL
-            value: http://authentik-server/application/o/mealie/.well-known/openid-configuration
+            value: http://192.168.178.214/application/o/mealie/.well-known/openid-configuration
           - name: OIDC_CLIENT_ID
             value: GbkBsQzwXgzF3uwX8LnowmbaxT11YLUgDGZ85Bbx
           - name: OIDC_CLIENT_SECRET
