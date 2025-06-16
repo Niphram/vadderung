@@ -68,6 +68,15 @@ spec:
               secretKeyRef:
                 name: {{ .Values.mealie.pgsecrets }}
                 key: dbname
+          # Try to configure OIDC
+          - name: OIDC_AUTH_ENABLED
+            value: "true"
+          - name: OIDC_CONFIGURATION_URL
+            value: http://authentik-server/application/o/mealie/.well-known/openid-configuration
+          - name: OIDC_CLIENT_ID
+            value: GbkBsQzwXgzF3uwX8LnowmbaxT11YLUgDGZ85Bbx
+          - name: OIDC_CLIENT_SECRET
+            value: 6FFQ0xxyPtqHXmQcnB4F3jJ8aeJ2ExrtQeMzXvStrRbQxSFUVoy6eoI3opT2pwsrQJsr4ykboEt79qtvmduvgSkapVXrH6ssX8NgceF2Fh2bjjbS2vCMb2bs2yE0xlNS
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
