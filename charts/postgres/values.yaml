@@ -1,12 +1,11 @@
-postgres:
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-6
+imageName: ghcr.io/cloudnative-pg/postgresql:17.5-6
 
-  instances: 2
-  superuser: false
+instances: 2
+superuser: false
 
-  storage: 
-    size: 2Gi
-    storageClass: longhorn-postgres-replica-storage
-  walStorage:
-    size: 2Gi
-    storageClass: longhorn-postgres-replica-storage
+storage: 
+  size: 2Gi
+  storageClass: longhorn-postgres-replica-storage
+walStorage:
+  size: 2Gi
+  storageClass: longhorn-postgres-replica-storage

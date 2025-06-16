@@ -3,23 +3,23 @@ kind: Cluster
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}-cluster
 spec:
-  instances: {{ .Values.postgres.instances }}
-  imageName: {{ .Values.postgres.imageName }}
+  instances: {{ .Values.instances }}
+  imageName: {{ .Values.imageName }}
   
   managed:
     roles:
     - name: app
       ensure: present
       login: true
-      superuser: {{ .Values.postgres.superuser }}
+      superuser: {{ .Values.superuser }}
 
   # configure storage types used
   storage:
-    storageClass: {{ .Values.postgres.storage.storageClass }}
-    size: {{ .Values.postgres.storage.size }}
+    storageClass: {{ .Values.storage.storageClass }}
+    size: {{ .Values.storage.size }}
   walStorage:
-    storageClass: {{ .Values.postgres.walStorage.storageClass }}
-    size: {{ .Values.postgres.walStorage.size }}
+    storageClass: {{ .Values.walStorage.storageClass }}
+    size: {{ .Values.walStorage.size }}
 
   # see https://cloudnative-pg.io/documentation/1.22/kubernetes_upgrade/
   nodeMaintenanceWindow:
