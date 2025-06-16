@@ -69,6 +69,8 @@ spec:
                 name: {{ .Values.mealie.pgsecrets }}
                 key: dbname
           # Try to configure OIDC
+          - name: ALLOW_PASSWORD_LOGIN
+            value: "false"
           - name: OIDC_AUTH_ENABLED
             value: "true"
           - name: OIDC_CONFIGURATION_URL
@@ -77,6 +79,12 @@ spec:
             value: Qjr91Uspd3pDpYzXLOoZTbTofENMz0HWE3Yx61Ig
           - name: OIDC_CLIENT_SECRET
             value: k0cZvDNJ9RHfo0wUrQHKCT8YI8RE45e3HpPQv1mKRuFPw1HEGfEvIdFlpRh5n0uIcsxHiBi3nlUxIlWX7VW3ckdXQhLOwEcXgYLhmo6INpF5GJrioskD9RGJkczTE6Lg
+          - name: OIDC_PROVIDER_NAME
+            value: Niphram's Bude
+          - name: OIDC_AUTO_REDIRECT
+            value: "true"
+          - name: OIDC_ADMIN_GROUP
+            value: admins
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
