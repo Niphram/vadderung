@@ -26,7 +26,6 @@ spec:
               port: liveness-port
             failureThreshold: 5
             periodSeconds: 10
-            port: liveness-port
           volumeMounts:
           - name: mealie-data
             mountPath: /app/data/
