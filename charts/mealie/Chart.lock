@@ -2,5 +2,5 @@ dependencies:
 - name: postgres
   repository: file://../postgres
   version: 1.0.0
-digest: sha256:a90a3429abe02692cb22afceff95aafb1032e05a5c3bf14380e109436d900157
-generated: "2025-06-16T19:37:09.560112813+02:00"
+digest: sha256:951406540e86d36d0cacfb5a9dcff18c573bb4d31367d283d8bcdaf4b640aa7b
+generated: "2025-06-16T19:53:41.29780489+02:00"
