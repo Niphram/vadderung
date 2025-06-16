@@ -1,6 +1,6 @@
 dependencies:
-- name: postgres-test
+- name: postgres
   repository: file://../postgres
   version: 1.0.0
-digest: sha256:ab68cfbf0add21efdc94c3124cc4c1dd70948bc2e0b868540e8833e780e6a37b
-generated: "2025-06-16T19:35:45.952753366+02:00"
+digest: sha256:a90a3429abe02692cb22afceff95aafb1032e05a5c3bf14380e109436d900157
+generated: "2025-06-16T19:37:09.560112813+02:00"

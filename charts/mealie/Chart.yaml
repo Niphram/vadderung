@@ -4,6 +4,6 @@ description: Mealie is a self hosted recipe manager and meal planner with a Rest
 name: mealie
 version: 1.0.0
 dependencies:
-  - name: postgres-test
+  - name: postgres
     version: 1.0.0
     repository: file://../postgres
