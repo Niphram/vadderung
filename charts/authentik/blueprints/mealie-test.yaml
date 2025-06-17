@@ -8,14 +8,6 @@ metadata:
 
 entries:
   - attrs:
-      description: mealie-test
-    conditions: []
-    identifiers:
-      name: mealie-test
-    model: authentik_providers_oauth2.scopemapping
-    state: present
-
-  - attrs:
       access_code_validity: minutes=1
       authorization_flow:
         !Find [
