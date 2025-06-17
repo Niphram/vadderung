@@ -29,6 +29,5 @@ authentik:
       initialDelaySeconds: 60
 
   blueprints:
-    configmaps:
-      - blueprints-configmap
-    secrets: []
+    configMaps: 
+      - authentik-blueprints-configmap
