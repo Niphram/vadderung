@@ -25,8 +25,13 @@ authentik:
     enabled: true
 
   worker:
+    livenessProbe:
+      timeoutSeconds: 5
     startupProbe:
       initialDelaySeconds: 60
+      timeoutSeconds: 5
+    readinessProbe:
+      timeoutSeconds: 5
 
   blueprints:
     configMaps: 
