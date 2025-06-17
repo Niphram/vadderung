@@ -79,7 +79,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mealie-sso-secret
-                  key: clientId
+                  key: clientID
             - name: OIDC_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
