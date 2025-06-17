@@ -2,21 +2,21 @@
 version: 1
 metadata:
   labels:
-    blueprints.goauthentik.io/description: Blueprint for Mealie-Test
+    blueprints.goauthentik.io/description: Blueprint for Mealie
     blueprints.goauthentik.io/instantiate: "true"
-  name: Mealie-Test
+  name: Mealie
 
 entries:
   - attrs:
-      name: Mealie-Test
+      name: Mealie
       authorization_flow:
         !Find [
           authentik_flows.flow,
           [slug, default-provider-authorization-implicit-consent],
         ]
       client_type: confidential
-      client_id: mealie-test-client
-      client_secret: mealieTestSecret
+      client_id: Qjr91Uspd3pDpYzXLOoZTbTofENMz0HWE3Yx61Ig
+      client_secret: k0cZvDNJ9RHfo0wUrQHKCT8YI8RE45e3HpPQv1mKRuFPw1HEGfEvIdFlpRh5n0uIcsxHiBi3nlUxIlWX7VW3ckdXQhLOwEcXgYLhmo6INpF5GJrioskD9RGJkczTE6Lg
       redirect_uris:
         - matching_mode: strict
           url: http://192.168.178.213/login
@@ -40,21 +40,21 @@ entries:
       include_claims_in_id_token: true
       issuer_mode: per_provider
     conditions: []
-    id: mealie-test_provider
+    id: mealie_provider
     identifiers:
-      pk: 9999
+      name: Provider for Mealie
     model: authentik_providers_oauth2.oauth2provider
     state: present
 
   - attrs:
-      name: Mealie-Test App
-      slug: mealie-test
-      provider: !KeyOf mealie-test_provider
+      name: Mealie
+      slug: mealie
+      provider: !KeyOf mealie_provider
       policy_engine_mode: any
       meta_launch_url: http://192.168.178.213/login
     conditions: []
-    id: mealie-test_application
+    id: mealie_application
     identifiers:
-      name: Mealie-test
+      name: Mealie
     model: authentik_core.application
     state: present
