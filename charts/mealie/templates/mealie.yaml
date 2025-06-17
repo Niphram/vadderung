@@ -79,12 +79,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mealie-sso-secret
-                  key: client-id
+                  key: clientId
             - name: OIDC_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: mealie-sso-secret
-                  key: client-secret
+                  key: clientSecret
             - name: OIDC_PROVIDER_NAME
               value: Niphram's Bude
             - name: OIDC_AUTO_REDIRECT
