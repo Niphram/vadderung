@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Chart.Name }}-blueprints-configmap
 data: 
-  {{- (.Files.Glob "blueprints/**.yaml").AsConfig | nindent 2 }}
+  {{- tpl ((.Files.Glob "blueprints/**.yaml").AsConfig) . | nindent 2 }}

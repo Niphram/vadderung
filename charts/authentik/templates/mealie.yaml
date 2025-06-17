@@ -1,0 +1,86 @@
+
+{{- $clientID := .Values.blueprint.provider.oidc.clientID }}
+{{- $clientSecret := .Values.blueprint.provider.oidc.clientSecret }}
+---
+{{- $secretName :=  "mealie-sso-secret" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $secretName }}
+stringData:
+  {{- $secretObj := (lookup "v1" "Secret" .Release.Namespace $secretName) | default dict }}
+  {{- $secretData := (get $secretObj "data") | default dict }}
+
+  {{- $clientIDCoded := (get $secretData "clientID") | default (randAlphaNum 32 | b64enc) }}
+  {{- $clientID = $clientID | default ($clientIDCoded | b64dec) }}
+  clientID: {{ $clientID | quote }}
+
+  {{- $clientSecretCoded := (get $secretData "clientSecret") | default (randAlphaNum 32 | b64enc) }}
+  {{- $clientSecret = $clientSecret | default ($clientSecretCoded | b64dec) }}
+  clientSecret: {{ $clientSecret | quote }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mealie-blueprint
+stringData:
+  blueprint.yaml: |-
+    version: 1
+    metadata:
+      labels:
+        blueprints.goauthentik.io/description: Blueprint for Mealie
+        blueprints.goauthentik.io/instantiate: "true"
+      name: Mealie
+
+    entries:
+      - attrs:
+          name: Mealie
+          authorization_flow:
+            !Find [
+              authentik_flows.flow,
+              [slug, default-provider-authorization-implicit-consent],
+            ]
+          client_type: confidential
+          client_id: {{ $clientID | quote }}
+          client_secret: {{ $clientSecret | quote }}
+          redirect_uris:
+            - matching_mode: strict
+              url: http://192.168.178.213/login
+            - matching_mode: strict
+              url: http://192.168.178.213/login?direct=1
+          signing_key:
+            !Find [
+              authentik_crypto.certificatekeypair,
+              [name, authentik Self-signed Certificate],
+            ]
+          invalidation_flow:
+            !Find [authentik_flows.flow, [slug, default-invalidation-flow]]
+          access_code_validity: minutes=1
+          access_token_validity: minutes=5
+          refresh_token_validity: days=30
+          property_mappings:
+            - !Find [authentik_providers_oauth2.scopemapping, [scope_name, openid]]
+            - !Find [authentik_providers_oauth2.scopemapping, [scope_name, email]]
+            - !Find [authentik_providers_oauth2.scopemapping, [scope_name, profile]]
+          sub_mode: user_email
+          include_claims_in_id_token: true
+          issuer_mode: per_provider
+        conditions: []
+        id: mealie_provider
+        identifiers:
+          name: Provider for Mealie
+        model: authentik_providers_oauth2.oauth2provider
+        state: present
+
+      - attrs:
+          name: Mealie
+          slug: mealie
+          provider: !KeyOf mealie_provider
+          policy_engine_mode: any
+          meta_launch_url: http://192.168.178.213/login
+        conditions: []
+        id: mealie_application
+        identifiers:
+          name: Mealie
+        model: authentik_core.application
+        state: present

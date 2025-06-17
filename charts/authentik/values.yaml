@@ -1,4 +1,11 @@
 # TODO: Make real secrets
+domain: example.test
+
+blueprint:
+  provider:
+    oidc:
+      clientID:
+      clientSecret:
 
 authentik:
   authentik:
@@ -34,5 +41,7 @@ authentik:
       timeoutSeconds: 5
 
   blueprints:
-    configMaps: 
+    configMaps:
       - authentik-blueprints-configmap
+    secrets:
+      - mealie-blueprint

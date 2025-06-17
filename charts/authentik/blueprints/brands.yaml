@@ -6,6 +6,6 @@ metadata:
 entries:
   - model: authentik_brands.brand
     identifiers:
-      domain: placeholder.example
+      domain: {{ .Values.domain }}
     attrs:
       branding_title: Niphrams Bude
