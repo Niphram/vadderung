@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-blueprints-configmap
+data:
+  {{- (.Files.Glob "../blueprints/**/*.yaml").AsConfig | indent 2 }}
+

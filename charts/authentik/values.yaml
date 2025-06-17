@@ -23,3 +23,7 @@ authentik:
 
   redis:
     enabled: true
+
+  blueprints:
+    configmaps: []
+    secrets: []
