@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+version: 1
+metadata:
+  labels:
+    blueprints.goauthentik.io/description: Blueprint for Mealie-Test
+    blueprints.goauthentik.io/instantiate: "true"
+  name: Mealie-Test
+
+entries:
+  - attrs:
+      description: mealie-test
+    conditions: []
+    identifiers:
+      name: mealie-test
+    model: authentik_providers_oauth2.scopemapping
+    state: present
+
+  - attrs:
+      access_code_validity: minutes=1
+      authorization_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, default-provider-authorization-implicit-consent],
+        ]
+      client_id: mealie-test-client
+      client_secret: mealieTestSecret
+      client_type: confidential
+      include_claims_in_id_token: true
+      issuer_mode: per_provider
+      name: Mealie-Test
+      property_mappings:
+        - !Find [authentik_providers_oauth2.scopemapping, [scope_name, openid]]
+        - !Find [authentik_providers_oauth2.scopemapping, [scope_name, email]]
+        - !Find [authentik_providers_oauth2.scopemapping, [scope_name, profile]]
+      signing_key:
+        !Find [
+          authentik_crypto.certificatekeypair,
+          [name, authentik Self-signed Certificate],
+        ]
+      sub_mode: user_email
+      token_validity: days=30
+    conditions: []
+    id: mealie-test_provider
+    identifiers:
+      pk: 9999
+    model: authentik_providers_oauth2.oauth2provider
+    state: present
+
+  - attrs:
+      meta_launch_url: http://192.168.178.213/login
+      policy_engine_mode: any
+      provider: !KeyOf mealie-test_provider
+      slug: mealie-test
+    conditions: []
+    id: mealie-test_application
+    identifiers:
+      name: Mealie-test
+    model: authentik_core.application
+    state: present
