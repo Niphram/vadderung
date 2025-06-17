@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: mealie-app
-  replicas: { { .Values.mealie.replicas } }
+  replicas: {{ .Values.mealie.replicas }}
   strategy:
     type: Recreate
   template:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mealie-app
-          image: { { .Values.mealie.image } }
+          image: {{ .Values.mealie.image }}
           ports:
             - name: liveness-port
               containerPort: 9000
@@ -31,42 +31,42 @@ spec:
               mountPath: /app/data/
           env:
             - name: ALLOW_SIGNUP
-              value: { { .Values.mealie.allowSignup | quote } }
+              value: {{ .Values.mealie.allowSignup | quote }}
             - name: PUID
               value: "1000"
             - name: PGID
               value: "1000"
             - name: TZ
-              value: { { .Values.mealie.timezone | default "" } }
+              value: {{ .Values.mealie.timezone | default "" }}
             - name: BASE_URL
-              value: { { .Values.mealie.baseURL | default "" } }
+              value: {{ .Values.mealie.baseURL | default "" }}
             # Postgres Variables
             - name: DB_ENGINE
               value: postgres
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.mealie.pgsecrets } }
+                  name: {{ .Values.mealie.pgsecrets }}
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.mealie.pgsecrets } }
+                  name: {{ .Values.mealie.pgsecrets }}
                   key: password
             - name: POSTGRES_SERVER
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.mealie.pgsecrets } }
+                  name: {{ .Values.mealie.pgsecrets }}
                   key: host
             - name: POSTGRES_PORT
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.mealie.pgsecrets } }
+                  name: {{ .Values.mealie.pgsecrets }}
                   key: port
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: { { .Values.mealie.pgsecrets } }
+                  name: {{ .Values.mealie.pgsecrets }}
                   key: dbname
             # Try to configure OIDC
             - name: ALLOW_PASSWORD_LOGIN
