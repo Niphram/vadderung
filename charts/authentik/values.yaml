@@ -24,6 +24,10 @@ authentik:
   redis:
     enabled: true
 
+  worker:
+    startupProbe:
+      initialDelaySeconds: 60
+
   blueprints:
     configmaps: []
     secrets: []
