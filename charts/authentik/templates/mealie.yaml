@@ -77,7 +77,7 @@ stringData:
           slug: mealie
           provider: !KeyOf mealie_provider
           policy_engine_mode: any
-          meta_launch_url: http://192.168.178.212/login
+          meta_launch_url: http://192.168.178.212/api/auth/oauth
         conditions: []
         id: mealie_application
         identifiers:
