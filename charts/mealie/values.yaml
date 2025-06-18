@@ -7,4 +7,4 @@ mealie:
 
 postgres:
   instances: 2
-  superuser: false # Enables superuser rights for the app user (needed to restore mealie backups)
+  superuser: true # Enables superuser rights for the app user (needed to restore mealie backups)
