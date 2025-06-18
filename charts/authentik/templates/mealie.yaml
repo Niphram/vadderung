@@ -45,9 +45,9 @@ stringData:
           client_secret: {{ $clientSecret | quote }}
           redirect_uris:
             - matching_mode: strict
-              url: http://192.168.178.213/login
+              url: http://192.168.178.212/login
             - matching_mode: strict
-              url: http://192.168.178.213/login?direct=1
+              url: http://192.168.178.212/login?direct=1
           signing_key:
             !Find [
               authentik_crypto.certificatekeypair,
@@ -77,7 +77,7 @@ stringData:
           slug: mealie
           provider: !KeyOf mealie_provider
           policy_engine_mode: any
-          meta_launch_url: http://192.168.178.213/login
+          meta_launch_url: http://192.168.178.212/login
         conditions: []
         id: mealie_application
         identifiers:
