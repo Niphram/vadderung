@@ -15,7 +15,6 @@ spec:
             ui:
               type: LoadBalancer
               loadBalancerIP: 192.168.178.214
-              nodePort: ""
           preUpgradeChecker:
             jobEnabled: false
   destination:
@@ -24,39 +23,3 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-    ignoreDifferences:
-      - group: apiextensions.k8s.io/v1
-        name: engineimages.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
-      - group: apiextensions.k8s.io/v1
-        name: engines.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
-      - group: apiextensions.k8s.io/v1
-        name: instancemanagers.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
-      - group: apiextensions.k8s.io/v1
-        name: nodes.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
-      - group: apiextensions.k8s.io/v1
-        name: replicas.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
-      - group: apiextensions.k8s.io/v1
-        name: settings.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
-      - group: apiextensions.k8s.io/v1
-        name: volumes.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
