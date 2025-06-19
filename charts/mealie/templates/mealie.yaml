@@ -9,6 +9,7 @@ spec:
   replicas: {{ .Values.mealie.replicas }}
   strategy:
     type: Recreate
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:
