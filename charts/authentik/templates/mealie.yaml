@@ -1,23 +1,20 @@
-
-{{- $clientID := .Values.blueprint.provider.oidc.clientID }}
-{{- $clientSecret := .Values.blueprint.provider.oidc.clientSecret }}
----
 {{- $secretName :=  "mealie-sso-secret" }}
-apiVersion: v1
-kind: Secret
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
 metadata:
-  name: {{ $secretName }}
-stringData:
-  {{- $secretObj := (lookup "v1" "Secret" .Release.Namespace $secretName) | default dict }}
-  {{- $secretData := (get $secretObj "data") | default dict }}
-
-  {{- $clientIDCoded := (get $secretData "clientID") | default (randAlphaNum 32 | b64enc) }}
-  {{- $clientID = $clientID | default ($clientIDCoded | b64dec) }}
-  clientID: {{ $clientID | quote }}
-
-  {{- $clientSecretCoded := (get $secretData "clientSecret") | default (randAlphaNum 32 | b64enc) }}
-  {{- $clientSecret = $clientSecret | default ($clientSecretCoded | b64dec) }}
-  clientSecret: {{ $clientSecret | quote }}
+  creationTimestamp: null
+  name: mealie-sso-sealed
+  namespace: default
+spec:
+  encryptedData:
+    MEALIE_CLIENT_ID: AgAyhkI+weSvGcZTlCP5ETNUNadjZIKOKIp/yezDe5SPalwiWu5E37T9uCHxhRkrWb/F0zV8cdUIswFB1MRZm6Nl81lAoy/d70qvpJ9Qvs3D93248wXKZV/AYw6geRc24D/VNWFdd5WT365s5F9DHzu/W8UMefsP20lfryYknsRh4ZIA6dz6bb2Kf38JVpdW0zLm5zKdHf6/BrngR3dOK1S3VWxcq4NEXjWXJLokh+7ikBQFDrW5j1BcXYrhoj24bb8xh6FzCmQmi+tQLIpjHxrcWbaqUnrPNq1xvfINr4U+hFREJVmF+KQiNCulL0a+hY6uYxX2H1V+dPTyxgsMaJJ4Tw0gDRPzNm17vEDzIWCCPl3LAnCnjJzpb2kvr37RJ+vLjfqvt9Udh09Fc7j/3W9NHMsN/tR1HlMdIXg7UHEx3b6RSWSsYhi11Id6Wgm2tcPTOGQxaw2XEtYvPeubQRoZ5fEYGJPfiy6wIZNNmC0XKdbSs0SfqBCSgrAPpl0uic06+IjxXi2fHdZ4JxlIv/ZPZ6txarLkaxejjYCr7xM7Ywac+yaXYDVa5cWVvwdg83Q6nkuS0H6V073Xp2DQ7YPFy35RDCJI49vuCk0PJcwXPWiuoxPPl91iTvVRsl6S6ohXnFC2+6eTMAV0nUmhgQ5Kag0gu7Y7AGN4X7REJbGyuCbROE1zkcY/RDBlVWLTIjJhgzbHMPBILVPLR8VK9M9nTaJs4zueTEvwaqY7+6ybTA==
+    MEALIE_CLIENT_SECRET: AgANl+gnTnlrfyLhZdH+lFTjfF6Of7hIgZzlNjTvcIjMmE0GQBieJ5YyN7zew3uwdoanSeeIIf2YxeptmC4wUd/1IEp+KHzXvcFBeAXrYifW4CJcUTwwYlx+Qlmq5/F8m4ooUXAvx2lzirZ9MJr9bEC2+CVQhZ2m4mYZgXkqP1rvM/ia6HIr8SvXU4aLgPrJiT+Hw+P33R6NB0hd2uj3lAiWZeqNNAP7oamCAM5ZEcJVL7aFRfj3MZ5HslCBQ6Ldim8GaY6LooWTRFSExkU/IPLnXgK5t8ljkKQ1ldVY00pt4YQgzQUK3dpDN+qbE6IMBEwBQPEvE7oItJgfbnDFRiHEJR5ylVra/meLSxWM4DhWV92uEQBWJThMYowJ13SESfOP45H2bIj/GUboDy2WwdilneiT8Hk0qwMbpabBDM3+dOdSjZEy+QlAsyBmSXZPAlgZtBJK9w1tcpByI6YwaWBm1alu3ImolexSrUH0QjOeQqaRp0QmMxoBRQcoVvsFJnDO3QKNwGkjon+fiqiFnz2dRn7XcG5+bna7DN2mchqRVPJzV6RoL66atGqEvukCvnyP8i0efyUXwrkTJpdcYmWEMLf4o0pB8/Ue/oQT2K4UbcXUfedIdMIkcCTAUm4obMBMYauBKm9BKZ6sfX83gKeX2gFi90wMqT7qdl1h/bOfUFKRRYeWoMPGDnse3jx+x3IaeMzA8dqM4aIMckiiiYOGz4xxWHTIyVr3FLaab5zA9A==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: mealie-sso-secret
+      namespace: default
 ---
 apiVersion: v1
 kind: Secret
@@ -41,8 +38,8 @@ stringData:
               [slug, default-provider-authorization-implicit-consent],
             ]
           client_type: confidential
-          client_id: {{ $clientID | quote }}
-          client_secret: {{ $clientSecret | quote }}
+          client_id: env://MEALIE_CLIENT_ID
+          client_secret: env://MEALIE_CLIENT_SECRET
           redirect_uris:
             - matching_mode: strict
               url: http://192.168.178.212/login
