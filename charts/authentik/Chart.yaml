@@ -6,3 +6,6 @@ dependencies:
   - name: authentik
     version: 2025.6.2
     repository: https://charts.goauthentik.io/
+  - name: postgres
+    version: 1.0.0
+    repository: file://../postgres

@@ -9,6 +9,32 @@ blueprint:
 
 authentik:
   global:
+    env:
+      - name: POSTGRES_HOST
+        valueFrom:
+          secretKeyRef:
+            name: authentik-postgres-cluster-app
+            key: host
+      - name: POSTGRES_DB_NAME
+        valueFrom:
+          secretKeyRef:
+            name: authentik-postgres-cluster-app
+            key: dbname
+      - name: POSTGRES_USER
+        valueFrom:
+          secretKeyRef:
+            name: authentik-postgres-cluster-app
+            key: username
+      - name: POSTGRES_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: authentik-postgres-cluster-app
+            key: password
+      - name: POSTGRES_PORT
+        valueFrom:
+          secretKeyRef:
+            name: authentik-postgres-cluster-app
+            key: port
     envFrom:
       - secretRef:
           name: mealie-sso-secret
@@ -18,7 +44,11 @@ authentik:
     error_reporting:
       enabled: false
     postgresql:
-      password: "ThisIsNotASecurePassword"
+      host: env://POSTGRES_HOST
+      name: env://POSTGRES_DB_NAME
+      user: env://POSTGRES_USER
+      password: env://POSTGRES_PASSWORD
+      port: env://POSTGRES_PORT
 
   server:
     service:
@@ -30,9 +60,7 @@ authentik:
         - authentik.domain.tld
 
   postgresql:
-    enabled: true
-    auth:
-      password: "ThisIsNotASecurePassword"
+    enabled: false
 
   redis:
     enabled: true
@@ -51,3 +79,7 @@ authentik:
       - authentik-blueprints-configmap
     secrets:
       - mealie-blueprint
+
+postgres:
+  instances: 2
+  superuser: false # Enables superuser rights for the app user
