@@ -37,8 +37,8 @@ stringData:
               [slug, default-provider-authorization-implicit-consent],
             ]
           client_type: confidential
-          client_id: env://MEALIE_CLIENT_ID
-          client_secret: env://MEALIE_CLIENT_SECRET
+          client_id: !Env MEALIE_CLIENT_ID
+          client_secret: !Env MEALIE_CLIENT_SECRET
           redirect_uris:
             - matching_mode: strict
               url: http://192.168.178.212/login
