@@ -30,7 +30,7 @@ spec:
             - name: mealie-data
               mountPath: /app/data/
           envFrom:
-            - secretRef:
+            - configMapRef:
                 name: {{ .Release.Name }}-env
           env:
             # Postgres Variables
