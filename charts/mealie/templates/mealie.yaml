@@ -29,17 +29,10 @@ spec:
           volumeMounts:
             - name: mealie-data
               mountPath: /app/data/
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-env
           env:
-            - name: ALLOW_SIGNUP
-              value: {{ .Values.mealie.allowSignup | quote }}
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
-            - name: TZ
-              value: {{ .Values.mealie.timezone | default "" }}
-            - name: BASE_URL
-              value: {{ .Values.mealie.baseURL | default "" }}
             # Postgres Variables
             - name: DB_ENGINE
               value: postgres
@@ -69,12 +62,6 @@ spec:
                   name: {{ .Values.mealie.pgsecrets }}
                   key: dbname
             # Try to configure OIDC
-            - name: ALLOW_PASSWORD_LOGIN
-              value: "false"
-            - name: OIDC_AUTH_ENABLED
-              value: "true"
-            - name: OIDC_CONFIGURATION_URL
-              value: http://192.168.178.211/application/o/mealie/.well-known/openid-configuration
             - name: OIDC_CLIENT_ID
               valueFrom:
                 secretKeyRef:
@@ -85,12 +72,6 @@ spec:
                 secretKeyRef:
                   name: mealie-sso-secret
                   key: MEALIE_CLIENT_SECRET
-            - name: OIDC_PROVIDER_NAME
-              value: Niphram's Bude
-            - name: OIDC_AUTO_REDIRECT
-              value: "true"
-            - name: OIDC_ADMIN_GROUP
-              value: admins
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
