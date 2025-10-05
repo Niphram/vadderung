@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-nginx
+  name: longhorn
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: ingress-nginx
+    namespace: longhorn-system
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: apps/charts/ingress-nginx
+    path: apps/charts/longhorn
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
   syncPolicy:

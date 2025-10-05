@@ -1,0 +1,5 @@
+longhorn:
+  defaultSettings:
+    # TODO: make configurable?
+    defaultDataPath: /var/mnt/data-vol-1/longhorn/
+    storageReservedPercentageForDefaultDisk: "10"

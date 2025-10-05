@@ -12,5 +12,9 @@ spec:
   project: default
   source:
     path: apps/charts/argocd
-    repoURL: https://github.com/niphram/vadderung
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
