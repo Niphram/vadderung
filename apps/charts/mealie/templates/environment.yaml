@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mealie-env
+data:
+  PUID: "1000"
+  PGID: "1000"
+  ALLOW_SIGNUP: "false"
+  TZ: "{{ .Values.mealie.timezone }}"
+  BASE_URL: "{{ .Values.mealie.baseURL }}"
+
+  DB_ENGINE: postgres

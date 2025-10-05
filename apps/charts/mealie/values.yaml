@@ -2,3 +2,4 @@ mealie:
   image: ghcr.io/mealie-recipes/mealie@sha256:bdf17cf5d70f4aef10d5344ec128e970a888aa8a14b6c86eed866773e0108c53
   pgsecrets: mealie-postgres-cluster-app
   timezone: Europe/Berlin
+  baseURL: http://mealie.vadderung.niphrams-bu.de
