@@ -18,13 +18,10 @@ spec:
       name: letsencrypt-staging
     # Enable the HTTP-01 challenge provider
     solvers:
-      - selector:
-        dnsNames:
-          - niphrams-bu.de
-        dns01:
-        webhook:
-          groupName: com.netcup.webhook
-          solverName: netcup
-          config:
-            secretRef: netcup-secret
-            secretNamespace: cert-manager
+      - dns01:
+          webhook:
+            groupName: com.netcup.webhook
+            solverName: netcup
+            config:
+              secretRef: netcup-secret
+              secretNamespace: cert-manager
