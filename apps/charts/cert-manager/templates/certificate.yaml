@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: niphrams-bude
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: niphrams-bude-tls
+  issuerRef:
+    name: letsencrypt-staging
+  dnsNames:
+    - "*.niphrams-bu.de"
+    - niphrams-bu.de
