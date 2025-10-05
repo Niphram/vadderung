@@ -8,11 +8,11 @@ metadata:
 spec:
   destination:
     namespace: cloudnative-pg
-    server: { { .Values.spec.destination.server } }
+    server: {{ .Values.spec.destination.server }}
   project: default
   source:
     path: apps/charts/cloudnativepg
-    repoURL: { { .Values.spec.source.repoURL } }
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
