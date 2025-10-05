@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
+    "helm.sh/hook": post-install,post-upgrade
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 
