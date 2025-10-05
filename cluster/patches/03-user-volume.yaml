@@ -1,0 +1,8 @@
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: data-vol-1
+provisioning:
+  diskSelector:
+    match: "!system_disk"
+  minSize: 1TB
+  maxSize: 1TB

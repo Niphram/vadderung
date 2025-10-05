@@ -1,0 +1,81 @@
+talosversion := "v1.11.2"
+kubernetesversion := "v1.34.1"
+
+patchdir := quote(justfile_directory() / "patches")
+patchfiles := ""
+
+secretsfile := 'secrets.yaml'
+secretexists := path_exists(justfile_directory() / secretsfile)
+
+talosctl := require("talosctl")
+kubectl := require("kubectl")
+
+nodes := "192.168.178.201,192.168.178.202,192.168.178.203"
+
+gensecrets file=secretsfile:
+    #!/usr/bin/env sh
+    if "{{ path_exists(file) }}" == "true"; then
+        echo "{{style("warning")}}{{file}} already exists!{{NORMAL}}"
+        exit 0
+    fi
+
+    echo "{{style("command")}}Generating new secrets...{{NORMAL}}"
+    {{talosctl}} gen secrets -o {{file}}
+    echo "{{style("command")}}{{file}} generated!{{NORMAL}}"
+    echo "{{style("warning")}}Make sure to keep the generated secrets safe!{{NORMAL}}"
+
+checksecrets:
+    #!/usr/bin/env sh
+    if ! "{{secretexists}}" == "true"; then
+        echo "{{style("error")}}secret.yaml does not exist!{{ NORMAL }}"
+        echo "{{style("warning")}}Place the existing secrets.yaml in this directory or generate a new one using 'just gensecrets'{{ NORMAL }}"
+        exit 1
+    fi
+
+patches:
+    #!/usr/bin/env sh
+    PATCHES=""
+    for file in ./patches/*.yaml
+    do
+        PATCHES="${PATCHES} --config-patch @$file"
+    done
+    echo "${PATCHES}"
+
+# this is a comment
+another-recipe:
+    @echo 'This is another recipe.'
+
+@generate cluster_name:
+    #!/usr/bin/env sh
+    echo '{{style("command")}}Generating talos config for cluster {{ cluster_name }}...{{NORMAL}}'
+
+    PATCHES=""
+    for file in ./patches/*.yaml
+    do
+        echo "Applying patch $file"
+        PATCHES="${PATCHES} --config-patch @$file"
+    done
+
+    {{talosctl}} gen config --force -o ./generated/ \
+        --kubernetes-version {{kubernetesversion}} \
+        --talos-version {{talosversion}} \
+        --with-secrets secrets.yaml \
+        ${PATCHES} \
+        {{cluster_name}} https://vadderung.niphrams-bu.de:6443
+
+@applyconfig:
+    {{talosctl}} apply-config \
+        -n {{nodes}} \
+        --file ./generated/controlplane.yaml
+
+@upgradenodes:
+    # MAKE SURE TO USE --preserve
+    # https://longhorn.io/docs/1.9.0/advanced-resources/os-distro-specific/talos-linux-support/#talos-linux-upgrades
+
+@bootstrap:
+    argocd app create apps \
+        --dest-namespace argocd \
+        --dest-server https://kubernetes.default.svc \
+        --repo https://github.com/argoproj/argocd-example-apps.git \
+        --path apps  
+    argocd app sync apps 

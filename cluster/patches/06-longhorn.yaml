@@ -1,0 +1,26 @@
+cluster:
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1beta1
+          kind: PodSecurityConfiguration
+          exemptions:
+            namespaces:
+              - longhorn-system
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/mnt/data-vol-1
+        type: bind
+        source: /var/mnt/data-vol-1
+        options:
+          - bind
+          - rshared
+          - rw
+  kernel:
+    modules:
+      - name: nbd
+      - name: iscsi_tcp
+      - name: iscsi_generic
+      - name: configfs
