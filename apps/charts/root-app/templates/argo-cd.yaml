@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/niphram/vadderung.git
-    path: apps/charts/argo-cd
+    path: apps/charts/argocd
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
