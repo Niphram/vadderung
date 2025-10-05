@@ -9,7 +9,7 @@ metadata:
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: immediate
 reclaimPolicy: Delete
 parameters:
   numberOfReplicas: "1"
@@ -28,7 +28,7 @@ metadata:
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: immediate
 reclaimPolicy: Delete
 parameters:
   numberOfReplicas: "3"
