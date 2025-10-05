@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook
+  name: ingress-nginx
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: ingress-nginx
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: guestbook
-    repoURL: https://github.com/argoproj/argocd-example-apps
+    path: apps/charts/ingress-nginx
+    repoURL: https://github.com/niphram/vadderung
     targetRevision: HEAD
