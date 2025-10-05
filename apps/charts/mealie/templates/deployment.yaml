@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mealie-deployment
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: mealie-app
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: mealie-app
+    spec:
+      containers:
+        - name: mealie-app
+          image: {{ .Values.mealie.image }}
+          ports:
+            - name: liveness-port
+              containerPort: 9000
+          livenessProbe:
+            httpGet:
+              path: /api/app/about
+              port: liveness-port
+            failureThreshold: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: mealie-data
+              mountPath: /app/data/
+          envFrom:
+            - configMapRef:
+                name: mealie-env
+          env:
+            # Postgres Variables
+            - name: DB_ENGINE
+              value: postgres
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: password
+            - name: POSTGRES_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: host
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: port
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: dbname
+      volumes:
+        - name: mealie-data
+          persistentVolumeClaim:
+            claimName: mealie-data-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mealie-app-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: mealie-app
+  ports:
+    - protocol: TCP
+      targetPort: 9000
+      port: 80
+  type: LoadBalancer
+  loadBalancerIP: 192.168.178.212
