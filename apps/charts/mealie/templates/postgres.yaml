@@ -7,13 +7,6 @@ spec:
   instances: 3
   description: "Mealie DB"
 
-  managed:
-    roles:
-    - name: app
-      ensure: present
-      login: true
-      superuser: true # Needed for backup restore
-
   primaryUpdateStrategy: unsupervised
 
   storage:
