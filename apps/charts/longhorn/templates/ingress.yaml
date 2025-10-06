@@ -4,12 +4,14 @@ metadata:
   name: {{ .Release.Name }}-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
+    cert-manager.io/issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/proxy-body-size: 10000m
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - longhorn.vadderung.niphrams-bu.de
+      secretName: {{ .Release.Name }}-tls
   rules:
     - host: "longhorn.vadderung.niphrams-bu.de"
       http:
