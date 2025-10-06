@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mealie-deployment
-  namespace: {{ .Release.Namespace }}
+  namespace: { { .Release.Namespace } }
 spec:
   selector:
     matchLabels:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: mealie-app
-          image: {{ .Values.mealie.image }}
+          image: { { .Values.mealie.image } }
           ports:
             - name: liveness-port
               containerPort: 9000
@@ -41,7 +41,7 @@ spec:
             # Postgres Variables
             - name: DB_ENGINE
               value: postgres
-            - name: POSTGRES_URL_OVERRIDE
+            - name: POSTGRES_URL_OVERRIDE_FILE
               value: /etc/db-secret/fqdn-uri
       volumes:
         - name: mealie-data
@@ -49,13 +49,13 @@ spec:
             claimName: mealie-data-pvc
         - name: db-secret
           secret:
-            secretName: {{ .Values.mealie.pgsecrets }}
+            secretName: { { .Values.mealie.pgsecrets } }
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: mealie-app-service
-  namespace: {{ .Release.Namespace }}
+  namespace: { { .Release.Namespace } }
 spec:
   selector:
     app: mealie-app
