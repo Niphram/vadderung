@@ -5,6 +5,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - argocd.vadderung.niphrams-bu.de
   rules:
     - host: "argocd.vadderung.niphrams-bu.de"
       http:
