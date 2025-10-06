@@ -8,5 +8,3 @@ data:
   ALLOW_SIGNUP: "false"
   TZ: "{{ .Values.mealie.timezone }}"
   BASE_URL: "https://{{ .Values.mealie.host }}"
-
-  DB_ENGINE: postgres
