@@ -41,16 +41,31 @@ spec:
             # Postgres Variables
             - name: DB_ENGINE
               value: postgres
-            - name: POSTGRES_USER_FILE
-              value: /etc/db-secret/username
-            - name: POSTGRES_PASSWORD_FILE
-              value: /etc/db-secret/password
-            - name: POSTGRES_PASSWORD_FILE
-              value: /etc/db-secret/host
-            - name: POSTGRES_PORT_FILE
-              value: /etc/db-secret/port
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: password
+            - name: POSTGRES_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: host
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: port
             - name: POSTGRES_DB
-              value: /etc/db-secret/dbname
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mealie.pgsecrets }}
+                  key: dbname
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
