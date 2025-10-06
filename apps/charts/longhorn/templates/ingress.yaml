@@ -7,6 +7,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 10000m
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - longhorn.vadderung.niphrams-bu.de
   rules:
     - host: "longhorn.vadderung.niphrams-bu.de"
       http:
