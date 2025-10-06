@@ -3,10 +3,16 @@ kind: Ingress
 metadata:
   name: mealie-ingress
   namespace: {{ .Release.Namespace }}
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{ .Values.mealie.baseURL }}
+      secretName: {{ .Release.Name }}-tls
   rules:
-    - host: "mealie.vadderung.niphrams-bu.de"
+    - host: {{ .Values.mealie.baseURL }}
       http:
         paths:
           - pathType: Prefix
