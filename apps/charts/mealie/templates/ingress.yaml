@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - {{ .Values.mealie.host }}
-      secretName: {{ .Release.Name }}-tls
+        - "mealie.{{ .Values.vadderung.baseDomain }}"
+      secretName: "{{ .Release.Name }}-tls"
   rules:
-    - host: {{ .Values.mealie.host }}
+    - host: "mealie.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
           - pathType: Prefix

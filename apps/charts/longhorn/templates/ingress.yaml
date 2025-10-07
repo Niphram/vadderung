@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-ingress
+  name: "{{ .Release.Name }}-ingress"
   namespace: {{ .Release.Namespace }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - longhorn.vadderung.niphrams-bu.de
-      secretName: {{ .Release.Name }}-tls
+        - "longhorn.{{ .Values.vadderung.baseDomain }}"
+      secretName: "{{ .Release.Name }}-tls"
   rules:
-    - host: "longhorn.vadderung.niphrams-bu.de"
+    - host: "longhorn.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
           - pathType: Prefix

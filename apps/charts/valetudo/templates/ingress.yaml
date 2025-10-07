@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: longhorn-ingress
+  name: valetudo-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -9,16 +9,16 @@ spec:
   ingressClassName: nginx
   tls: 
     - hosts:
-        - "argocd.{{ .Values.vadderung.baseDomain }}"
+        - "valetudo.{{ .Values.vadderung.baseDomain }}"
       secretName: "{{ .Release.Name }}-tls"
   rules:
-    - host: "argocd.{{ .Values.vadderung.baseDomain }}"
+    - host: "valetudo.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: argo-cd-argocd-server
+                name: valetudo-service
                 port:
                   number: 80

@@ -23,4 +23,4 @@ spec:
               secretNamespace: cert-manager
         selector:
           dnsZones:
-            - "niphrams-bu.de"
+            - {{ .Values.vadderung.baseDomain }}

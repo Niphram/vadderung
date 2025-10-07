@@ -1,3 +1,6 @@
+vadderung:
+  baseDomain: ~
+
 longhorn:
   defaultSettings:
     # TODO: make configurable?

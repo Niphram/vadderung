@@ -7,4 +7,4 @@ data:
   PGID: "1000"
   ALLOW_SIGNUP: "false"
   TZ: "{{ .Values.mealie.timezone }}"
-  BASE_URL: "https://{{ .Values.mealie.host }}"
+  BASE_URL: "https://mealie.{{ .Values.vadderung.baseDomain }}"

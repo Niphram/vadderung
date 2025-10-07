@@ -1,5 +1,7 @@
+vadderung:
+  baseDomain: ~
+
 mealie:
   image: ghcr.io/mealie-recipes/mealie:v3.3.1
   pgsecrets: mealie-db-app
   timezone: Europe/Berlin
-  host: mealie.niphrams-bu.de

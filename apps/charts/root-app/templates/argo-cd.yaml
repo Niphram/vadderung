@@ -10,13 +10,20 @@ spec:
     namespace: argocd
     server: {{ .Values.spec.destination.server }}
   project: default
-  source:
-    path: apps/charts/argocd
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: HEAD
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
     automated:
       enabled: true
       prune: true
+
+  sources:
+    - path: apps/charts/argocd
+      repoURL: {{ .Values.sources.chartRepo.url }}
+      targetRevision: {{ .Values.sources.chartRepo.revision }}
+      helm:
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: {{ .Values.sources.valuesRepo.url }}
+      targetRevision: {{ .Values.sources.valuesRepo.revision }}
+      ref: values

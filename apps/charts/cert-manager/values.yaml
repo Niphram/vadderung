@@ -1,5 +1,7 @@
-acme:
-  email: ~
+vadderung:
+  baseDomain: ~
+  acme:
+    email: ~
 
 cert-manager:
   crds:

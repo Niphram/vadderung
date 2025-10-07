@@ -23,7 +23,7 @@ spec:
       targetRevision: {{ .Values.sources.chartRepo.revision }}
       helm:
         valueFiles:
-          - $values/issuer.yaml
+          - $values/values.yaml
     - repoURL: {{ .Values.sources.valuesRepo.url }}
       targetRevision: {{ .Values.sources.valuesRepo.revision }}
       ref: values
