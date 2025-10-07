@@ -1,3 +1,11 @@
+sources:
+  chartRepo:
+    url: https://github.com/niphram/vadderung
+    revision: HEAD
+  valuesRepo:
+    url: https://github.com/niphram/vadderung-values
+    revision: HEAD
+
 spec:
   source:
     repoURL: https://github.com/niphram/vadderung

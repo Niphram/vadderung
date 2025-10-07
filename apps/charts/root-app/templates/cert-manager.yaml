@@ -10,13 +10,20 @@ spec:
     namespace: cert-manager
     server: {{ .Values.spec.destination.server }}
   project: default
-  source:
-    path: apps/charts/cert-manager
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: HEAD
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
     automated:
       enabled: true
       prune: true
+
+  sources:
+    - path: apps/charts/cert-manager
+      repoURL: {{ .Values.sources.chartRepo.url }}
+      targetRevision: {{ .Values.sources.chartRepo.revision }}
+      helm:
+        valueFiles:
+          - $values/issuer.yaml
+    - repoURL: {{ .Values.sources.valuesRepo.url }}
+      targetRevision: {{ .Values.sources.valuesRepo.revision }}
+      ref: values

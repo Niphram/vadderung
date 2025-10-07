@@ -1,3 +1,6 @@
+acme:
+  email: ~
+
 cert-manager:
   crds:
     enabled: true

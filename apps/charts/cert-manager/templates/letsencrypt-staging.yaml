@@ -8,7 +8,7 @@ metadata:
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: m@rvin-ro.de
+    email: {{ .Values.acme.email }}
     profile: tlsserver
     privateKeySecretRef:
       name: letsencrypt-staging
