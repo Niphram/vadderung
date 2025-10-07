@@ -5,7 +5,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   tls: 
@@ -16,7 +15,7 @@ spec:
     - host: "valetudo.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
-          - pathType: ImplementationSpecific
+          - pathType: Prefix
             path: "/"
             backend:
               service:

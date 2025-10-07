@@ -1,25 +1,14 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: valetudo-service
   namespace: {{ .Release.Namespace }}
 spec:
+  ipFamilies:
+    - IPv4
   ports:
-  - name: http
-    protocol: TCP
-    port: 80
-    targetPort: 80
----
-apiVersion: discovery.k8s.io/v1
-kind: EndpointSlice
-metadata:  
-  name: valetudo-service
-  namespace: {{ .Release.Namespace }}
-  labels:
-    kubernetes.io/service-name: valetudo-service
-addressType: IPv4
-ports:
-  - port: {{ .Values.valetudo.robot.port }}
-endpoints:
-  - addresses:
-    - {{ .Values.valetudo.robot.ip }}
+    - name: robot   
+      protocol: TCP 
+      port: {{ .Values.valetudo.robot.port }}    
+  type: ExternalName
+  externalName: {{ .Values.valetudo.robot.ip }}  
