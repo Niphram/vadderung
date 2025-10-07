@@ -1,14 +1,22 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: valetudo-service
   namespace: {{ .Release.Namespace }}
 spec:
-  ipFamilies:
-    - IPv4
   ports:
-    - name: robot   
-      protocol: TCP 
-      port: {{ .Values.valetudo.robot.port }}    
-  type: ExternalName
-  externalName: {{ .Values.valetudo.robot.ip }}  
+    - port: {{ .Values.valetudo.robot.port }}
+      protocol: TCP
+      targetPort: {{ .Values.valetudo.robot.port }}
+      name: http
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: valetudo-service
+  namespace: {{ .Release.Namespace }}
+subsets:
+  - addresses:
+      - ip: {{ .Values.valetudo.robot.ip }}
+    ports:
+      - port: {{ .Values.valetudo.robot.port }}
