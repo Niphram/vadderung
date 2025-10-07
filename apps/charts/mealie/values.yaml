@@ -1,5 +1,5 @@
 mealie:
-  image: ghcr.io/mealie-recipes/mealie:v3.3.1
+  image: ghcr.io/mealie-recipes/mealie@sha256:04e0e67daa7ac6d867ccc922fe922a120ad75bee28828d45438fc45d3b3888a8
   pgsecrets: mealie-db-app
   timezone: Europe/Berlin
   host: mealie.niphrams-bu.de
