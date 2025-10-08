@@ -8,7 +8,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: {{ .Values.acme.email }}
+    email: {{ .Values.vadderung.acme.email }}
     profile: tlsserver
     privateKeySecretRef:
       name: letsencrypt-prod
