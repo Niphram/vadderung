@@ -5,6 +5,4 @@ valetudo:
   robot:
     ip: ~
     port: ~
-  auth:
-    username: ~
-    password: ~
+  auth: ~
