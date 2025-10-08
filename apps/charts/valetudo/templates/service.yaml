@@ -9,14 +9,3 @@ spec:
       protocol: TCP
       targetPort: {{ .Values.valetudo.robot.port }}
       name: http
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: valetudo-service
-  namespace: {{ .Release.Namespace }}
-subsets:
-  - addresses:
-      - ip: {{ .Values.valetudo.robot.ip }}
-    ports:
-      - port: {{ .Values.valetudo.robot.port }}

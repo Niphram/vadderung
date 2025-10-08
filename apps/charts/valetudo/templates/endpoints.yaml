@@ -1,0 +1,16 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice # Check ArgoCD Configmap, this resource is excluded by default
+metadata:
+  name: valetudo-service-1
+  namespace: {{ .Release.Namespace }}
+  labels:
+    kubernetes.io/service-name: valetudo-service
+addressType: IPv4
+ports:
+  - name: http
+    appProtocol: http
+    protocol: TCP
+    port: {{ .Values.valetudo.robot.port }}
+endpoints:
+  - addresses:
+      - {{ .Values.valetudo.robot.ip }}
