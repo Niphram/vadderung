@@ -6,7 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "Authorization: Basic {{ b64enc .Values.valetudo.auth }}";
+      proxy_set_header Authorization: Basic {{ b64enc .Values.valetudo.auth }};
 spec:
   ingressClassName: nginx
   tls:
