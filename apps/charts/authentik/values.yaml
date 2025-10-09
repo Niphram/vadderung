@@ -2,25 +2,40 @@ vadderung:
   baseDomain: ~
 
 authentik:
-  secret_key: "PleaseGenerateASecureKey"
-  # This sends anonymous usage-data, stack traces on errors and
-  # performance data to sentry.io, and is fully opt-in
-  error_reporting:
-    enabled: false
-  postgresql:
-    password: "ThisIsNotASecurePassword"
+  authentik:
+    secret_key: "file:///etc/authentik-secret/secret_key"
 
-server:
-  ingress:
-    # Specify kubernetes ingress controller class name
-    ingressClassName: nginx
-    enabled: true
-    hosts:
-      - authentik.example.com
+    postgresql:
+      host: file:///etc/db-secret/host
+      port: file:///etc/db-secret/port
+      name: file:///etc/db-secret/dbname
+      user: file:///etc/db-secret/user
+      password: file:///etc/db-secret/password
 
-postgresql:
-  enabled: true
-  auth:
-    password: "ThisIsNotASecurePassword"
-redis:
-  enabled: true
+  server:
+    volumes:
+      - name: authentik-secret
+        secret:
+          secretName: authentik-secret
+      - name: db-secret
+        secret:
+          secretName: authentik-db-app
+
+    volumeMounts:
+      - name: authentik-secret
+        readOnly: true
+        mountPath: "/etc/authentik-secret"
+      - name: db-secret
+        readOnly: true
+        mountPath: "/etc/db-secret"
+
+  worker:
+    volumes:
+      - name: db-secret
+        secret:
+          secretName: authentik-db-app
+
+    volumeMounts:
+      - name: db-secret
+        readOnly: true
+        mountPath: "/etc/db-secret"
