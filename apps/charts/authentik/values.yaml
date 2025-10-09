@@ -39,3 +39,6 @@ authentik:
       - name: db-secret
         readOnly: true
         mountPath: "/etc/db-secret"
+
+  redis:
+    enabled: true
