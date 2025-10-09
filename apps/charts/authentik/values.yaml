@@ -31,11 +31,17 @@ authentik:
 
   worker:
     volumes:
+      - name: authentik-secret
+        secret:
+          secretName: authentik-secret
       - name: db-secret
         secret:
           secretName: authentik-db-app
 
     volumeMounts:
+      - name: authentik-secret
+        readOnly: true
+        mountPath: "/etc/authentik-secret"
       - name: db-secret
         readOnly: true
         mountPath: "/etc/db-secret"
