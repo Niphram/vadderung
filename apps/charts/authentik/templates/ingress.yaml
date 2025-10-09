@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Release.Name }}-ingress"
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "auth.{{ .Values.vadderung.baseDomain }}"
+      secretName: "{{ .Release.Name }}-tls"
+  rules:
+    - host: "auth.{{ .Values.vadderung.baseDomain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: authentik-server
+                port:
+                  number: 80
