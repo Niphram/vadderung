@@ -1,0 +1,17 @@
+vadderung:
+  baseDomain: ~
+
+authelia:
+  configMap:
+    session:
+      cookies:
+        - domain: 127.0.0.1
+    storage:
+      local:
+        enabled: true
+    notifier:
+      filesystem:
+        enabled: true
+    authentication_backend:
+      file:
+        enabled: true
