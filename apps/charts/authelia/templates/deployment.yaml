@@ -31,8 +31,6 @@ spec:
               mountPath: /data
               readOnly: false
           env:
-            - name: AUTHELIA_LOG_LEVEL
-              value: trace
             - name: TZ
               value: {{ .Values.authelia.timezone }}
       volumes:
