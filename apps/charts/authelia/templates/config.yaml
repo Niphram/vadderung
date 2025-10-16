@@ -12,7 +12,13 @@ data:
     authentication_backend:
       file:
         path: '/config/users_database.yml'
-        
+    access_control:
+      default_policy: 'deny'
+
+    identity_validation:
+      reset_password:
+        jwt_secret: 'a_very_important_secret'
+
     storage:
       encryption_key: 'you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this'
       local:
