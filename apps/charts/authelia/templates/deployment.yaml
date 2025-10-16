@@ -19,7 +19,8 @@ spec:
       containers:
         - name: {{ .Release.Name }}
           image: {{ .Values.authelia.image }}
-          command: ['sleep 3300']
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 30; done;" ]
           volumeMounts:
             - name: config-volume
               mountPath: /config
