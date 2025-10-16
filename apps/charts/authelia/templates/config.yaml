@@ -12,12 +12,15 @@ data:
     authentication_backend:
       file:
         path: '/config/users_database.yml'
+        
     storage:
+      encryption_key: 'you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this'
       local:
-        enabled: true
+        path: '/config/db.sqlite3'
+
     notifier:
       filesystem:
-        enabled: true
+        filename: '/config/notification.txt'
 
     session:
       # This secret can also be set using the env variables AUTHELIA_SESSION_SECRET_FILE
