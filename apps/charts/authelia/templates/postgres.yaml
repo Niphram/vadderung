@@ -1,0 +1,20 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ .Release.Name }}-db
+  namespace: {{ .Release.Namespace }}
+spec:
+  instances: 3
+  description: "Authelia DB"
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 2Gi
+  walStorage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 2Gi
+
+  nodeMaintenanceWindow:
+    reusePVC: false # rebuild from other replica instead

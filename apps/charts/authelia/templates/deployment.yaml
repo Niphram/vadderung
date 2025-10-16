@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.authelia.image }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+            - name: db-secret
+              readOnly: true
+              mountPath: "/etc/db-secret"
+          env:
+            - name: TZ
+              value: {{ .Values.authelia.timezone }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: "{{ .Release.Name }}-cm"
+        - name: db-secret
+          secret:
+            secretName: {{ .Values.authelia.pgsecrets }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - protocol: TCP
+      targetPort: 9000
+      port: 80

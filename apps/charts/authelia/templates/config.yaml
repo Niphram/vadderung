@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ .Release.Name }}-cm"
+  namespace: {{ .Release.Namespace }}
+data:
+  configuration.yml: |
+    server:
+      address: 'tcp://:9091'
+    log:
+      level "debug"
+    authentication_backend:
+      file:
+        path: '/config/users_database.yml'
+    session:
+      # This secret can also be set using the env variables AUTHELIA_SESSION_SECRET_FILE
+      secret: 'insecure_session_secret'
+
+      cookies:
+        - name: 'authelia_session'
+          domain: {{ .Values.vadderung.baseDomain }}
+          authelia_url: 'https://authelia.{{ .Values.vadderung.baseDomain }}'
+          expiration: '1 hour'
+          inactivity: '5 minutes'
+  users_database.yml: |
+    # Temporary test user
+    users:
+      authelia:
+        disabled: false
+        displayname: 'Authelia User'
+        # Password is authelia
+        password: '$6$rounds=50000$BpLnfgDsc2WD8F2q$Zis.ixdg9s/UOJYrs56b5QEZFiZECu0qZVNsIYxBaNJ7ucIL.nlxVCT5tqh8KHG8X4tlwCFm5r6NTOZZ5qRFN/'  # yamllint disable-line rule:line-length
+        email: 'authelia@authelia.com'
+        groups:
+          - 'admins'
+          - 'dev'

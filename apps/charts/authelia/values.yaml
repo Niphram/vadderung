@@ -1,0 +1,7 @@
+vadderung:
+  baseDomain: ~
+
+authelia:
+  image: ghcr.io/authelia/authelia:4.39.13
+  pgsecrets: authelia-db-app
+  timezone: Europe/Berlin
