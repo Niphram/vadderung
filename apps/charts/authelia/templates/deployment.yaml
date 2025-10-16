@@ -19,6 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: {{ .Release.Name }}
+          image: {{ .Values.authelia.image }}
           volumeMounts:
             - name: config-volume
               mountPath: /config
