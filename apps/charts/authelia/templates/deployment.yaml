@@ -26,6 +26,9 @@ spec:
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
+            - name: data-volume
+              mountPath: /data
+              readOnly: false
           env:
             - name: TZ
               value: {{ .Values.authelia.timezone }}
@@ -36,6 +39,9 @@ spec:
         - name: db-secret
           secret:
             secretName: {{ .Values.authelia.pgsecrets }}
+        - name: data-volume
+          emptyDir:
+            sizeLimit: 1000Mi
 ---
 kind: Service
 apiVersion: v1
