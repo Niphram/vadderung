@@ -12,6 +12,13 @@ data:
     authentication_backend:
       file:
         path: '/config/users_database.yml'
+    storage:
+      local:
+        enabled: true
+    notifier:
+      filesystem:
+        enabled: true
+
     session:
       # This secret can also be set using the env variables AUTHELIA_SESSION_SECRET_FILE
       secret: 'insecure_session_secret'
