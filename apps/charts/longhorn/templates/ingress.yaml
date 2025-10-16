@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 10000m
 
     nginx.ingress.kubernetes.io/auth-method: 'GET'
-    nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local/api/authz/auth-request'
+    nginx.ingress.kubernetes.io/auth-url: 'http://authelia-service.authelia.svc.cluster.local/api/authz/auth-request'
     nginx.ingress.kubernetes.io/auth-signin: 'https://authelia.{{ .Values.vadderung.baseDomain }}?rm=$request_method'
     nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
 spec:
