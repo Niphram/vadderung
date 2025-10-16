@@ -16,6 +16,7 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      enableServiceLinks: false
       containers:
         - name: {{ .Release.Name }}
           image: {{ .Values.authelia.image }}
@@ -24,6 +25,11 @@ spec:
             - name: config-volume
               mountPath: /config
               readOnly: true
+              subPath: configuration.yml
+            - name: config-volume
+              mountPath: /config
+              readOnly: true
+              subPath: users_database.yml
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
