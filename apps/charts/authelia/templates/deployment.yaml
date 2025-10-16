@@ -49,7 +49,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ .Release.Name }}
+  name: authelia-service
   namespace: {{ .Release.Namespace }}
 spec:
   selector:

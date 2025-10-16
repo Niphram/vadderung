@@ -19,6 +19,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: authelia
+                name: authelia-service
                 port:
                   number: 80
