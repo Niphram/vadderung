@@ -52,6 +52,7 @@ metadata:
 spec:
   selector:
     app: {{ .Release.Name }}
+  externalTrafficPolicy: local
   ports:
     - protocol: TCP
       targetPort: 9001
