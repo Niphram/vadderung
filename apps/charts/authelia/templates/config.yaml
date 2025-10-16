@@ -7,13 +7,13 @@ data:
   configuration.yml: |
     server:
       address: 'tcp://:9091'
-    log:
-      level "debug"
+
     authentication_backend:
       file:
         path: '/config/users_database.yml'
+        
     access_control:
-      default_policy: 'deny'
+      default_policy: 'one_factor'
 
     identity_validation:
       reset_password:

@@ -22,6 +22,7 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /config
+              readOnly: false
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
