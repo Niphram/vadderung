@@ -22,7 +22,7 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /config
-              readOnly: false
+              readOnly: true
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
@@ -41,7 +41,7 @@ spec:
             secretName: {{ .Values.authelia.pgsecrets }}
         - name: data-volume
           emptyDir:
-            sizeLimit: 1000Mi
+            sizeLimit: 100Mi
 ---
 kind: Service
 apiVersion: v1
@@ -53,5 +53,5 @@ spec:
     app: {{ .Release.Name }}
   ports:
     - protocol: TCP
-      targetPort: 9000
+      targetPort: 9001
       port: 80
