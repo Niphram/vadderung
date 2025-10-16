@@ -6,6 +6,9 @@ metadata:
 data:
   configuration.yml: |
     # config
+    server:
+      address: 'tcp://:9091/'
+      disable_healthcheck: true
     authentication_backend:
       file:
         path: '/config/users_database.yml'
