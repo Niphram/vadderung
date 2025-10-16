@@ -19,6 +19,7 @@ spec:
       containers:
         - name: {{ .Release.Name }}
           image: {{ .Values.authelia.image }}
+          command: 'sleep 3300'
           volumeMounts:
             - name: config-volume
               mountPath: /config
@@ -30,6 +31,8 @@ spec:
               mountPath: /data
               readOnly: false
           env:
+            - name: AUTHELIA_LOG_LEVEL
+              value: trace
             - name: TZ
               value: {{ .Values.authelia.timezone }}
       volumes:
