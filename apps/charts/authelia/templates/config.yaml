@@ -5,13 +5,12 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   configuration.yml: |
-    server:
-      address: 'tcp://:9091'
+    # config
 
     authentication_backend:
       file:
         path: '/config/users_database.yml'
-        
+
     access_control:
       default_policy: 'one_factor'
 
