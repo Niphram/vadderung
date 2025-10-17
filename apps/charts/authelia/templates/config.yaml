@@ -11,9 +11,9 @@ data:
       disable_healthcheck: true
     authentication_backend:
       password_reset:
-        disable: false
+        disable: true
       password_change:
-        disable: false
+        disable: true
       file:
         path: '/config/users_database.yml'
     access_control:
