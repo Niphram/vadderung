@@ -7,7 +7,9 @@ authentication_backend:
   password_change:
     disable: true
   file:
-    path: "/config/users_database.yml"
+    path: "/etc/users/users_database.yml"
+    email: false
+    case_insensitive: true
 access_control:
   default_policy: "one_factor"
 identity_validation:

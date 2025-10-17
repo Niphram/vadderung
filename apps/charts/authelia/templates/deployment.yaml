@@ -27,6 +27,9 @@ spec:
             - name: authelia-secret
               readOnly: true
               mountPath: "/etc/authelia-secret"
+            - name: authelia-secret
+              readOnly: true
+              mountPath: "/etc/users"
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
@@ -47,6 +50,9 @@ spec:
         - name: authelia-secret
           secret:
             secretName: authelia-secret
+        - name: authelia-users-secret
+          secret:
+            secretName: authelia-users-secret
         - name: db-secret
           secret:
             secretName: {{ .Values.authelia.pgsecrets }}
