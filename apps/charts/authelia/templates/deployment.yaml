@@ -34,6 +34,8 @@ spec:
               mountPath: /data
               readOnly: false
           env:
+            - name: X_AUTHELIA_CONFIG_FILTERS
+              value: template
             - name: AUTHELIA_LOG_LEVEL
               value: trace
             - name: TZ
