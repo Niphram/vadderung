@@ -24,6 +24,9 @@ spec:
             - name: config-volume
               mountPath: /config
               readOnly: true
+            - name: authelia-secret
+              readOnly: true
+              mountPath: "/etc/authelia-secret"
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
@@ -39,6 +42,9 @@ spec:
         - name: config-volume
           configMap:
             name: "{{ .Release.Name }}-cm"
+        - name: authelia-secret
+          secret:
+            secretName: authelia-secret
         - name: db-secret
           secret:
             secretName: {{ .Values.authelia.pgsecrets }}

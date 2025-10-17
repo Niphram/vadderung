@@ -18,9 +18,12 @@ data:
       reset_password:
         jwt_secret: 'a_very_important_secret'
     storage:
-      encryption_key: 'you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this'
-      local:
-        path: '/data/db.sqlite3'
+      encryption_key: '{{- fileContent "/etc/authelia-secret/encryption_key" }}'
+      postgres:
+        address: 'tcp://{{- fileContent "/etc/db-secret/host" }}:{{- fileContent "/etc/db-secret/port" }}'
+        database: '{{- fileContent "/etc/db-secret/dbname" }}'
+        username: '{{- fileContent "/etc/db-secret/username" }}'
+        password: '{{- fileContent "/etc/db-secret/password" }}'
     notifier:
       filesystem:
         filename: '/data/notification.txt'
