@@ -1,0 +1,33 @@
+server:
+  address: "tcp://:9091/"
+  disable_healthcheck: true
+authentication_backend:
+  password_reset:
+    disable: true
+  password_change:
+    disable: true
+  file:
+    path: "/config/users_database.yml"
+access_control:
+  default_policy: "one_factor"
+identity_validation:
+  reset_password:
+    jwt_secret: '{{`{{- secret "/etc/authelia-secret/jwt_secret" }}`}}'
+storage:
+  encryption_key: '{{`{{- secret "/etc/authelia-secret/encryption_key" }}`}}'
+  postgres:
+    address: '{{`tcp://{{- secret "/etc/db-secret/host" }}:{{- secret "/etc/db-secret/port" }}`}}'
+    database: '{{`{{- secret "/etc/db-secret/dbname" }}`}}'
+    username: '{{`{{- secret "/etc/db-secret/username" }}`}}'
+    password: '{{`{{- secret "/etc/db-secret/password" }}`}}'
+notifier:
+  filesystem:
+    filename: "/data/notification.txt"
+session:
+  secret: '{{`{{- secret "/etc/authelia-secret/session_secret" }}`}}'
+  cookies:
+    - name: "authelia_session"
+      domain: "{{ .Values.vadderung.baseDomain }}"
+      authelia_url: "https://authelia.{{ .Values.vadderung.baseDomain }}"
+      expiration: "1 hour"
+      inactivity: "5 minutes"
