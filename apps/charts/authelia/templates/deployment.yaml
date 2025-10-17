@@ -27,7 +27,7 @@ spec:
             - name: authelia-secret
               readOnly: true
               mountPath: "/etc/authelia-secret"
-            - name: authelia-secret
+            - name: authelia-users-secret
               readOnly: true
               mountPath: "/etc/users"
             - name: db-secret
