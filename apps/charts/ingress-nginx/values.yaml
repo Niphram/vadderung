@@ -5,3 +5,5 @@ ingress-nginx:
     allowSnippetAnnotations: true
     config:
       annotations-risk-level: Critical
+    extraArgs:
+      default-ssl-certificate: "cert-manager/default-tls"
