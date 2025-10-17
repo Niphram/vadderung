@@ -9,10 +9,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - "authelia.{{ .Values.vadderung.baseDomain }}"
+        - "auth.{{ .Values.vadderung.baseDomain }}"
       secretName: "{{ .Release.Name }}-tls"
   rules:
-    - host: "authelia.{{ .Values.vadderung.baseDomain }}"
+    - host: "auth.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
           - pathType: Prefix

@@ -30,6 +30,6 @@ session:
   cookies:
     - name: "authelia_session"
       domain: "{{ .Values.vadderung.baseDomain }}"
-      authelia_url: "https://authelia.{{ .Values.vadderung.baseDomain }}"
+      authelia_url: "https://auth.{{ .Values.vadderung.baseDomain }}"
       expiration: "1 hour"
       inactivity: "5 minutes"
