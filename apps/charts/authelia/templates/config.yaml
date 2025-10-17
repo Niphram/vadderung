@@ -10,6 +10,10 @@ data:
       address: 'tcp://:9091/'
       disable_healthcheck: true
     authentication_backend:
+      password_reset:
+        disable: false
+      password_change:
+        disable: false
       file:
         path: '/config/users_database.yml'
     access_control:
