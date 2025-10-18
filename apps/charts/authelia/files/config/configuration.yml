@@ -39,8 +39,8 @@ session:
     host: "authelia-dragonfly-cluster"
 identity_providers:
   oidc:
-    hmac_secret: '{{`{{- secret "/run/secrets/oidc/hmac_secret" }}`}}'
+    hmac_secret: {{`{{- secret "/run/secrets/oidc/hmac_secret" | mindent 6 "|" | msquote }}`}}
     jwks:
       - algorithm: "RS256"
         use: sig
-        key: '{{`{{ secret "/run/secrets/oidc/jwks.key" | mindent 10 "|" | msquote }}`}}'
+        key: {{`{{ secret "/run/secrets/oidc/jwks.key" | mindent 10 "|" | msquote }}`}}
