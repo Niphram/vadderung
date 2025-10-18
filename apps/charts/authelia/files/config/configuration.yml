@@ -46,7 +46,7 @@ identity_providers:
         key: {{`{{ secret "/run/secrets/oidc/jwks.key" | mindent 10 "|" | msquote }}`}}
     clients:
       {{`{{ range (glob "/run/secrets/providers/*.yaml") }}
-      - {{ fileContent . | mindent 8 | trim }}
+      - {{ fileContent . | indent 8 | trim }}
       {{ end }}`}}
       - client_id: dummy
         client_name: Dummy Client
