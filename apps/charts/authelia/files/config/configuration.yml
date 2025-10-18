@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://www.authelia.com/schemas/latest/json-schema/configuration.json
 server:
   address: "tcp://:9091/"
   disable_healthcheck: true
@@ -36,3 +37,11 @@ session:
       inactivity: "1 day"
   redis:
     host: "authelia-dragonfly-cluster"
+identity_providers:
+  oidc:
+    hmac_secret: '{{`{{- secret "/run/secrets/oidc/hmac_secret" }}`}}'
+    jwks:
+      - algorithm: "RS256"
+        use: sig
+        key: '{{`{{ secret "/run/secrets/oidc/jwks.key" | mindent 10 "|" | msquote }}`}}'
+        # certificate_chain: '{{`{{ secret "/run/secrets/oidc-jwk/jwks/rsa.2048.key" | mindent 10 "|" | msquote }}`}}'
