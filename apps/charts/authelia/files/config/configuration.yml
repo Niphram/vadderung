@@ -44,4 +44,3 @@ identity_providers:
       - algorithm: "RS256"
         use: sig
         key: '{{`{{ secret "/run/secrets/oidc/jwks.key" | mindent 10 "|" | msquote }}`}}'
-        # certificate_chain: '{{`{{ secret "/run/secrets/oidc-jwk/jwks/rsa.2048.key" | mindent 10 "|" | msquote }}`}}'
