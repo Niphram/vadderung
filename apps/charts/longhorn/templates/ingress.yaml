@@ -13,10 +13,6 @@ metadata:
     nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - "longhorn.{{ .Values.vadderung.baseDomain }}"
-      secretName: "{{ .Release.Name }}-tls"
   rules:
     - host: "longhorn.{{ .Values.vadderung.baseDomain }}"
       http:

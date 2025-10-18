@@ -9,10 +9,6 @@ metadata:
       more_set_input_headers "Authorization: Basic {{ b64enc .Values.valetudo.auth }}";
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - "valetudo.{{ .Values.vadderung.baseDomain }}"
-      secretName: "{{ .Release.Name }}-tls"
   rules:
     - host: "valetudo.{{ .Values.vadderung.baseDomain }}"
       http:

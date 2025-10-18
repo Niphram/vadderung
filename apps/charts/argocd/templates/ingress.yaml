@@ -7,10 +7,6 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
-  tls: 
-    - hosts:
-        - "argocd.{{ .Values.vadderung.baseDomain }}"
-      secretName: "{{ .Release.Name }}-tls"
   rules:
     - host: "argocd.{{ .Values.vadderung.baseDomain }}"
       http:
