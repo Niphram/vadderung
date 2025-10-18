@@ -8,10 +8,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 500m
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - "mealie.{{ .Values.vadderung.baseDomain }}"
-      secretName: "{{ .Release.Name }}-tls"
   rules:
     - host: "mealie.{{ .Values.vadderung.baseDomain }}"
       http:
