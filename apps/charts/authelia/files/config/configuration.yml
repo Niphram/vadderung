@@ -34,3 +34,5 @@ session:
       authelia_url: "https://auth.{{ .Values.vadderung.baseDomain }}"
       expiration: "1 week"
       inactivity: "1 day"
+  redis:
+    host: "authelia-dragonfly-cluster"
