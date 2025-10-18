@@ -26,6 +26,9 @@ spec:
             - name: config-volume
               mountPath: /config
               readOnly: true
+            - name: providers-volume
+              mountPath: /run/secrets/providers
+              readOnly: true
             - name: authelia-secret
               readOnly: true
               mountPath: "/etc/authelia-secret"
@@ -52,6 +55,9 @@ spec:
         - name: config-volume
           configMap:
             name: "{{ .Release.Name }}-cm"
+        - name: providers-volume
+          configMap:
+            name: authelia-oidc-providers-cm
         - name: authelia-secret
           secret:
             secretName: authelia-secret
