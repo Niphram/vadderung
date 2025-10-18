@@ -1,2 +1,11 @@
 vadderung:
   baseDomain: ~
+
+grafana:
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: longhorn-3
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
