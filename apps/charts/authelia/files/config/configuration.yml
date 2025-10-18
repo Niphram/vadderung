@@ -44,3 +44,11 @@ identity_providers:
       - algorithm: "RS256"
         use: sig
         key: {{`{{ secret "/run/secrets/oidc/jwks.key" | mindent 10 "|" | msquote }}`}}
+    clients:
+      - client_id: dummy
+        client_name: Dummy Client
+        public: true
+        redirect_uris:
+          - https://example.com
+        scopes:
+          - openid
