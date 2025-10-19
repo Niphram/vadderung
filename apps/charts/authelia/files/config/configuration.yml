@@ -10,7 +10,7 @@ authentication_backend:
   file:
     path: "/etc/users/users_database.yml"
     search:
-      email: false
+      email: true
       case_insensitive: true
 access_control:
   default_policy: "one_factor"

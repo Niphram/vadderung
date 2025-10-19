@@ -16,4 +16,3 @@ data:
   OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc/secret
   OIDC_AUTO_REDIRECT: "true"
   OIDC_REMEMBER_ME: "true"
-  OIDC_USER_CLAIM: preferred_username
