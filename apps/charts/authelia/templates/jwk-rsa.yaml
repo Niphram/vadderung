@@ -6,6 +6,7 @@ metadata:
 spec:
   secretName: jwk-rsa
   issuerRef:
+    kind: ClusterIssuer
     name: letsencrypt-prod
   privateKey:
     algorithm: RSA
