@@ -31,7 +31,7 @@ spec:
               readOnly: true
             - name: authelia-secret
               readOnly: true
-              mountPath: "/etc/authelia-secret"
+              mountPath: "/run/secrets/authelia"
             - name: authelia-oidc-secret
               readOnly: true
               mountPath: "/run/secrets/oidc"

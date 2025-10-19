@@ -34,6 +34,9 @@ spec:
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
+            - name: oidc-secret
+              readOnly: true
+              mountPath: "/run/secrets/oidc"
           envFrom:
             - configMapRef:
                 name: mealie-env
@@ -50,6 +53,9 @@ spec:
         - name: db-secret
           secret:
             secretName: {{ .Values.mealie.pgsecrets }}
+        - name: oidc-secret
+          secret:
+            secretName: mealie-oidc-secret
 ---
 kind: Service
 apiVersion: v1

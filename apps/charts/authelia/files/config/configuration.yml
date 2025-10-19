@@ -16,9 +16,9 @@ access_control:
   default_policy: "one_factor"
 identity_validation:
   reset_password:
-    jwt_secret: '{{`{{- secret "/etc/authelia-secret/jwt_secret" }}`}}'
+    jwt_secret: '{{`{{- secret "/run/secrets/authelia/jwt_secret" }}`}}'
 storage:
-  encryption_key: '{{`{{- secret "/etc/authelia-secret/encryption_key" }}`}}'
+  encryption_key: '{{`{{- secret "/run/secrets/authelia/encryption_key" }}`}}'
   postgres:
     address: '{{`tcp://{{- secret "/etc/db-secret/host" }}:{{- secret "/etc/db-secret/port" }}`}}'
     database: '{{`{{- secret "/etc/db-secret/dbname" }}`}}'
@@ -28,7 +28,7 @@ notifier:
   filesystem:
     filename: "/data/notification.txt"
 session:
-  secret: '{{`{{- secret "/etc/authelia-secret/session_secret" }}`}}'
+  secret: '{{`{{- secret "/run/secrets/authelia/session_secret" }}`}}'
   cookies:
     - name: "authelia_session"
       domain: "{{ .Values.vadderung.baseDomain }}"
@@ -48,10 +48,3 @@ identity_providers:
       {{`{{ range (glob "/run/secrets/providers/*.yaml") }}
       - {{ fileContent . | indent 8 | trim }}
       {{ end }}`}}
-      - client_id: dummy
-        client_name: Dummy Client
-        public: true
-        redirect_uris:
-          - https://example.com
-        scopes:
-          - openid
