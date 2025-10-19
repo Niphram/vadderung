@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: jwk-rsa
+  name: authelia-jwk-rsa
   namespace: {{ .Release.Namespace }}
 spec:
-  secretName: jwk-rsa
+  secretName: authelia-jwk-rsa
   issuerRef:
     kind: ClusterIssuer
-    name: letsencrypt-prod
+    name: selfsigned-cluster-issuer
   privateKey:
     algorithm: RSA
     encoding: PKCS8
