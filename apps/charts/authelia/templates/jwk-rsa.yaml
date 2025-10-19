@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: jwk-rsa
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: jwk-rsa
+  issuerRef:
+    name: letsencrypt-prod
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS8
+    size: 2048
+  usages:
+    - digital signature
+    - key encipherment
+  dnsNames:
+    - "auth.{{ .Values.vadderung.baseDomain }}"
