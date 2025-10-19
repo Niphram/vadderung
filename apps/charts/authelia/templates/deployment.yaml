@@ -32,6 +32,9 @@ spec:
             - name: authelia-secret
               readOnly: true
               mountPath: "/run/secrets/authelia"
+            - name: authelia-oidc-secret
+              readOnly: true
+              mountPath: "/run/secrets/oidc"
             - name: authelia-jwk-rsa
               readOnly: true
               mountPath: "/run/secrets/jwks"
@@ -64,6 +67,9 @@ spec:
         - name: authelia-users-secret
           secret:
             secretName: authelia-users-secret
+        - name: authelia-oidc-secret
+          secret:
+            secretName: authelia-oidc-secret
         - name: authelia-jwk-rsa
           secret:
             secretName: authelia-jwk-rsa
