@@ -9,6 +9,8 @@ data:
   TZ: "{{ .Values.mealie.timezone }}"
   BASE_URL: "https://mealie.{{ .Values.vadderung.baseDomain }}"
 
+  ALLOW_PASSWORD_LOGIN: "false"
+
   OIDC_AUTH_ENABLED: "true"
   OIDC_SIGNUP_ENABLED: "true"
   OIDC_CONFIGURATION_URL: "https://auth.{{ .Values.vadderung.baseDomain }}/.well-known/openid-configuration"
@@ -16,3 +18,4 @@ data:
   OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc/secret
   OIDC_AUTO_REDIRECT: "true"
   OIDC_REMEMBER_ME: "true"
+  OIDC_ADMIN_GROUP: admins
