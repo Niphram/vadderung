@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: authelia-app
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
   revisionHistoryLimit: 2
