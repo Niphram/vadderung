@@ -9,6 +9,7 @@ mariadb:
     persistence:
       storageClass: longhorn-postgres-replica-storage
   secondary:
+    replicaCount: 2
     persistence:
       storageClass: longhorn-postgres-replica-storage
   auth:
