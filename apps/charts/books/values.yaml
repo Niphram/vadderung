@@ -2,7 +2,6 @@ vadderung:
   baseDomain: ~
 
 mariadb:
-  enabled: true
   architecture: replication
   image:
     tag: latest
@@ -16,6 +15,8 @@ mariadb:
   auth:
     database: booklore
     username: booklore-user
+  passwordUpdateJob:
+    enabled: false
 
 image:
   repository: ghcr.io/booklore-app/booklore
