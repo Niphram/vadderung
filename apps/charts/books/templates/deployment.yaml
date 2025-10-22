@@ -86,9 +86,9 @@ spec:
             - name: REMOTE_AUTH_ADMIN_GROUP
               value: admins
             - name: DATABASE_URL
-              value: jdbc:mariadb://{{ .Release.Name }}-mariadb:{{ .Values.mariadb.service.port }}/booklore
+              value: jdbc:mariadb://{{ .Release.Name }}-mariadb:{{ .Values.mariadb.service.port }}/{{ .Values.mariadb.userDatabase.name.value }}
             - name: DATABASE_USERNAME
-              value: booklore-user
+              value: {{ .Values.mariadb.userDatabase.user.value }}
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
