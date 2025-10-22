@@ -3,5 +3,5 @@ name: books
 version: 1.0.0
 dependencies:
   - name: mariadb
-    version: 4.4.3
-    repository: https://groundhog2k.github.io/helm-charts/
+    version: 23.2.1
+    repository: oci://registry-1.docker.io/bitnamicharts
