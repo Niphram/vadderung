@@ -7,7 +7,10 @@ mariadb:
     tag: latest
   primary:
     persistence:
-      storageClass: longhorn-3
+      storageClass: longhorn-postgres-replica-storage
+  secondary:
+    persistence:
+      storageClass: longhorn-postgres-replica-storage
   auth:
     database: booklore
     username: booklore-user
