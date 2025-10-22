@@ -15,6 +15,25 @@ spec:
       labels:
         app: calibre-app
     spec:
+      initContainers:
+        - name: init-db
+          image: busybox:1.36
+          command:
+            - /bin/sh
+            - -c
+            - |
+              if [! -f /books/metadata.db ]; then
+                echo "Downloading empty database..."
+                curl --output /books/metadata.db https://github.com/janeczku/calibre-web/raw/master/library/metadata.db
+                echo "Database downloaded!"
+              fi
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 32Mi
       containers:
         - name: calibre-app
           image: lscr.io/linuxserver/calibre-web:latest
