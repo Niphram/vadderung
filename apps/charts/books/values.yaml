@@ -2,12 +2,15 @@ vadderung:
   baseDomain: ~
 
 mariadb:
+  db:
+    name: booklore
+    user: booklore-user
   userDatabase:
     existingSecret: books-mariadb
     name:
-      value: booklore
+      secretKey: name
     user:
-      value: booklore-user
+      secretKey: user
     password:
       secretKey: password
   storage:
