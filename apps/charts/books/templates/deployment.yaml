@@ -27,6 +27,8 @@ spec:
                 wget -P /books  https://github.com/janeczku/calibre-web/raw/master/library/metadata.db
                 echo "Database downloaded!"
               fi
+
+              chmod 777 /books/metadata.db
           volumeMounts:
             - name: calibre-library
               mountPath: /books
@@ -46,6 +48,10 @@ spec:
             - name: calibre-library
               mountPath: /books
           env:
+            - name: PUID
+              value: 1000
+            - name: GUID
+              value: 1000
             - name: TZ
               value: Etc/UTC
             - name: DOCKER_MODS
