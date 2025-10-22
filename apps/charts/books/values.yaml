@@ -3,6 +3,7 @@ vadderung:
 
 mariadb:
   enabled: true
+  architecture: replication
   image:
     tag: latest
   primary:
