@@ -19,7 +19,7 @@ spec:
         - name: init-db
           image: busybox:1.36
           command:
-            - /bin/sh
+            - /bin/bash
             - -c
             - |
               if [! -f /books/metadata.db ]; then
