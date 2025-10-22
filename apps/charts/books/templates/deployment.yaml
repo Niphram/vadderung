@@ -24,7 +24,7 @@ spec:
             - |
               if ! [ -f /books/metadata.db ]; then
                 echo "Downloading empty database..."
-                wget -O /books/metadata.db https://github.com/janeczku/calibre-web/raw/master/library/metadata.db
+                wget -P /books  https://github.com/janeczku/calibre-web/raw/master/library/metadata.db
                 echo "Database downloaded!"
               fi
           resources:
