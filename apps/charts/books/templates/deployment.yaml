@@ -11,6 +11,7 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
+  revisionHistoryLimit: 2
   template:
     metadata:
       {{- with .Values.podAnnotations }}
