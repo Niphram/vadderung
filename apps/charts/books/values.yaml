@@ -5,6 +5,10 @@ mariadb:
   db:
     name: booklore
     user: booklore-user
+  settings:
+    existingSecret: books-mariadb
+    rootPassword:
+      secretKey: root-password
   userDatabase:
     existingSecret: books-mariadb
     name:
