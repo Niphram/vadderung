@@ -27,6 +27,9 @@ spec:
                 wget -P /books  https://github.com/janeczku/calibre-web/raw/master/library/metadata.db
                 echo "Database downloaded!"
               fi
+          volumeMounts:
+            - name: calibre-library
+              mountPath: /books
           resources:
             requests:
               cpu: 10m
