@@ -1,21 +1,3 @@
-{{- if (and .Values.persistence.dataVolume.enabled (not .Values.persistence.dataVolume.existingClaim)) }}
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  labels:
-    app.kubernetes.io/name: {{ include "booklore.fullname" . }}
-  name: {{ include "booklore.fullname" . }}-data
-spec:
-  accessModes:
-    - ReadWriteOnce
-  {{- with .Values.persistence.dataVolume.className }}
-  storageClassName: {{ . }}
-  {{- end }}
-  resources:
-    requests:
-      storage: {{ .Values.persistence.dataVolume.size }}
-{{- end }}
----
 {{- if (and .Values.persistence.booksVolume.enabled (not .Values.persistence.booksVolume.existingClaim)) }}
 apiVersion: v1
 kind: PersistentVolumeClaim

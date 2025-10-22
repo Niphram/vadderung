@@ -2,12 +2,9 @@ vadderung:
   baseDomain: ~
 
 mariadb:
-  enabled: true
-  image:
-    tag: latest
-  auth:
-    database: booklore
-    username: booklore-user
+  storage:
+    requestedSize: 100Mi
+    className: longhorn-3
 
 image:
   repository: ghcr.io/booklore-app/booklore
@@ -82,11 +79,6 @@ readinessProbe:
 # If you want to bring your own persistence (such as a hostPath),
 # disable these and do so in extraVolumes/extraVolumeMounts
 persistence:
-  dataVolume:
-    enabled: true
-    size: 100Mi
-    className: longhorn-3
-    existingClaim: ""
   booksVolume:
     enabled: true
     size: 10Gi
