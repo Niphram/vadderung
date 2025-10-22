@@ -28,7 +28,8 @@ spec:
                 echo "Database downloaded!"
               fi
 
-              chmod 777 /books/metadata.db
+              echo "Setting permissions..."
+              chmod -R 777 /books
           volumeMounts:
             - name: calibre-library
               mountPath: /books
