@@ -39,8 +39,8 @@ spec:
             - /bin/sh
             - -c
             - |
-              echo "Waiting for database on port {{ .Values.mariadb.primary.service.ports.mysql }}..."
-              until nc -z -v -w5 {{ .Release.Name }}-mariadb-primary {{ .Values.mariadb.primary.service.ports.mysql }}; do
+              echo "Waiting for database on port {{ .Values.mariadb.service.port }}..."
+              until nc -z -v -w5 {{ .Release.Name }}-mariadb {{ .Values.mariadb.service.port }}; do
                 echo "Waiting for database..."
                 sleep 2
               done
