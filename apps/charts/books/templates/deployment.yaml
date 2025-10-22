@@ -64,6 +64,20 @@ spec:
           env:
             - name: BOOKLORE_PORT
               value: "6060"
+            - name: REMOTE_AUTH_ENABLED
+              value: "true"
+            - name: REMOTE_AUTH_CREATE_NEW_USERS
+              value: "true"
+            - name: REMOTE_AUTH_HEADER_USER
+              value: Remote-User
+            - name: REMOTE_AUTH_HEADER_NAME
+              value: Remote-Name
+            - name: REMOTE_AUTH_HEADER_EMAIL
+              value: Remote-Email
+            - name: REMOTE_AUTH_HEADER_GROUPS
+              value: Remote-Groups
+            - name: REMOTE_AUTH_ADMIN_GROUP
+              value: admins
             - name: DATABASE_URL
               value: jdbc:mariadb://{{ .Release.Name }}-mariadb:{{ .Values.mariadb.primary.service.ports.mysql }}/{{ .Values.mariadb.auth.database }}
             - name: DATABASE_USERNAME
