@@ -1,0 +1,7 @@
+apiVersion: v2
+name: books
+version: 1.0.0
+dependencies:
+  - name: mariadb
+    version: 23.2.1
+    repository: oci://registry-1.docker.io/bitnamicharts
