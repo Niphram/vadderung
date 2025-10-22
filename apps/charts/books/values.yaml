@@ -5,10 +5,6 @@ mariadb:
   db:
     name: booklore
     user: booklore-user
-  settings:
-    existingSecret: books-mariadb
-  userDatabase:
-    existingSecret: books-mariadb
   storage:
     className: longhorn-3
 
