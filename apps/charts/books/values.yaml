@@ -2,6 +2,8 @@ vadderung:
   baseDomain: ~
 
 mariadb:
+  userDatabase:
+    existingSecret: books-mariadb
   storage:
     className: longhorn-3
 
