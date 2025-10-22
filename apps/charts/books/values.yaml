@@ -2,21 +2,13 @@ vadderung:
   baseDomain: ~
 
 mariadb:
-  architecture: replication
-  image:
-    tag: latest
-  primary:
-    persistence:
-      storageClass: longhorn-postgres-replica-storage
-  secondary:
-    replicaCount: 2
-    persistence:
-      storageClass: longhorn-postgres-replica-storage
-  auth:
-    database: booklore
-    username: booklore-user
-  passwordUpdateJob:
-    enabled: false
+  userDatabase:
+    name:
+      value: booklore
+    user:
+      value: booklore-user
+  storage:
+    className: longhorn-3
 
 image:
   repository: ghcr.io/booklore-app/booklore
