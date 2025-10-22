@@ -1,0 +1,116 @@
+vadderung:
+  baseDomain: ~
+
+mariadb:
+  db:
+    name: booklore
+    user: booklore-user
+  settings:
+    existingSecret: books-mariadb
+    rootPassword:
+      secretKey: ~
+  userDatabase:
+    existingSecret: books-mariadb
+    name:
+      secretKey: ~
+    user:
+      secretKey: ~
+    password:
+      secretKey: ~
+  storage:
+    className: longhorn-3
+
+image:
+  repository: ghcr.io/booklore-app/booklore
+  pullPolicy: IfNotPresent
+  tag: v1.8.1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 6060
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+
+    # nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia-service.authelia.svc.cluster.local/api/authz/auth-request"
+    nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ .Values.vadderung.baseDomain }}?rm=$request_method"
+    nginx.ingress.kubernetes.io/auth-response-headers: "Set-Cookie,Remote-User,Remote-Name,Remote-Groups,Remote-Email"
+    nginx.ingress.kubernetes.io/auth-snippet: "proxy_set_header X-Forwarded-Host $http_host;"
+  hosts:
+    - host: "books.{{ .Values.vadderung.baseDomain }}"
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  tcpSocket:
+    port: http
+readinessProbe:
+  tcpSocket:
+    port: http
+
+# If you want to bring your own persistence (such as a hostPath),
+# disable these and do so in extraVolumes/extraVolumeMounts
+persistence:
+  dataVolume:
+    enabled: true
+    size: 100Mi
+    className: longhorn-3
+    existingClaim: ""
+  booksVolume:
+    enabled: true
+    size: 10Gi
+    className: longhorn-3
+    existingClaim: ""
+
+extraVolumes: []
+
+extraVolumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

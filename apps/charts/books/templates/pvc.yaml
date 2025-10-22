@@ -1,35 +1,23 @@
-{{- if (and .Values.persistence.dataVolume.enabled (not .Values.persistence.dataVolume.existingClaim)) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  labels:
-    app.kubernetes.io/name: {{ include "booklore.fullname" . }}
-  name: {{ include "booklore.fullname" . }}-data
+  name: calibre-data-pvc
 spec:
   accessModes:
     - ReadWriteOnce
-  {{- with .Values.persistence.dataVolume.className }}
-  storageClassName: {{ . }}
-  {{- end }}
+  storageClassName: longhorn-3
   resources:
     requests:
-      storage: {{ .Values.persistence.dataVolume.size }}
-{{- end }}
+      storage: 2Gi
 ---
-{{- if (and .Values.persistence.booksVolume.enabled (not .Values.persistence.booksVolume.existingClaim)) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  labels:
-    app.kubernetes.io/name: {{ include "booklore.fullname" . }}
-  name: {{ include "booklore.fullname" . }}-books
+  name: calibre-library-pvc
 spec:
   accessModes:
     - ReadWriteOnce
-  {{- with .Values.persistence.booksVolume.className }}
-  storageClassName: {{ . }}
-  {{- end }}
+  storageClassName: longhorn-3
   resources:
     requests:
-      storage: {{ .Values.persistence.booksVolume.size }}
-{{- end }}
+      storage: 10Gi
