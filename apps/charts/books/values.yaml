@@ -7,16 +7,8 @@ mariadb:
     user: booklore-user
   settings:
     existingSecret: books-mariadb
-    rootPassword:
-      secretKey: root-password
   userDatabase:
     existingSecret: books-mariadb
-    name:
-      secretKey: name
-    user:
-      secretKey: user
-    password:
-      secretKey: password
   storage:
     className: longhorn-3
 
