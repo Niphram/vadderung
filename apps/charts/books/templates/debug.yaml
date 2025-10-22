@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug-deployment
+spec:
+  selector:
+    matchLabels:
+      app: debug-app
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: debug-app
+    spec:
+      containers:
+        - name: debug-app
+          image: mendhak/http-https-echo
+          ports:
+            - name: http
+              containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: debug-app-service
+spec:
+  selector:
+    app: debug-app
+  ports:
+    - protocol: TCP
+      targetPort: 8080
+      port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: debug-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+    nginx.ingress.kubernetes.io/auth-method: 'GET'
+    nginx.ingress.kubernetes.io/auth-url: 'http://authelia-service.authelia.svc.cluster.local/api/authz/auth-request'
+    nginx.ingress.kubernetes.io/auth-signin: 'https://auth.{{ .Values.vadderung.baseDomain }}?rm=$request_method'
+    nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "debug.{{ .Values.vadderung.baseDomain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: debug-app-service
+                port:
+                  number: 80
