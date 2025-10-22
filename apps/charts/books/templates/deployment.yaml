@@ -8,6 +8,9 @@ spec:
   selector:
     matchLabels:
       {{- include "booklore.selectorLabels" . | nindent 6 }}
+  replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       {{- with .Values.podAnnotations }}
