@@ -2,11 +2,6 @@ vadderung:
   baseDomain: ~
 
 mariadb:
-  userDatabase:
-    name:
-      value: booklore
-    user:
-      value: booklore-user
   storage:
     className: longhorn-3
 
