@@ -67,6 +67,10 @@ spec:
           env:
             - name: BOOKLORE_PORT
               value: "6060"
+            - name: ROOT_LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_LEVEL
+              value: "DEBUG"
             - name: REMOTE_AUTH_ENABLED
               value: "true"
             - name: REMOTE_AUTH_CREATE_NEW_USERS
