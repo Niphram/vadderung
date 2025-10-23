@@ -48,20 +48,25 @@ spec:
               mountPath: /config
             - name: calibre-library
               mountPath: /books
+            - name: linuxserver-modcache
+              mountPath: /modcache
           env:
             - name: PUID
               value: "1000"
             - name: PGID
               value: "1000"
             - name: TZ
-              value: Etc/UTC
+              value: Europe/Berlin
             - name: DOCKER_MODS
               value: linuxserver/mods:universal-calibre
-        - name: calibre-filebrowser
-          image: filebrowser/filebrowser
+        {{- if .Values.rsync.enabled -}}
+        - name: calibre-rsync
+          image: eeacms/rsync:3.0
+          command: ["server"]
           volumeMounts:
             - name: calibre-library
-              mountPath: /srv
+              mountPath: /data
+        {{- end }}
       volumes:
         - name: calibre-data
           persistentVolumeClaim:
@@ -69,6 +74,9 @@ spec:
         - name: calibre-library
           persistentVolumeClaim:
             claimName: calibre-library-pvc
+        - name: linuxserver-modcache
+          emptyDir:
+            sizeLimit: 1Gi
 ---
 kind: Service
 apiVersion: v1
@@ -82,7 +90,3 @@ spec:
       protocol: TCP
       targetPort: 8083
       port: 80
-    - name: calibre-filebrowser
-      protocol: TCP
-      targetPort: 80
-      port: 81

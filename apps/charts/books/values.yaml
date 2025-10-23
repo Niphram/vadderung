@@ -1,2 +1,5 @@
 vadderung:
   baseDomain: ~
+
+rsync:
+  enabled: false
