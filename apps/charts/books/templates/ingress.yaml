@@ -24,7 +24,7 @@ spec:
                 name: calibre-app-service
                 port:
                   number: 80
-    - host: "files.books.{{ .Values.vadderung.baseDomain }}"
+    - host: "books-files.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
           - pathType: Prefix
