@@ -31,6 +31,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: calibre-filebrowser-service
+                name: calibre-app-service
                 port:
-                  number: 80
+                  number: 81

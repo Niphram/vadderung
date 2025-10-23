@@ -81,15 +81,6 @@ spec:
     - protocol: TCP
       targetPort: 8083
       port: 80
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: calibre-filebrowser-service
-spec:
-  selector:
-    app: calibre-filebrowser
-  ports:
     - protocol: TCP
       targetPort: 80
-      port: 80
+      port: 81
