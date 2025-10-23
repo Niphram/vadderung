@@ -78,9 +78,11 @@ spec:
   selector:
     app: calibre-app
   ports:
-    - protocol: TCP
+    - name: calibre-app
+      protocol: TCP
       targetPort: 8083
       port: 80
-    - protocol: TCP
+    - name: calibre-filebrowser
+      protocol: TCP
       targetPort: 80
       port: 81
