@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    nginx.ingress.kubernetes.io/proxy-body-size: 1000m
 
     nginx.ingress.kubernetes.io/auth-method: 'GET'
     nginx.ingress.kubernetes.io/auth-url: 'http://authelia-service.authelia.svc.cluster.local/api/authz/auth-request'
@@ -22,5 +22,15 @@ spec:
             backend:
               service:
                 name: calibre-app-service
+                port:
+                  number: 80
+    - host: "files.books.{{ .Values.vadderung.baseDomain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: calibre-filebrowser-service
                 port:
                   number: 80
