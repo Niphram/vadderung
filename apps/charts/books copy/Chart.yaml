@@ -1,7 +1,0 @@
-apiVersion: v2
-name: books
-version: 1.0.0
-dependencies:
-  - name: mariadb
-    version: 4.4.3
-    repository: https://groundhog2k.github.io/helm-charts/
