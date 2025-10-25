@@ -8,7 +8,7 @@ spec:
   storageClassName: longhorn-3
   resources:
     requests:
-      storage: 2Gi
+      storage: {{ .Values.cwa.storage.configSize }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -20,4 +20,4 @@ spec:
   storageClassName: longhorn-3
   resources:
     requests:
-      storage: 40Gi
+      storage: {{ .Values.cwa.storage.librarySize }}

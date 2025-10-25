@@ -17,22 +17,27 @@ spec:
     spec:
       containers:
         - name: calibre-app
-          image: crocodilestick/calibre-web-automated:V3.1.4
+          image: {{ .Values.cwa.image }}
           volumeMounts:
             - name: calibre-data
               mountPath: /config
             - name: calibre-library
               mountPath: /calibre-library
+          ports:
+            - containerPort: {{ .Values.cwa.port }}
+              name: http
           env:
             - name: PUID
               value: "1000"
             - name: PGID
               value: "1000"
             - name: TZ
-              value: Europe/Berlin
+              value: {{ .Values.cwa.tz }}
+            - name: CWA_PORT_OVERRIDE
+              value: {{ .Values.cwa.port | quote }}
         {{- if .Values.rsync.enabled -}}
         - name: calibre-rsync
-          image: eeacms/rsync:3.0
+          image: {{ .Values.rsync.image }}
           command: ["server"]
           volumeMounts:
             - name: calibre-library
@@ -45,16 +50,3 @@ spec:
         - name: calibre-library
           persistentVolumeClaim:
             claimName: calibre-library-pvc
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: calibre-app-service
-spec:
-  selector:
-    app: calibre-app
-  ports:
-    - name: calibre-app
-      protocol: TCP
-      targetPort: 8083
-      port: 80

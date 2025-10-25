@@ -1,5 +1,14 @@
 vadderung:
   baseDomain: ~
 
+cwa:
+  image: crocodilestick/calibre-web-automated:V3.1.4
+  tz: Europe/Berlin
+  port: 8083
+  storage:
+    librarySize: 40Gi
+    configSize: 2Gi
+
 rsync:
   enabled: false
+  image: eeacms/rsync:3.0
