@@ -15,41 +15,14 @@ spec:
       labels:
         app: calibre-app
     spec:
-      initContainers:
-        - name: init-db
-          image: busybox:1.36
-          command:
-            - /bin/sh
-            - -c
-            - |
-              if ! [ -f /books/metadata.db ]; then
-                echo "Downloading empty database..."
-                wget -P /books  https://github.com/janeczku/calibre-web/raw/master/library/metadata.db
-                echo "Database downloaded!"
-              fi
-
-              echo "Setting permissions..."
-              chmod -R 777 /books
-          volumeMounts:
-            - name: calibre-library
-              mountPath: /books
-          resources:
-            requests:
-              cpu: 10m
-              memory: 16Mi
-            limits:
-              cpu: 50m
-              memory: 32Mi
       containers:
         - name: calibre-app
-          image: lscr.io/linuxserver/calibre-web:latest
+          image: crocodilestick/calibre-web-automated:V3.1.4
           volumeMounts:
             - name: calibre-data
               mountPath: /config
             - name: calibre-library
-              mountPath: /books
-            - name: linuxserver-modcache
-              mountPath: /modcache
+              mountPath: /calibre-library
           env:
             - name: PUID
               value: "1000"
@@ -57,8 +30,6 @@ spec:
               value: "1000"
             - name: TZ
               value: Europe/Berlin
-            - name: DOCKER_MODS
-              value: linuxserver/mods:universal-calibre
         {{- if .Values.rsync.enabled -}}
         - name: calibre-rsync
           image: eeacms/rsync:3.0
@@ -74,9 +45,6 @@ spec:
         - name: calibre-library
           persistentVolumeClaim:
             claimName: calibre-library-pvc
-        - name: linuxserver-modcache
-          emptyDir:
-            sizeLimit: 1Gi
 ---
 kind: Service
 apiVersion: v1
