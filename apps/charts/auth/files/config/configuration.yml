@@ -39,7 +39,7 @@ notifier:
     timeout: '5s'
     username: '{{`{{- secret "/run/secrets/smtp/username" }}`}}'
     password: '{{`{{- secret "/run/secrets/smtp/password" }}`}}'
-    sender: '{{`Authelia <{{- secret "/run/secrets/smtp/username" }}>`}}'
+    sender: '{{`{{- secret "/run/secrets/smtp/username" }}`}}'
     startup_check_address: "test@{{ .Values.vadderung.baseDomain }}"
 session:
   secret: '{{`{{- secret "/run/secrets/authelia/session_secret" }}`}}'
