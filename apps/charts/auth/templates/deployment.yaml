@@ -56,7 +56,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: "{{ .Release.Name }}-cm"
+            name: authelia-cm
         - name: providers-volume
           configMap:
             name: authelia-oidc-providers-cm
