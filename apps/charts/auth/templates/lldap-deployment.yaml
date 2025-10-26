@@ -16,6 +16,7 @@ spec:
       labels:
         app: lldap
     spec:
+      enableServiceLinks: false
       containers:
         - name: lldap
           image: {{ .Values.lldap.image }}
