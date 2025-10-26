@@ -9,3 +9,11 @@ grafana:
     accessModes:
       - ReadWriteOnce
     size: 10Gi
+
+  grafana.ini:
+    auth.proxy:
+      enabled: true
+      header_name: Remote-User
+      header_property: username
+      auto_sign_up: true
+      headers: Name:Remote-User Email:Remote-Email Groups:Remote-Groups
