@@ -9,7 +9,7 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
-  revisionHistoryLimit: 2
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
@@ -26,14 +26,14 @@ spec:
           ports:
             - containerPort: {{ .Values.cwa.port }}
               name: http
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: http
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: http
           env:
             - name: PUID
               value: "1000"
