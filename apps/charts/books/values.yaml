@@ -2,7 +2,7 @@ vadderung:
   baseDomain: ~
 
 cwa:
-  image: crocodilestick/calibre-web-automated:V3.1.4
+  image: ghcr.io/crocodilestick/calibre-web-automated:V3.1.4
   tz: Europe/Berlin
   port: 8083
   storage:
