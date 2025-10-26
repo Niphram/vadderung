@@ -5,19 +5,23 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+
 spec:
-  destination:
-    namespace: cloudnative-pg
-    server: {{ .Values.spec.destination.server }}
   project: default
-  source:
-    path: apps/charts/cloudnativepg
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: HEAD
+  destination:
+    namespace: infra
+    server: {{ .Values.spec.destination.server }}
+
+  # ArgoCD sync options
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
     automated:
       enabled: true
       prune: true
+
+  # Helm chart
+  source:
+    chart: cloudnative-pg
+    repoURL: https://cloudnative-pg.github.io/charts
+    targetRevision: 0.26.0
