@@ -16,4 +16,4 @@ grafana:
       header_name: Remote-User
       header_property: username
       auto_sign_up: true
-      headers: Name:Remote-User Email:Remote-Email Groups:Remote-Groups
+      headers: Name:Remote-Name Email:Remote-Email Groups:Remote-Groups
