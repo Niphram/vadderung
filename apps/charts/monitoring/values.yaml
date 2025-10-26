@@ -2,6 +2,8 @@ vadderung:
   baseDomain: ~
 
 grafana:
+  revisionHistoryLimit: 2
+
   persistence:
     enabled: true
     type: pvc
