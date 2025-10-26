@@ -6,6 +6,8 @@ metadata:
   annotations: 
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+
+    reloader.stakater.com/auto: "true"
 spec:
   template:
     spec:
