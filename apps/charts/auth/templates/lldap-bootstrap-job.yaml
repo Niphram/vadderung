@@ -49,7 +49,7 @@ spec:
         - name: user-configs
           projected:
             sources:
-              - secret:
+              - configMap:
                   name: lldap-bootstrap-configs
                   items:
                     - key: user-configs.json
@@ -58,7 +58,7 @@ spec:
         - name: group-configs
           projected:
             sources:
-              - secret:
+              - configMap:
                   name: lldap-bootstrap-configs
                   items:
                     - key: group-configs.json
