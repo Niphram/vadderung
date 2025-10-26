@@ -4,9 +4,9 @@ server:
   disable_healthcheck: true
 authentication_backend:
   password_reset:
-    disable: true
+    disable: false
   password_change:
-    disable: true
+    disable: false
   ldap:
     address: 'ldap://lldap-service:3890'
     implementation: 'lldap'
