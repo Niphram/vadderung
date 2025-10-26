@@ -7,11 +7,19 @@ authentication_backend:
     disable: true
   password_change:
     disable: true
-  file:
-    path: "/etc/users/users_database.yml"
-    search:
-      email: true
-      case_insensitive: true
+  ldap:
+    address: 'ldap://ldap-service'
+    implementation: 'lldap'
+    timeout: '5s'
+    start_tls: false
+    pooling:
+      enable: false
+      count: 5
+      retries: 2
+      timeout: '10 seconds'
+    base_dn: '{{`{{- secret "/run/secrets/lldap-secret/base-dn" }}`}}'
+    user: '{{`cn={{- secret "/run/secrets/lldap-secret/lldap-ldap-user-name" }},{{- secret "/run/secrets/lldap-secret/base-dn" }}`}}'
+    password: '{{`{{- secret "/run/secrets/lldap-secret/lldap-ldap-user-pass" }}`}}'
 access_control:
   default_policy: "one_factor"
 identity_validation:

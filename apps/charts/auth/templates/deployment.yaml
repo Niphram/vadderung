@@ -43,6 +43,9 @@ spec:
             - name: db-secret
               readOnly: true
               mountPath: "/etc/db-secret"
+            - name: lldap-secret
+              readOnly: true
+              mountPath: "/run/secrets/lldap-secret"
             - name: data-volume
               mountPath: /data
               readOnly: false
@@ -72,6 +75,9 @@ spec:
         - name: authelia-jwk-rsa
           secret:
             secretName: authelia-jwk-rsa
+        - name: lldap-secret
+          secret:
+            secretName: lldap-secret
         - name: db-secret
           secret:
             secretName: {{ .Values.authelia.pgsecrets }}
