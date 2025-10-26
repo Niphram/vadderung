@@ -10,10 +10,10 @@ spec:
 
   storage:
     storageClass: longhorn-postgres-replica-storage
-    size: 100Mi
+    size: 500Mi
   walStorage:
     storageClass: longhorn-postgres-replica-storage
-    size: 100Mi
+    size: 500Mi
 
   nodeMaintenanceWindow:
     reusePVC: false # rebuild from other replica instead
