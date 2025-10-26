@@ -33,7 +33,6 @@ storage:
     username: '{{`{{- secret "/etc/db-secret/username" }}`}}'
     password: '{{`{{- secret "/etc/db-secret/password" }}`}}'
 notifier:
-  disable_startup_check: true
   smtp:
     address: '{{`{{- secret "/run/secrets/smtp/address" }}`}}'
     timeout: '5s'

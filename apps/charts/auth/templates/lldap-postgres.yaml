@@ -13,7 +13,7 @@ spec:
     size: 500Mi
   walStorage:
     storageClass: longhorn-postgres-replica-storage
-    size: 500Mi
+    size: 1Gi
 
   nodeMaintenanceWindow:
     reusePVC: false # rebuild from other replica instead
