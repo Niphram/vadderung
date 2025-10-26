@@ -8,7 +8,7 @@ authentication_backend:
   password_change:
     disable: true
   ldap:
-    address: 'ldap://ldap-service'
+    address: 'ldap://ldap-service:3890'
     implementation: 'lldap'
     timeout: '5s'
     start_tls: false
