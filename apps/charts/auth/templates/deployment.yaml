@@ -1,8 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
-  namespace: {{ .Release.Namespace }}
+  name: authelia
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
@@ -20,7 +19,7 @@ spec:
     spec:
       enableServiceLinks: false
       containers:
-        - name: {{ .Release.Name }}
+        - name: authelia
           image: {{ .Values.authelia.image }}
           volumeMounts:
             - name: config-volume
@@ -84,7 +83,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: authelia-service
-  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     app: authelia-app

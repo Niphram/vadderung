@@ -2,7 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: authelia-jwk-rsa
-  namespace: {{ .Release.Namespace }}
 spec:
   secretName: authelia-jwk-rsa
   issuerRef:

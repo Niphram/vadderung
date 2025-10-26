@@ -1,8 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: {{ .Release.Name }}-db
-  namespace: {{ .Release.Namespace }}
+  name: authelia-db
 spec:
   instances: 3
   description: "Authelia DB"
