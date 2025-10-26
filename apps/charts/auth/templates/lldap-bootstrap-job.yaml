@@ -1,0 +1,65 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lldap-bootstrap
+  
+  annotations: 
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: lldap-bootstrap
+          image: {{ .Values.lldap.image }}
+
+          command:
+            - /app/bootstrap.sh
+
+          env:
+            - name: LLDAP_URL
+              value: "http://lldap:17170"
+
+            - name: LLDAP_ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                    name: lldap-secret
+                    key: lldap-ldap-user-name
+
+            - name: LLDAP_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: lldap-secret
+                    key: lldap-ldap-user-pass
+
+            - name: DO_CLEANUP
+              value: "true"
+
+          volumeMounts:
+            - name: user-configs
+              mountPath: /bootstrap/user-configs
+              readOnly: true
+
+            - name: group-configs
+              mountPath: /bootstrap/group-configs
+              readOnly: true
+
+      volumes:
+        - name: user-configs
+          projected:
+            sources:
+              - secret:
+                  name: lldap-bootstrap-configs
+                  items:
+                    - key: user-configs.json
+                      path: user-configs.json
+
+        - name: group-configs
+          projected:
+            sources:
+              - secret:
+                  name: lldap-bootstrap-configs
+                  items:
+                    - key: group-configs.json
+                      path: group-configs.json
