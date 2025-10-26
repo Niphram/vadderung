@@ -18,7 +18,7 @@ authentication_backend:
       retries: 2
       timeout: '10 seconds'
     base_dn: '{{`{{- secret "/run/secrets/lldap-secret/base-dn" }}`}}'
-    user: '{{`cn={{- secret "/run/secrets/lldap-secret/lldap-ldap-user-name" }},{{- secret "/run/secrets/lldap-secret/base-dn" }}`}}'
+    user: '{{`cn={{- secret "/run/secrets/lldap-secret/lldap-ldap-user-name" }},ou=people,{{- secret "/run/secrets/lldap-secret/base-dn" }}`}}'
     password: '{{`{{- secret "/run/secrets/lldap-secret/lldap-ldap-user-pass" }}`}}'
 access_control:
   default_policy: "one_factor"
