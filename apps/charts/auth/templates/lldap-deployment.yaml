@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lldap
+  labels:
+    app: lldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lldap
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: lldap
+    spec:
+      containers:
+        - name: lldap
+          image: {{ .Values.lldap.image }}
+          env:
+            - name: GID
+              value: "1001"
+            - name: LLDAP_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-secret
+                  key: lldap-jwt-secret
+            - name: LLDAP_KEY_SEED
+              valueFrom:
+                secretKeyRef:
+                  name:  lldap-secret
+                  key: lldap-key-seed
+            - name: LLDAP_LDAP_BASE_DN
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-secret
+                  key: base-dn
+            - name: LLDAP_LDAP_USER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-secret
+                  key: lldap-ldap-user-pass
+            - name: LLDAP_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-db-app
+                  key: fqdn-uri
+            - name: TZ
+              value: {{ .Values.lldap.timezone }}
+            - name: UID
+              value: "1001"
+          ports:
+            - containerPort: 3890
+            - containerPort: 17170

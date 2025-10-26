@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: lldap-db
+spec:
+  instances: 3
+  description: "LLDAP DB"
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 100Mi
+  walStorage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 100Mi
+
+  nodeMaintenanceWindow:
+    reusePVC: false # rebuild from other replica instead

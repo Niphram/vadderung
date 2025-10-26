@@ -5,3 +5,7 @@ authelia:
   image: ghcr.io/authelia/authelia:4.39.6
   pgsecrets: authelia-db-app
   timezone: Europe/Berlin
+
+lldap:
+  image: ghcr.io/lldap/lldap:2025-10-14-alpine
+  timezone: Europe/Berlin
