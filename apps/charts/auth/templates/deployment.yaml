@@ -46,6 +46,9 @@ spec:
             - name: lldap-secret
               readOnly: true
               mountPath: "/run/secrets/lldap-secret"
+            - name: smtp-secret
+              readOnly: true
+              mountPath: "/run/secrets/smtp"
             - name: data-volume
               mountPath: /data
               readOnly: false
@@ -78,6 +81,9 @@ spec:
         - name: lldap-secret
           secret:
             secretName: lldap-secret
+        - name: smtp-secret
+          secret:
+            secretName: smtp-secret
         - name: db-secret
           secret:
             secretName: {{ .Values.authelia.pgsecrets }}
