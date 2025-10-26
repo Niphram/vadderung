@@ -19,7 +19,7 @@ spec:
 
           env:
             - name: LLDAP_URL
-              value: "http://lldap:17170"
+              value: "http://lldap-service:17170"
 
             - name: LLDAP_ADMIN_USERNAME
               valueFrom:
