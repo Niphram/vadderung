@@ -6,7 +6,7 @@ cwa:
   tz: Europe/Berlin
   port: 8083
   storage:
-    librarySize: 40Gi
+    librarySize: 80Gi
     configSize: 2Gi
 
 rsync:
