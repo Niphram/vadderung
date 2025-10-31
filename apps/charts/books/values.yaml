@@ -2,12 +2,25 @@ vadderung:
   baseDomain: ~
 
 cwa:
-  image: ghcr.io/crocodilestick/calibre-web-automated:V3.1.4
+  image: ghcr.io/crocodilestick/calibre-web-automated@sha256:d20e14144634d542d2f0f61691606a903c895efec9fc255357647d37f7a9d515
   tz: Europe/Berlin
   port: 8083
   storage:
     librarySize: 80Gi
     configSize: 2Gi
+
+  startupProbe:
+    httpGet:
+      port: http
+      path: /health
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http
 
 rsync:
   enabled: false

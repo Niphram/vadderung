@@ -26,14 +26,15 @@ spec:
           ports:
             - containerPort: {{ .Values.cwa.port }}
               name: http
-          # livenessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: http
+          {{- with (.Values.cwa).readinessProbe }}
+          readinessProbe: {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with (.Values.cwa).livenessProbe }}
+          livenessProbe: {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with (.Values.cwa).startupProbe }}
+          startupProbe: {{- . | toYaml | nindent 12 }}
+          {{- end }}
           env:
             - name: PUID
               value: "1000"
