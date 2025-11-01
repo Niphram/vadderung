@@ -9,3 +9,5 @@ spec:
   concurrency: 1
   groups:
     - default
+  parameters:
+    full-backup-interval: "14"
