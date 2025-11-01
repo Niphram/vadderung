@@ -2,7 +2,6 @@ kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
   name: longhorn-postgres-replica-storage
-  namespace: {{ .Release.Namespace }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
     "helm.sh/hook": post-install,post-upgrade
@@ -20,8 +19,25 @@ parameters:
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
+  name: longhorn-2
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+    "helm.sh/hook": post-install,post-upgrade
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+
+volumeBindingMode: Immediate
+reclaimPolicy: Delete
+parameters:
+  numberOfReplicas: "2"
+  staleReplicaTimeout: "1440" # 1 day
+  fsType: "ext4"
+  dataLocality: "best-effort"
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
   name: longhorn-3
-  namespace: {{ .Release.Namespace }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
     "helm.sh/hook": post-install,post-upgrade
