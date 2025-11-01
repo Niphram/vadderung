@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn-3
+  storageClassName: longhorn-2
   resources:
     requests:
       storage: {{ .Values.cwa.storage.configSize }}
@@ -17,7 +17,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn-3
+  storageClassName: longhorn-2
   resources:
     requests:
       storage: {{ .Values.cwa.storage.librarySize }}
