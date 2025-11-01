@@ -9,8 +9,6 @@ spec:
   resources:
     requests:
       storage: {{ .Values.cwa.storage.configSize }}
-  volumeMode: Filesystem
-  volumeName: pvc-8f77d078-f315-4b76-bf43-ad6338e8789c
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,5 +21,3 @@ spec:
   resources:
     requests:
       storage: {{ .Values.cwa.storage.librarySize }}
-  volumeMode: Filesystem
-  volumeName: pvc-b95a6bb6-fb61-49dd-87f9-f77950a6967f
