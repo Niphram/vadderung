@@ -1,3 +1,21 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: mealie-db-object-store
+spec:
+  configuration:
+    destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/mealie/"
+    endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
+    s3Credentials:
+      accessKeyId:
+        name: default-s3-secret
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: default-s3-secret
+        key: AWS_SECRET_ACCESS_KEY
+    wal:
+      compression: gzip
+---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -10,7 +28,7 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: cluster-backup-store
+        barmanObjectName: mealie-db-object-store
 
   primaryUpdateStrategy: unsupervised
 

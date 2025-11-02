@@ -1,5 +1,8 @@
 vadderung:
   baseDomain: ~
+  backup:
+    s3bucket: ~
+    s3endpoint: ~
 
 authelia:
   image: ghcr.io/authelia/authelia:4.39.6
