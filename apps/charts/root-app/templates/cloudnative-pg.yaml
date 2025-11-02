@@ -21,10 +21,8 @@ spec:
       enabled: true
       prune: true
 
-    sources:
-      - repoURL: https://cloudnative-pg.github.io/charts
-        chart: cloudnative-pg
-        targetRevision: 0.26.0
-      - repoURL: https://cloudnative-pg.github.io/charts
-        chart: plugin-barman-cloud
-        targetRevision: 0.2.0
+  # Helm chart
+  source:
+    chart: cloudnative-pg
+    repoURL: https://cloudnative-pg.github.io/charts
+    targetRevision: 0.26.0
