@@ -8,10 +8,10 @@ spec:
     endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
     s3Credentials:
       accessKeyId:
-        name: auth-s3-secret
+        name: backup-s3-secret
         key: AWS_ACCESS_KEY_ID
       secretAccessKey:
-        name: auth-s3-secret
+        name: backup-s3-secret
         key: AWS_SECRET_ACCESS_KEY
     wal:
       compression: gzip

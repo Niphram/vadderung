@@ -9,5 +9,5 @@ longhorn:
     defaultBackupBlockSize: "16"
   defaultBackupStore:
     backupTarget: s3://vadderung-3njqmakzogh34tmo8cyiae9lex21g83n8qjmivl1xhb9pnsyzjyps@eu-west/longhorn/
-    backupTargetCredentialSecret: longhorn-s3-secret
+    backupTargetCredentialSecret: backup-s3-secret
     pollInterval: 300
