@@ -21,8 +21,13 @@ spec:
       enabled: true
       prune: true
 
-  # Helm chart
-  source:
-    chart: cloudnative-pg
-    repoURL: https://cloudnative-pg.github.io/charts
-    targetRevision: 0.26.0
+  sources:
+    - path: apps/charts/cloudnativepg
+      repoURL: {{ .Values.sources.chartRepo.url }}
+      targetRevision: {{ .Values.sources.chartRepo.revision }}
+      helm:
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: {{ .Values.sources.valuesRepo.url }}
+      targetRevision: {{ .Values.sources.valuesRepo.revision }}
+      ref: values
