@@ -1,0 +1,4 @@
+vadderung:
+  backup:
+    s3bucket: ~
+    s3endpoint: ~
