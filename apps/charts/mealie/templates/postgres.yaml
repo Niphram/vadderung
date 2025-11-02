@@ -4,7 +4,7 @@ metadata:
   name: mealie-db-object-store
 spec:
   configuration:
-    destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/mealie/"
+    destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/cnpg/"
     endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
     s3Credentials:
       accessKeyId:
@@ -15,6 +15,7 @@ spec:
         key: AWS_SECRET_ACCESS_KEY
     wal:
       compression: gzip
+  retentionPolicy: "30d"
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
