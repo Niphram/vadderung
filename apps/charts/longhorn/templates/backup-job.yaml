@@ -8,6 +8,6 @@ spec:
   retain: 1
   concurrency: 3
   groups:
-    - default
+    - backup
   parameters:
     full-backup-interval: "14"
