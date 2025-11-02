@@ -5,7 +5,7 @@ metadata:
 spec:
   configuration:
     destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/mealie/"
-    endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
+    endpointURL: "https://{{ .Values.vadderung.backup.s3endpoint }}"
     s3Credentials:
       accessKeyId:
         name: default-s3-secret
