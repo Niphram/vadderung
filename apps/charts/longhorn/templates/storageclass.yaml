@@ -15,6 +15,13 @@ parameters:
   staleReplicaTimeout: "1440" # 1 day
   fsType: "ext4"
   dataLocality: "strict-local"
+  recurringJobSelector: |-
+    [
+      {
+        "name": "postgres-replica-storage",
+        "isGroup": true
+      }
+    ]
 ---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
