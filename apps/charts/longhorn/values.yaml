@@ -6,8 +6,8 @@ longhorn:
     # TODO: make configurable?
     defaultDataPath: /var/mnt/data-vol-1/longhorn/
     storageReservedPercentageForDefaultDisk: "10"
-    defaultBackupBlockSize: 16
+    defaultBackupBlockSize: "16"
   defaultBackupStore:
-    backupTarget: s3://vadderung-s7ghqw8l9qmhpc40qh0dbct9smj5a1dmi4vb24bsdop54rfneyq23@eu-west/
-    backupTargetCredentialSecret: longhorn-backup-target-secret
+    backupTarget: s3://vadderung-3njqmakzogh34tmo8cyiae9lex21g83n8qjmivl1xhb9pnsyzjyps@eu-west/longhorn/
+    backupTargetCredentialSecret: longhorn-s3-secret
     pollInterval: 300
