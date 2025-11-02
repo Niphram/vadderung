@@ -15,7 +15,7 @@ spec:
         key: AWS_SECRET_ACCESS_KEY
     wal:
       compression: gzip
-  retentionPolicy: "30d"
+  retentionPolicy: "7d"
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -50,7 +50,7 @@ metadata:
 spec:
   cluster:
     name: authelia-db
-  schedule: '0 0 * * *'
+  schedule: '0 0 0 * * *'
   backupOwnerReference: self
   method: plugin
   pluginConfiguration:
