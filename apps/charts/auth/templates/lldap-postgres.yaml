@@ -23,3 +23,16 @@ spec:
 
   nodeMaintenanceWindow:
     reusePVC: false # rebuild from other replica instead
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: lldap-db-backup
+spec:
+  cluster:
+    name: lldap-db
+  schedule: '0 0 * * *'
+  backupOwnerReference: self
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
