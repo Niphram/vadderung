@@ -2,10 +2,15 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: {{ .Release.Name }}-db
-  namespace: {{ .Release.Namespace }}
 spec:
   instances: 3
   description: "Mealie DB"
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: cluster-backup-store
 
   primaryUpdateStrategy: unsupervised
 
@@ -18,3 +23,16 @@ spec:
 
   nodeMaintenanceWindow:
     reusePVC: false # rebuild from other replica instead
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: {{ .Release.Name }}-db-backup
+spec:
+  cluster:
+    name: {{ .Release.Name }}-db
+  schedule: '0 0 * * *'
+  backupOwnerReference: self
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
