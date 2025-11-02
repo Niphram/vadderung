@@ -40,6 +40,13 @@ parameters:
   staleReplicaTimeout: "1440" # 1 day
   fsType: "ext4"
   dataLocality: "best-effort"
+  recurringJobSelector: |-
+    [
+      {
+        "name": "backup",
+        "isGroup": true
+      }
+    ]
 ---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -58,3 +65,10 @@ parameters:
   staleReplicaTimeout: "1440" # 1 day
   fsType: "ext4"
   dataLocality: "best-effort"
+  recurringJobSelector: |-
+    [
+      {
+        "name": "backup",
+        "isGroup": true
+      }
+    ]
