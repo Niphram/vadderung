@@ -5,7 +5,7 @@ metadata:
 spec:
   configuration:
     destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/cnpg/"
-    endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
+    endpointURL: { { .Values.vadderung.backup.s3endpoint } }
     s3Credentials:
       accessKeyId:
         name: backup-s3-secret
@@ -38,7 +38,7 @@ spec:
     size: 500Mi
   walStorage:
     storageClass: longhorn-postgres-replica-storage
-    size: 1Gi
+    size: 2Gi
 
   nodeMaintenanceWindow:
     reusePVC: false # rebuild from other replica instead
@@ -50,7 +50,7 @@ metadata:
 spec:
   cluster:
     name: lldap-db
-  schedule: '0 0 0 * * *'
+  schedule: "0 0 0 * * *"
   backupOwnerReference: self
   method: plugin
   pluginConfiguration:
