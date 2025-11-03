@@ -5,7 +5,7 @@ metadata:
 spec:
   configuration:
     destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/cnpg/"
-    endpointURL: { { .Values.vadderung.backup.s3endpoint } }
+    endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
     s3Credentials:
       accessKeyId:
         name: backup-s3-secret
