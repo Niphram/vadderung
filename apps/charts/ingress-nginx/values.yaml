@@ -7,3 +7,12 @@ ingress-nginx:
       annotations-risk-level: Critical
     extraArgs:
       default-ssl-certificate: "cert-manager/default-tls"
+
+  extraVolumes:
+    - name: custom-error-pages
+      configMap:
+        name: error-pages-cm
+
+  extraVolumeMounts:
+    - name: custom-error-pages
+      mountPath: /www
