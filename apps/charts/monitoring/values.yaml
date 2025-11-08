@@ -3,6 +3,8 @@ vadderung:
 
 grafana:
   revisionHistoryLimit: 2
+  deploymentStrategy:
+    type: Recreate
 
   persistence:
     enabled: true
