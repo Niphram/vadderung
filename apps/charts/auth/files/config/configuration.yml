@@ -22,17 +22,17 @@ authentication_backend:
     password: '{{`{{- secret "/run/secrets/lldap-secret/lldap-ldap-user-pass" }}`}}'
 access_control:
   default_policy: "one_factor"
-  rules:
-    - domain: 
-        - argocd.{{ .Values.vadderung.baseDomain }}
-        - longhorn.{{ .Values.vadderung.baseDomain }}
-      subject:
-        - ['group:admins']
-      policy: 'two_factor'
-    - domain: 
-        - argocd.{{ .Values.vadderung.baseDomain }}
-        - longhorn.{{ .Values.vadderung.baseDomain }}
-      policy: 'deny'
+  # rules:
+  #   - domain: 
+  #       - argocd.{{ .Values.vadderung.baseDomain }}
+  #       - longhorn.{{ .Values.vadderung.baseDomain }}
+  #     subject:
+  #       - ['group:admins']
+  #     policy: 'two_factor'
+  #   - domain: 
+  #       - argocd.{{ .Values.vadderung.baseDomain }}
+  #       - longhorn.{{ .Values.vadderung.baseDomain }}
+  #     policy: 'deny'
 
 identity_validation:
   reset_password:
