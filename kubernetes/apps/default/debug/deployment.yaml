@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug-deployment
+spec:
+  selector:
+    matchLabels:
+      app: debug-app
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: debug-app
+    spec:
+      containers:
+        - name: debug-app
+          image: mendhak/http-https-echo
+          ports:
+            - name: http
+              containerPort: 8080
