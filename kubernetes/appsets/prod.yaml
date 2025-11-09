@@ -8,7 +8,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
-        repoURL: https://github.com/niphram/vadderung.git
+        repoURL: https://github.com/niphram/vadderung
         revision: HEAD
         directories:
           - path: kubernetes/apps/*/*
@@ -21,7 +21,7 @@ spec:
 
       # Source of the application manifests
       source:
-        repoURL: https://github.com/niphram/vadderung.git
+        repoURL: https://github.com/niphram/vadderung
         targetRevision: HEAD
         path: "{{.path.path}}"
 

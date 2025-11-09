@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/niphram/vadderung.git
+    repoURL: https://github.com/niphram/vadderung
     targetRevision: HEAD
     path: kubernetes/appsets
   destination:
