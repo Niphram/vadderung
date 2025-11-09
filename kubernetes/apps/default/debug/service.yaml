@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: debug-app-service
+spec:
+  selector:
+    app: debug-app
+  ports:
+    - protocol: TCP
+      targetPort: 8080
+      port: 80

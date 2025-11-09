@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: debug-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+    nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia-service.auth.svc.cluster.local/api/authz/auth-request"
+    nginx.ingress.kubernetes.io/auth-signin: "https://auth.niphrams-bu.de?rm=$request_method"
+    # nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "debug.niphrams-bu.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: debug-app-service
+                port:
+                  number: 80
