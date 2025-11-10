@@ -22,7 +22,7 @@ spec:
                 name: "{{index .path.segments 3}}"
                 chartPath: "{{.path.path}}"
           - git:
-              repoURL: https://github.com/niphram/vadderung-values
+              repoURL: https://github.com/niphram/vadderung
               revision: HEAD
               files:
                 - path: "values/*/*.yaml"
@@ -37,8 +37,6 @@ spec:
       # The project the application belongs to.
       project: default
 
-      sources: []
-
       # Destination cluster and namespace to deploy the application
       destination:
         server: https://kubernetes.default.svc
@@ -51,17 +49,3 @@ spec:
         automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
           prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
           selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
-  templatePatch: |
-    spec:
-      sources:
-        - path: "{{.values.chartPath}}"
-          repoURL: https://github.com/niphram/vadderung
-          targetRevision: HEAD
-        {{- if .values.valuesPath }}
-          helm:
-            valueFiles:
-              - $values/{{.values.valuesPath}}
-        - repoURL: https://github.com/niphram/vadderung-values
-          targetRevision: HEAD
-          ref: values
-        {{- end}}
