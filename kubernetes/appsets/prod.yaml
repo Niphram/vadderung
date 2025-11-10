@@ -28,7 +28,7 @@ spec:
                 - path: "values/*/*.yaml"
               values:
                 namespace: "{{index .path.segments 1}}"
-                name: "{{index .path.segments 2}}"
+                name: "{{trimSuffix (ext .path.filename) .path.filename}}"
                 valuesPath: "{{.path.path}}"
   template:
     metadata:
