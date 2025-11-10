@@ -4,8 +4,8 @@ metadata:
   name: prod-appset
   namespace: argocd
 spec:
-  goTemplate: false
-  # goTemplateOptions: ["missingkey=error"]
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - merge:
         mergeKeys:
