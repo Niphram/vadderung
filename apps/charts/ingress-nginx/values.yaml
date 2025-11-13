@@ -4,7 +4,7 @@ ingress-nginx:
       loadBalancerIP: 192.168.178.210
     allowSnippetAnnotations: true
     config:
-      use-proxy-protocol: "true"
+      use-forwarded-headers: "true"
       annotations-risk-level: Critical
       custom-http-errors: "403"
     extraArgs:
