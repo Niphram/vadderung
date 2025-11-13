@@ -7,40 +7,34 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - merge:
-        mergeKeys:
-          - values.namespace
-          - values.name
-        generators:
-          - git:
-              repoURL: https://github.com/niphram/vadderung
-              revision: HEAD
-              directories:
-                - path: kubernetes/apps/*/*
-              values:
-                namespace: "{{index .path.segments 2}}"
-                name: "{{index .path.segments 3}}"
-                chartPath: "{{.path.path}}"
-          - git:
-              repoURL: https://github.com/niphram/vadderung
-              revision: HEAD
-              files:
-                - path: "values/*/*.yaml"
-              values:
-                namespace: "{{index .path.segments 1}}"
-                name: "{{trimSuffix (ext .path.filename) .path.filename}}"
-                valuesPath: "{{.path.path}}"
+    - git:
+        repoURL: https://github.com/niphram/vadderung
+        revision: HEAD
+        directories:
+          - path: kubernetes/apps/*/*
   template:
     metadata:
-      name: "{{.values.namespace}}-{{.values.name}}"
+      name: "{{index .path.segments 2}}-{{index .path.segments 3}}"
     spec:
       # The project the application belongs to.
       project: default
 
+      # Source of the application manifests
+      sources:
+        - path: "{{.path.path}}"
+          repoURL: https://github.com/niphram/vadderung
+          targetRevision: HEAD
+          helm:
+            valueFiles:
+              - $values/values.yaml
+        - repoURL: https://github.com/niphram/vadderung-values
+          targetRevision: HEAD
+          ref: values
+
       # Destination cluster and namespace to deploy the application
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{.values.namespace}}"
+        namespace: "{{index .path.segments 2}}"
 
       # Sync policy
       syncPolicy:
