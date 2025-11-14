@@ -31,10 +31,10 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
-    # Kobo sync fails otherwise
-    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
-    nginx.ingress.kubernetes.io/proxy-buffer-size: "32k"
-    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "64k"
+    # Kobo sync fails otherwise (https://github.com/janeczku/calibre-web/wiki/Kobo-Integration#additional-hints)
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "1024k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4 512k"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "1024k"
 spec:
   ingressClassName: nginx
   rules:
