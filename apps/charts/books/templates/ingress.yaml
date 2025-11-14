@@ -4,6 +4,8 @@ metadata:
   name: calibre-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    
+    nginx.ingress.kubernetes.io/proxy-body-size: "50M"
 
     nginx.ingress.kubernetes.io/auth-method: 'GET'
     nginx.ingress.kubernetes.io/auth-url: 'http://authelia-service.auth.svc.cluster.local/api/authz/auth-request'
