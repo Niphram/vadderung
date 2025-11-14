@@ -4,7 +4,6 @@ metadata:
   name: calibre-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/proxy-body-size: 1000m
 
     nginx.ingress.kubernetes.io/auth-method: 'GET'
     nginx.ingress.kubernetes.io/auth-url: 'http://authelia-service.auth.svc.cluster.local/api/authz/auth-request'
@@ -24,6 +23,35 @@ spec:
                 port:
                   number: 80
 ---
+# Special Ingress for the upload endpoint with increased body size limit
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: calibre-upload-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    
+    nginx.ingress.kubernetes.io/proxy-body-size: 10000m
+
+    nginx.ingress.kubernetes.io/auth-method: 'GET'
+    nginx.ingress.kubernetes.io/auth-url: 'http://authelia-service.auth.svc.cluster.local/api/authz/auth-request'
+    nginx.ingress.kubernetes.io/auth-signin: 'https://auth.{{ .Values.vadderung.baseDomain }}?rm=$request_method'
+    nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "books.{{ .Values.vadderung.baseDomain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/upload"
+            backend:
+              service:
+                name: calibre-app-service
+                port:
+                  number: 80
+---
+# Special Ingress for the kobo sync endpoint that skips authentication
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
