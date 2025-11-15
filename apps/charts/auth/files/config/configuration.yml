@@ -21,18 +21,20 @@ authentication_backend:
     user: '{{`cn={{- secret "/run/secrets/lldap-secret/lldap-ldap-user-name" }},ou=people,{{- secret "/run/secrets/lldap-secret/base-dn" }}`}}'
     password: '{{`{{- secret "/run/secrets/lldap-secret/lldap-ldap-user-pass" }}`}}'
 access_control:
-  default_policy: "one_factor"
-  # rules:
-  #   - domain: 
-  #       - argocd.{{ .Values.vadderung.baseDomain }}
-  #       - longhorn.{{ .Values.vadderung.baseDomain }}
-  #     subject:
-  #       - ['group:admins']
-  #     policy: 'two_factor'
-  #   - domain: 
-  #       - argocd.{{ .Values.vadderung.baseDomain }}
-  #       - longhorn.{{ .Values.vadderung.baseDomain }}
-  #     policy: 'deny'
+  default_policy: "deny"
+  rules:
+    - domain_regex:
+        - '^(?P<Group>(longhorn|argocd))\.{{ .Values.vadderung.baseDomain | replace "." "\." }}$'
+      subject:
+        - ['group:admins']
+      policy: 'two_factor'
+    - domain:
+        - 'longhorn.{{ .Values.vadderung.baseDomain }}'
+        - 'argocd.{{ .Values.vadderung.baseDomain }}'
+      policy: 'deny'
+    - domain_regex:
+        - '^(?P<Group>\w+)\.{{ .Values.vadderung.baseDomain | replace "." "\." }}$'
+      policy: 'one_factor'
 
 identity_validation:
   reset_password:

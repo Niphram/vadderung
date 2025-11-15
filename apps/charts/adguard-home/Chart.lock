@@ -1,6 +1,0 @@
-dependencies:
-- name: adguard-home
-  repository: https://k8s-at-home.com/charts
-  version: 5.5.2
-digest: sha256:8a90d3b5c0a705cea258de02905f28047a230d17667a14a76651fd0555624ab8
-generated: "2025-10-05T17:05:47.981773186+02:00"
