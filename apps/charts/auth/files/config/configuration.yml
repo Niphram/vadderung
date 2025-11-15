@@ -24,7 +24,7 @@ access_control:
   default_policy: "deny"
   rules:
     - domain_regex:
-        - '^(?P<Group>(longhorn|argocd))\.{{ .Values.vadderung.baseDomain | replace "." "\." }}$'
+        - '^(?P<Group>(longhorn|argocd))\.{{ .Values.vadderung.baseDomain | replace "." "\\." }}$'
       subject:
         - ['group:admins']
       policy: 'two_factor'
@@ -33,7 +33,7 @@ access_control:
         - 'argocd.{{ .Values.vadderung.baseDomain }}'
       policy: 'deny'
     - domain_regex:
-        - '^(?P<Group>\w+)\.{{ .Values.vadderung.baseDomain | replace "." "\." }}$'
+        - '^(?P<Group>\w+)\.{{ .Values.vadderung.baseDomain | replace "." "\\." }}$'
       policy: 'one_factor'
 
 identity_validation:
