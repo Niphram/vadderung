@@ -15,6 +15,28 @@ spec:
       labels:
         app: calibre-app
     spec:
+      # TODO:
+      # initContainers:
+      #   - name: plugin-downloader
+      #     image: busybox:1.36
+      #     command:
+      #       - /bin/sh
+      #       - -c
+      #       - |
+      #         wget -P /books https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
+      #         wget -P /books https://github.com/Leseratte10/acsm-calibre-plugin/releases/download/v0.0.16/DeACSM_0.0.16.zip
+      # 
+      #         chmod 777 /books/metadata.db
+      #     volumeMounts:
+      #       - name: calibre-plugins
+      #         mountPath: /data
+      #     resources:
+      #       requests:
+      #         cpu: 10m
+      #         memory: 16Mi
+      #       limits:
+      #         cpu: 50m
+      #         memory: 32Mi
       containers:
         - name: calibre-app
           image: {{ .Values.cwa.image }}
