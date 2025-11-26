@@ -5,6 +5,3 @@ dependencies:
   - name: cert-manager
     version: v1.18.2
     repository: oci://quay.io/jetstack/charts
-  - name: cert-manager-webhook-netcup
-    version: 1.0.33
-    repository: https://aellwein.github.io/cert-manager-webhook-netcup/charts

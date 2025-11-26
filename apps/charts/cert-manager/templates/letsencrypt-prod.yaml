@@ -15,12 +15,10 @@ spec:
 
     solvers:
       - dns01:
-          webhook:
-            groupName: com.netcup.webhook
-            solverName: netcup
-            config:
-              secretRef: netcup-secret
-              secretNamespace: cert-manager
+        cloudflare:
+          apiTokenSecretRef:
+            name: cloudflare-secret
+            key: api-token
         selector:
           dnsZones:
             - {{ .Values.vadderung.baseDomain }}
