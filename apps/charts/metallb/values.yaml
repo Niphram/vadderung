@@ -3,4 +3,4 @@ metallb:
     memberlist:
       mlSecretKeyPath: "/var/ml_secret_key"
     frr:
-      enabled: false
+      enabled: true
