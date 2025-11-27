@@ -15,10 +15,10 @@ spec:
 
     solvers:
       - dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-secret
-            key: api-token
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-secret
+              key: api-token
         selector:
           dnsZones:
             - {{ .Values.vadderung.baseDomain }}
