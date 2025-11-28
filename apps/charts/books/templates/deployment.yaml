@@ -45,6 +45,8 @@ spec:
               mountPath: /config
             - name: calibre-library
               mountPath: /calibre-library
+            - name: cwa-book-ingest
+              mountPath: /cwa-book-ingest
           ports:
             - containerPort: {{ .Values.cwa.port }}
               name: http
@@ -81,8 +83,8 @@ spec:
             - name: USERS
               value: "cwa|cwa"
           volumeMounts:
-            - name: calibre-library
-              mountPath: /data
+            - name: cwa-book-ingest
+              mountPath: /ingest
         {{- end }}
       volumes:
         - name: calibre-data
@@ -91,3 +93,6 @@ spec:
         - name: calibre-library
           persistentVolumeClaim:
             claimName: calibre-library-pvc
+        - name: cwa-book-ingest  
+          emptyDir:
+            sizeLimit: 10Gi
