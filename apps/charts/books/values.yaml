@@ -27,7 +27,7 @@ cwa:
   #     port: http
   #   timeoutSeconds: 3
 
-ftp-ingest:
+ftp_ingest:
   enabled: true
   image: delfer/alpine-ftp-server
 

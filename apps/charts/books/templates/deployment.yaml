@@ -74,9 +74,9 @@ spec:
             - name: calibre-library
               mountPath: /data
         {{- end }}
-        {{- if .Values.ftp-ingest.enabled -}}
+        {{- if .Values.ftp_ingest.enabled -}}
         - name: calibre-ftp
-          image: {{ .Values.ftp-ingest.image }}
+          image: {{ .Values.ftp_ingest.image }}
           env:
             - name: USERS
               value: "cwa|cwa"
