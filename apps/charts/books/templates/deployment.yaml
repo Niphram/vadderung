@@ -68,7 +68,7 @@ spec:
               value: {{ .Values.cwa.tz }}
             - name: CWA_PORT_OVERRIDE
               value: {{ .Values.cwa.port | quote }}
-        {{- if .Values.rsync.enabled -}}
+        {{- if .Values.rsync.enabled }}
         - name: calibre-rsync
           image: {{ .Values.rsync.image }}
           command: ["server"]
@@ -76,7 +76,7 @@ spec:
             - name: calibre-library
               mountPath: /data
         {{- end }}
-        {{- if .Values.ftp_ingest.enabled -}}
+        {{- if .Values.ftp_ingest.enabled }}
         - name: calibre-ftp
           image: {{ .Values.ftp_ingest.image }}
           env:
