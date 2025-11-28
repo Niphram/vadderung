@@ -6,7 +6,7 @@ cwa:
   tz: Europe/Berlin
   port: 8083
   storage:
-    librarySize: 80Gi
+    librarySize: 128Gi
     configSize: 2Gi
 
   # startupProbe:
