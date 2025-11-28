@@ -26,11 +26,3 @@ cwa:
   #     path: /health
   #     port: http
   #   timeoutSeconds: 3
-
-ftp_ingest:
-  enabled: true
-  image: delfer/alpine-ftp-server
-
-rsync:
-  enabled: false
-  image: eeacms/rsync:3.0

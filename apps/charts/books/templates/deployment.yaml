@@ -45,8 +45,6 @@ spec:
               mountPath: /config
             - name: calibre-library
               mountPath: /calibre-library
-            - name: cwa-book-ingest
-              mountPath: /cwa-book-ingest
           ports:
             - containerPort: {{ .Values.cwa.port }}
               name: http
@@ -68,27 +66,6 @@ spec:
               value: {{ .Values.cwa.tz }}
             - name: CWA_PORT_OVERRIDE
               value: {{ .Values.cwa.port | quote }}
-        {{- if .Values.rsync.enabled }}
-        - name: calibre-rsync
-          image: {{ .Values.rsync.image }}
-          command: ["server"]
-          volumeMounts:
-            - name: calibre-library
-              mountPath: /data
-        {{- end }}
-        {{- if .Values.ftp_ingest.enabled }}
-        - name: calibre-ftp
-          image: {{ .Values.ftp_ingest.image }}
-          env:
-            - name: USERS
-              value: "user|password"
-          ports:
-            - containerPort: 21
-              name: ftp
-          volumeMounts:
-            - name: cwa-book-ingest
-              mountPath: /ingest
-        {{- end }}
       volumes:
         - name: calibre-data
           persistentVolumeClaim:
@@ -96,6 +73,3 @@ spec:
         - name: calibre-library
           persistentVolumeClaim:
             claimName: calibre-library-pvc
-        - name: cwa-book-ingest  
-          emptyDir:
-            sizeLimit: 10Gi
