@@ -81,7 +81,10 @@ spec:
           image: {{ .Values.ftp_ingest.image }}
           env:
             - name: USERS
-              value: "cwa|cwa"
+              value: "user|password"
+          ports:
+            - containerPort: 21
+              name: ftp
           volumeMounts:
             - name: cwa-book-ingest
               mountPath: /ingest
