@@ -27,6 +27,10 @@ cwa:
   #     port: http
   #   timeoutSeconds: 3
 
+ftp-ingest:
+  enabled: true
+  image: delfer/alpine-ftp-server
+
 rsync:
   enabled: false
   image: eeacms/rsync:3.0

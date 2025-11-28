@@ -74,6 +74,16 @@ spec:
             - name: calibre-library
               mountPath: /data
         {{- end }}
+        {{- if .Values.ftp-ingest.enabled -}}
+        - name: calibre-ftp
+          image: {{ .Values.ftp-ingest.image }}
+          env:
+            - name: USERS
+              value: "cwa|cwa"
+          volumeMounts:
+            - name: calibre-library
+              mountPath: /data
+        {{- end }}
       volumes:
         - name: calibre-data
           persistentVolumeClaim:
