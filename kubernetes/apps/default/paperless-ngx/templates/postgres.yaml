@@ -1,0 +1,57 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: paperless-ngx-db-object-store
+spec:
+  configuration:
+    destinationPath: "{{ .Values.vadderung.backup.s3bucket }}/cnpg/"
+    endpointURL: {{ .Values.vadderung.backup.s3endpoint }}
+    s3Credentials:
+      accessKeyId:
+        name: backup-s3-secret
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: backup-s3-secret
+        key: AWS_SECRET_ACCESS_KEY
+    wal:
+      compression: gzip
+  retentionPolicy: "7d"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: paperless-ngx-db
+spec:
+  instances: 3
+  description: "Paperless-ngx DB"
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: paperless-ngx-db-object-store
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 2Gi
+  walStorage:
+    storageClass: longhorn-postgres-replica-storage
+    size: 2Gi
+
+  nodeMaintenanceWindow:
+    reusePVC: false # rebuild from other replica instead
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: paperless-ngx-db-backup
+spec:
+  cluster:
+    name: paperless-ngx-db
+  schedule: '0 0 0 * * *'
+  backupOwnerReference: self
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
