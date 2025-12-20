@@ -1,0 +1,5 @@
+keydb:
+  nodes: 2
+  persistentVolume:
+    # Use the postgres storage class for now
+    storageClass: longhorn-postgres-replica-storage
