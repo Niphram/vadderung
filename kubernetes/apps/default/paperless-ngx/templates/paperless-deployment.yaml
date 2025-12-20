@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: paperless-ngx-app
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-app
+    spec:
+      containers:
+        - name: paperless-ngx-app
+          image: ghcr.io/paperless-ngx/paperless-ngx:latest
+          volumeMounts:
+            - name: paperless-data
+              mountPath: /usr/src/paperless/data
+            - name: paperless-media
+              mountPath: /usr/src/paperless/media
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-env-cm
+          env:
+            # Postgres Variables
+            - name: PAPERLESS_DBHOST
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: host
+            - name: PAPERLESS_DBENGINE
+              value: postgresql
+            - name: PAPERLESS_DBPORT
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: port
+            - name: PAPERLESS_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: dbname
+            - name: PAPERLESS_DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: username
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: password
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: default-paperless-ngx-secret
+                  key: secret_key                  
+      volumes:
+        - name: paperless-data
+          persistentVolumeClaim:
+            claimName: paperless-ngx-data-pvc
+        - name: paperless-media
+          persistentVolumeClaim:
+            claimName: paperless-ngx-media-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: paperless-ngx-app-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: paperless-ngx-app
+  ports:
+    - protocol: TCP
+      targetPort: 8000
+      port: 80

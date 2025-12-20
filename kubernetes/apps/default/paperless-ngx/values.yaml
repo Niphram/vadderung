@@ -1,3 +1,6 @@
+vadderung:
+  baseDomain: ~
+
 keydb:
   nodes: 2
   persistentVolume:
