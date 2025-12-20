@@ -5,8 +5,8 @@ metadata:
 data:
   PAPERLESS_REDIS: redis://default-paperless-ngx-keydb.default.svc.cluster.local:6379
   PAPERLESS_URL: "https://paperless.{{ .Values.vadderung.baseDomain}}"
-  PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
-  PAPERLESS_ENABLE_HTTP_REMOTE_USER_API: "true"
+  PAPERLESS_ENABLE_HTTP_REMOTE_USER: "false"
+  PAPERLESS_ENABLE_HTTP_REMOTE_USER_API: "false"
   PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_REMOTE_USER
   PAPERLESS_LOGOUT_REDIRECT_URL: "https://auth.{{ .Values.vadderung.baseDomain}}/logout"
   PAPERLESS_USE_X_FORWARD_HOST: "true"
