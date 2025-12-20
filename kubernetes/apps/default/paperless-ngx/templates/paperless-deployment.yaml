@@ -15,8 +15,8 @@ spec:
     metadata:
       labels:
         app: paperless-ngx-app
-        annotations:
-          reloader.stakater.com/auto: "true"
+      annotations:
+        reloader.stakater.com/auto: "true"
     spec:
       containers:
         - name: paperless-ngx-app
