@@ -13,3 +13,16 @@ data:
   PAPERLESS_DISABLE_REGULAR_LOGIN: "true"
   PAPERLESS_REDIRECT_LOGIN_TO_SSO: "true"
   PAPERLESS_USE_X_FORWARD_HOST: "true"
+
+  PAPERLESS_DBENGINE: postgresql
+  PAPERLESS_DBHOST_FILE: /run/secrets/db/host
+  PAPERLESS_DBPORT_FILE: /run/secrets/db/port
+  PAPERLESS_DBNAME_FILE: /run/secrets/db/dbname
+  PAPERLESS_DBUSER_FILE: /run/secrets/db/username
+  PAPERLESS_DBPASS_FILE: /run/secrets/db/password
+
+  PAPERLESS_SECRET_KEY_FILE: /run/secrets/paperless/secret_key
+  PAPERLESS_ADMIN_USER_FILE: /run/secrets/paperless/admin_user
+  PAPERLESS_ADMIN_PASSWORD_FILE: /run/secrets/paperless/admin_password
+
+  PAPERLESS_SOCIALACCOUNT_PROVIDERS_FILE: /run/secrets/oidc/providers

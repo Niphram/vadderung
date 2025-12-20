@@ -26,58 +26,18 @@ spec:
               mountPath: /usr/src/paperless/data
             - name: paperless-media
               mountPath: /usr/src/paperless/media
+            - name: db-secret
+              readOnly: true
+              mountPath: "/run/secrets/db"
+            - name: paperless-secret
+              readOnly: true
+              mountPath: "/run/secrets/paperless"
+            - name: oidc-secret
+              readOnly: true
+              mountPath: "/run/secrets/oidc"
           envFrom:
             - configMapRef:
-                name: {{ .Release.Name }}-env-cm
-          env:
-            # Postgres Variables
-            - name: PAPERLESS_DBHOST
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: host
-            - name: PAPERLESS_DBENGINE
-              value: postgresql
-            - name: PAPERLESS_DBPORT
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: port
-            - name: PAPERLESS_DBNAME
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: dbname
-            - name: PAPERLESS_DBUSER
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: username
-            - name: PAPERLESS_DBPASS
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: password
-            - name: PAPERLESS_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: default-paperless-ngx-secret
-                  key: secret_key
-            - name: PAPERLESS_ADMIN_USER
-              valueFrom:
-                secretKeyRef:
-                  name: default-paperless-ngx-secret
-                  key: admin_user
-            - name: PAPERLESS_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: default-paperless-ngx-secret
-                  key: admin_password
-            - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-oidc-secret
-                  key: providers           
+                name: {{ .Release.Name }}-env-cm         
       volumes:
         - name: paperless-data
           persistentVolumeClaim:
@@ -85,6 +45,15 @@ spec:
         - name: paperless-media
           persistentVolumeClaim:
             claimName: paperless-ngx-media-pvc
+        - name: db-secret
+          secret:
+            secretName: paperless-ngx-db-app
+        - name: paperless-secret
+          secret:
+            secretName: default-paperless-ngx-secret
+        - name: oidc-secret
+          secret:
+            secretName: paperless-oidc-secret
 ---
 kind: Service
 apiVersion: v1
