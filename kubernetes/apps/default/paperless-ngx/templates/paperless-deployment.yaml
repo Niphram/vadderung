@@ -62,7 +62,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: default-paperless-ngx-secret
-                  key: secret_key    
+                  key: secret_key
             - name: PAPERLESS_ADMIN_USER
               valueFrom:
                 secretKeyRef:
@@ -72,7 +72,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: default-paperless-ngx-secret
-                  key: admin_password              
+                  key: admin_password
+            - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-oidc-secret
+                  key: providers           
       volumes:
         - name: paperless-data
           persistentVolumeClaim:
