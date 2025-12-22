@@ -47,13 +47,13 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-env-cm
       {{- with .Values.paperless.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-          envFrom:
-            - configMapRef:
-                name: {{ .Release.Name }}-env-cm
 ---
 kind: Service
 apiVersion: v1
