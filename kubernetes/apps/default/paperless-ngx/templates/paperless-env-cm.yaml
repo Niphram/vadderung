@@ -6,6 +6,14 @@ data:
   PAPERLESS_REDIS: redis://default-paperless-ngx-keydb.default.svc.cluster.local:6379
   PAPERLESS_URL: "https://paperless.{{ .Values.vadderung.baseDomain}}"
   
+  PAPERLESS_OCR_LANGUAGE: deu
+  PAPERLESS_DATE_PARSER_LANGUAGES: de+en
+  PAPERLESS_TIME_ZONE: Europe/Berlin
+
+  PAPERLESS_CONSUMER_ENABLE_BARCODES: "true"
+  PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE: "true"
+  PAPERLESS_CONSUMER_ASN_BARCODE_PREFIX: ASN
+
   PAPERLESS_APPS: "allauth.socialaccount.providers.openid_connect"
   PAPERLESS_ACCOUNT_ALLOW_SIGNUPS: "false"
   PAPERLESS_SOCIAL_AUTO_SIGNUP: "true"
