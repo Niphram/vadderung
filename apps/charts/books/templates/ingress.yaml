@@ -48,9 +48,9 @@ spec:
             path: "/"
             backend:
               service:
-                name: calibre-app-service
+                name: calibre-downloader-service
                 port:
-                  number: 81
+                  number: 80
 ---
 # Special Ingress for the upload endpoint with increased body size limit
 apiVersion: networking.k8s.io/v1
