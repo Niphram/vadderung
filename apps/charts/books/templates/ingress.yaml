@@ -41,7 +41,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "books-downloader.{{ .Values.vadderung.baseDomain }}"
+    - host: "bookfinder.{{ .Values.vadderung.baseDomain }}"
       http:
         paths:
           - pathType: Prefix
