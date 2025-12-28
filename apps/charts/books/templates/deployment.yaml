@@ -45,8 +45,6 @@ spec:
               mountPath: /config
             - name: calibre-library
               mountPath: /calibre-library
-            - name: calibre-ingest
-              mountPath: /cwa-book-ingest
           ports:
             - containerPort: {{ .Values.cwa.port }}
               name: http
@@ -68,17 +66,6 @@ spec:
               value: {{ .Values.cwa.tz }}
             - name: CWA_PORT_OVERRIDE
               value: {{ .Values.cwa.port | quote }}
-        - name: calibre-downloader
-          image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
-          volumeMounts:
-            - name: calibre-ingest
-              mountPath: /cwa-book-ingest
-          ports:
-            - containerPort: 8084
-              name: downloader-http
-          env:
-            - name: TZ
-              value: {{ .Values.cwa.tz }}
       volumes:
         - name: calibre-data
           persistentVolumeClaim:
@@ -86,6 +73,3 @@ spec:
         - name: calibre-library
           persistentVolumeClaim:
             claimName: calibre-library-pvc
-        - name: calibre-ingest
-          emptyDir:
-            sizeLimit: 10Gi
