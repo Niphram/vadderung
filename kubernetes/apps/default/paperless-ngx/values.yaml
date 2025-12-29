@@ -24,6 +24,9 @@ paperless:
       port: http
 
   volumeMounts:
+    - name: paperless-scripts
+      readOnly: true
+      mountPath: /scripts
     - name: paperless-data
       mountPath: /usr/src/paperless/data
     - name: paperless-media
@@ -39,6 +42,9 @@ paperless:
       mountPath: "/run/secrets/oidc"
 
   volumes:
+    - name: paperless-scripts
+      configMap:
+        name: paperless-scripts-cm
     - name: paperless-data
       persistentVolumeClaim:
         claimName: paperless-ngx-data-pvc
