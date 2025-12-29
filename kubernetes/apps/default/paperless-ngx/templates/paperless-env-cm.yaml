@@ -10,7 +10,7 @@ data:
   PAPERLESS_DATE_PARSER_LANGUAGES: de+en
   PAPERLESS_TIME_ZONE: Europe/Berlin
 
-  PAPERLESS_PRE_CONSUME_SCRIPT: /usr/src/paperless/scripts/pre-consume.sh
+  # PAPERLESS_PRE_CONSUME_SCRIPT: /usr/src/paperless/scripts/pre-consume.sh
 
   PAPERLESS_CONSUMER_ENABLE_BARCODES: "true"
   PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE: "true"

@@ -19,10 +19,6 @@ spec:
       labels:
         app: paperless-ngx-app
     spec:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
       {{- with .Values.paperless.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
