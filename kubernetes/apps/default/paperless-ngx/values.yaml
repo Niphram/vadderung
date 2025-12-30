@@ -1,5 +1,7 @@
 vadderung:
   baseDomain: ~
+  paperless:
+    ignoreDates: ""
 
 paperless:
   imagePullSecrets: []
