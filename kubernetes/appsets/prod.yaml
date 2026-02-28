@@ -12,6 +12,10 @@ spec:
         revision: HEAD
         directories:
           - path: kubernetes/apps/*/*
+          - path: kubernetes/apps/#*/*
+            exclude: true
+          - path: kubernetes/apps/*/#*
+            exclude: true
   template:
     metadata:
       name: "{{index .path.segments 2}}-{{index .path.segments 3}}"
