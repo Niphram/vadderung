@@ -27,7 +27,7 @@ spec:
         - name: spacetimedb-app
           image: "{{ .Values.spacetimedb.image.repository }}:{{ .Values.spacetimedb.image.tag }}"
           imagePullPolicy: {{ .Values.spacetimedb.image.pullPolicy }}
-          command: ["start"]
+          args: ["start"]
           ports:
             - name: http
               containerPort: {{ .Values.spacetimedb.service.port }}
