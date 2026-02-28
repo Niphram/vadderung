@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+spec:
+  selector:
+    matchLabels:
+      app: spacetimedb-app
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      {{- with .Values.spacetimedb.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: spacetimedb-app
+    spec:
+      {{- with .Values.spacetimedb.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: spacetimedb-app
+          image: "{{ .Values.spacetimedb.image.repository }}:{{ .Values.spacetimedb.image.tag }}"
+          imagePullPolicy: {{ .Values.spacetimedb.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.spacetimedb.service.port }}
+              protocol: TCP
+
+          {{- with .Values.spacetimedb.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spacetimedb-app-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: spacetimedb-app
+  ports:
+    - protocol: TCP
+      targetPort: {{ .Values.spacetimedb.service.port }}
+      port: 80

@@ -1,0 +1,15 @@
+vadderung:
+  baseDomain: ~
+
+spacetimedb:
+  imagePullSecrets: []
+  image:
+    repository: clockworklabs/spacetime
+    pullPolicy: IfNotPresent
+    tag: v2.0.2
+  service:
+    port: 3000
+  resources: {}
+
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
