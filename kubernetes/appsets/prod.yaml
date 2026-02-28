@@ -12,9 +12,10 @@ spec:
         revision: HEAD
         directories:
           - path: kubernetes/apps/*/*
-          - path: kubernetes/apps/#*/*
+          # Allow exclusion of apps using an underscore as prefix
+          - path: kubernetes/apps/_*/*
             exclude: true
-          - path: kubernetes/apps/*/#*
+          - path: kubernetes/apps/*/_*
             exclude: true
   template:
     metadata:
