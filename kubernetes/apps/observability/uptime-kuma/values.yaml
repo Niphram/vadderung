@@ -1,0 +1,33 @@
+vadderung:
+  baseDomain: ~
+
+uptime_kuma:
+  imagePullSecrets: []
+  image:
+    repository: louislam/uptime-kuma
+    pullPolicy: IfNotPresent
+    tag: 2
+  service:
+    port: 3001
+  resources: {}
+
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+
+  volumeMounts:
+  - name: uptime-kuma-data
+    mountPath: /app/data
+
+  volumes:
+  - name: uptime-kuma-data
+    persistentVolumeClaim:
+      claimName: uptime-kuma-data-pvc
