@@ -20,3 +20,10 @@ data:
   OIDC_REMEMBER_ME: "true"
   OIDC_ADMIN_GROUP: admins
   OIDC_PROVIDER_NAME: SSO
+
+  DB_ENGINE: postgres
+  POSTGRES_USER_FILE: /etc/db-secret/user
+  POSTGRES_PASSWORD_FILE: /etc/db-secret/password
+  POSTGRES_SERVER_FILE: /etc/db-secret/host
+  POSTGRES_PORT_FILE: /etc/db-secret/port
+  POSTGRES_DB_FILE: /etc/db-secret/dbname

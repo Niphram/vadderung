@@ -40,12 +40,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: mealie-env
-          env:
-            # Postgres Variables
-            - name: DB_ENGINE
-              value: postgres
-            - name: POSTGRES_URL_OVERRIDE_FILE
-              value: /etc/db-secret/fqdn-uri
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
