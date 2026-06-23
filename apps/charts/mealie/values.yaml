@@ -5,6 +5,6 @@ vadderung:
     s3endpoint: ~
 
 mealie:
-  image: ghcr.io/mealie-recipes/mealie:v3.3.1
+  image: ghcr.io/mealie-recipes/mealie:v3.19.2
   pgsecrets: mealie-db-app
   timezone: Europe/Berlin
