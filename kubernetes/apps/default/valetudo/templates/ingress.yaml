@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: valetudo-ingress
+  name: {{ .Chart.Name }}-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -21,6 +21,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: valetudo-service
+                name: {{ .Chart.Name }}-service
                 port:
                   number: 80

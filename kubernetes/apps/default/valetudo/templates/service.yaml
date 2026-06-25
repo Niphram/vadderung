@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: valetudo-service
+  name: {{ .Chart.Name }}-service
   namespace: {{ .Release.Namespace }}
 spec:
   ports:
