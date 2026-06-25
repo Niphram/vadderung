@@ -13,3 +13,4 @@ ports:
 endpoints:
   - addresses:
       - {{ .Values.valetudo.robot.ip }}
+    conditions: {}
