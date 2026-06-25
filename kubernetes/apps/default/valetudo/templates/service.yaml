@@ -9,3 +9,5 @@ spec:
       protocol: TCP
       targetPort: {{ .Values.valetudo.robot.port }}
       name: http
+  clusterIP: None
+  type: ClusterIP
