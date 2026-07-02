@@ -1,5 +1,5 @@
-talosversion := "v1.11.2"
-kubernetesversion := "v1.34.1"
+talosversion := "v1.13.5"
+kubernetesversion := "v1.36.2"
 
 patchdir := quote(justfile_directory() / "patches")
 patchfiles := ""
@@ -50,10 +50,22 @@ another-recipe:
     echo '{{style("command")}}Generating talos config for cluster {{ cluster_name }}...{{NORMAL}}'
 
     PATCHES=""
-    for file in ./patches/*.yaml
+    for file in ./patches/common/*.yaml
     do
-        echo "Applying patch $file"
+        echo "Applying common patch $file"
         PATCHES="${PATCHES} --config-patch @$file"
+    done
+
+    for file in ./patches/control-plane/*.yaml
+    do
+        echo "Applying control-plane patch $file"
+        PATCHES="${PATCHES} --config-patch-control-plane @$file"
+    done
+
+    for file in ./patches/worker/*.yaml
+    do
+        echo "Applying worker patch $file"
+        PATCHES="${PATCHES} --config-patch-worker @$file"
     done
 
     {{talosctl}} gen config --force -o ./generated/ \

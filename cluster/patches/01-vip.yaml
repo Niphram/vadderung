@@ -1,9 +1,0 @@
-# TODO: should this only apply to controlplanes?
-machine:
-  network:
-    interfaces:
-      - deviceSelector:
-          physical: true
-        dhcp: true
-        vip:
-          ip: 192.168.178.200
