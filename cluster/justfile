@@ -73,7 +73,7 @@ another-recipe:
         --talos-version {{talosversion}} \
         --with-secrets secrets.yaml \
         ${PATCHES} \
-        {{cluster_name}} https://vadderung.niphrams-bu.de:6443
+        {{cluster_name}} "https://192.168.178.200"
 
 @applyconfig:
     {{talosctl}} apply-config \

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: dns
+version: 1.0.0
+dependencies:
+- name: adguard-home
+  version: 1.4.13
+  repository: oci://ghcr.io/helmforgedev/helm
