@@ -3,7 +3,7 @@ vadderung:
 
 adguard-home:
   config:
-    existingSecret: adguard-home-secret
+    existingSecret: infra-dns-adguard-home-config
   persistence:
     conf:
       enabled: false
