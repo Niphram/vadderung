@@ -3,43 +3,15 @@ vadderung:
 
 adguard-home:
   config:
-    adGuardHome:
-      http:
-        address: 0.0.0.0:80
-      users:
-      - name: admin
-        password: '$2y$10$gUMjZviq/jwv4XmRCBxLJOrANCZBWbtyKr.9DnY1POEQ6.OUgQlXW'
-      schema_version: 29
+    existingSecret: adguard-home-secret
   persistence:
     conf:
       enabled: false
     work:
       enabled: false
 
-  sync:
-    enabled: true
-    origin:
-      url: 'http://adguard-home.infra.svc.cluster.local:80'
-      username: admin
-      password: 'testpassword' # use existingSecret in production
-    replicas:
-    - url: 'http://adguard-home-replica.infra.svc.cluster.local:80'
-      username: admin
-      password: 'testpassword'
-    cron: '*/10 * * * *' # sync every 10 minutes; empty = continuous daemon
-    runOnStart: true
-    features:
-      dns:
-        serverConfig: true
-        accessLists: true
-        rewrites: true
-      general:
-        settings: true
-        protection: true
-        clients: true
-        filters: true
-
   service:
     dns:
       type: LoadBalancer
       loadBalancerIP: '192.168.178.211'
+      externalTrafficPolicy: Local
