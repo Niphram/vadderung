@@ -24,13 +24,14 @@ access_control:
   default_policy: "deny"
   rules:
     - domain_regex:
-        - '^(?P<Group>(longhorn|argocd))\.{{ .Values.vadderung.baseDomain | replace "." "\\." }}$'
+        - '^(?P<Group>(longhorn|argocd|dns))\.{{ .Values.vadderung.baseDomain | replace "." "\\." }}$'
       subject:
         - ['group:admins']
       policy: 'two_factor'
     - domain:
         - 'longhorn.{{ .Values.vadderung.baseDomain }}'
         - 'argocd.{{ .Values.vadderung.baseDomain }}'
+        - 'dns.{{ .Values.vadderung.baseDomain }}'
       policy: 'deny'
     - domain_regex:
         - '^(?P<Group>\w+)\.{{ .Values.vadderung.baseDomain | replace "." "\\." }}$'
