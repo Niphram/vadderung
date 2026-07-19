@@ -2,7 +2,7 @@ ingress-nginx:
   controller:
     service:
       loadBalancerIP: 192.168.178.210
-      externalTrafficPolicy: Local
+      # externalTrafficPolicy: Local
     allowSnippetAnnotations: true
     config:
       annotations-risk-level: Critical
