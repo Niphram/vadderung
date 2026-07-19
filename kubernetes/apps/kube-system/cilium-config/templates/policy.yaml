@@ -3,5 +3,8 @@ kind: CiliumL2AnnouncementPolicy
 metadata:
   name: l2-announce
 spec:
+  serviceSelector:
+    matchLabels:
+      cilium-test: true
   externalIPs: true
   loadBalancerIPs: true
