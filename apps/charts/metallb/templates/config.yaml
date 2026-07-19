@@ -1,14 +1,14 @@
-# apiVersion: metallb.io/v1beta1
-# kind: IPAddressPool
-# metadata:
-#   name: address-pool
-#   namespace: {{ .Release.Namespace }}
-#   annotations:
-#     "helm.sh/hook": post-install,post-upgrade
-# spec:
-#   addresses:
-#     - 192.168.178.210-192.168.178.220
-#     - fc00:f853:0ccd:e799::/124
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: address-pool
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+spec:
+  addresses:
+    - 192.168.178.210-192.168.178.220
+    - fc00:f853:0ccd:e799::/124
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
@@ -17,6 +17,3 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
-  serviceSelectors:
-  - matchLabels:
-      invalid: metallb
