@@ -1,10 +1,11 @@
-apiVersion: "cilium.io/v2alpha1"
-kind: CiliumL2AnnouncementPolicy
-metadata:
-  name: l2-announce
-spec:
-  serviceSelector:
-    matchLabels:
-      cilium-test: "true"
-  externalIPs: false
-  loadBalancerIPs: true
+---
+# apiVersion: "cilium.io/v2alpha1"
+# kind: CiliumL2AnnouncementPolicy
+# metadata:
+#   name: l2-announce
+# spec:
+#   serviceSelector:
+#     matchLabels:
+#       cilium-test: "true"
+#   externalIPs: false
+#   loadBalancerIPs: true
