@@ -1,0 +1,10 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "address-pool"
+  namespace: {{ .Release.Namespace }}
+spec:
+  blocks:
+  - start: "192.168.178.210"
+    stop: "192.168.178.220"
+  - cidr: "fc00:f853:0ccd:e799::/124"

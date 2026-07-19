@@ -256,12 +256,16 @@ cluster:
         vtep-cidr: ""
         vtep-mask: ""
         vtep-mac: ""
+        # Enable L2 announcements
+        enable-l2-announcements: "true"
         procfs: "/host/proc"
         bpf-root: "/sys/fs/bpf"
         cgroup-root: "/sys/fs/cgroup"
 
         identity-management-mode: "agent"
         enable-sctp: "false"
+        k8s-client-qps: "10"
+        k8s-client-burst: "25"
         remove-cilium-node-taints: "true"
         set-cilium-node-taints: "true"
         set-cilium-is-up-condition: "true"
@@ -360,6 +364,16 @@ cluster:
         - get
         - list
         - watch
+      - apiGroups:
+        - coordination.k8s.io
+        resources:
+        - leases
+        verbs:
+        - create
+        - get
+        - update
+        - list
+        - delete
       - apiGroups:
         - apiextensions.k8s.io
         resources:

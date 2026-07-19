@@ -5,6 +5,14 @@ set -e
 # @meta dotenv .env
 
 # @cmd
+# @option --nodes+, $CONTROL_NODES <nodes> bind-env
+dashboard() {
+    nodes=$(IFS=, ; echo "${argc_nodes[*]}")
+
+    talosctl dashboard -n"${nodes}"
+}
+
+# @cmd
 # @option --talosversion! $TALOS_VERSION <version> bind-env
 # @option --k8sversion! $KUBERNETES_VERSION <version> bind-env
 # @option --cluster! $CLUSTER_NAME <name> bind-env
