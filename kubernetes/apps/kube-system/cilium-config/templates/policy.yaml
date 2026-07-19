@@ -6,5 +6,5 @@ spec:
   serviceSelector:
     matchLabels:
       cilium-test: "true"
-  externalIPs: true
+  externalIPs: false
   loadBalancerIPs: true
