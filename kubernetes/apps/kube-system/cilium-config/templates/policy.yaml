@@ -5,6 +5,6 @@ metadata:
 spec:
   serviceSelector:
     matchLabels:
-      cilium-test: true
+      cilium-test: "true"
   externalIPs: true
   loadBalancerIPs: true
