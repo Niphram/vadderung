@@ -43,9 +43,11 @@ cluster:
       metadata:
         name: cilium-ca
         namespace: kube-system
+        labels:
+          cilium.io/helm-template-non-idempotent: "true"
       data:
-        ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFekNDQWZ1Z0F3SUJBZ0lRUUZwSnVuT2YvNkE0SDB3bE44aER2REFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05Nall3TnpFNU1UYzBOelEzV2hjTk1qa3dOekU0TVRjMApOelEzV2pBVU1SSXdFQVlEVlFRREV3bERhV3hwZFcwZ1EwRXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCCkR3QXdnZ0VLQW9JQkFRQzJwSzZZN2ZaYXF5R0Y3MlMvcHdqWUJKS1Y0SEI5S1FPTWdyY2Q3ektlZFlLc1JUTUMKS2dhbjBxc2tNSVVxTTVobFJZNTQ0blpibklmVWVOTVZJeXR5Sy9RTytlaXQrVUdNQ1duQjVCalk4QktlQXNpcgpBWkZQektxYWZoeHB2NmtHa3p3aXhaOGV3VU5IVGlnVkNaTE0rVnJEenIyM3h4MUpTMCtUcmJDeVJuSGpOZ1dMCnMza0tMTHdKR2VoY3BDN0trY1dRano0S2cybEtER1FBakEydXI0elJQVG5lanF0OGRLdDBxa213RGg5aGlnRG0KMUdjUngrNk1LSVZFYlVSNnNEaWhUZ0x4bzFWUXJDalJERnF1ek5CMDVSRnk2b2FuK0xWNUlwZEt6eGc2L0NzWgo1QnVzU2xlRGhEVjFHZEt0aGdiWXk5eSsreDdjWnlsT1BNcVJBZ01CQUFHallUQmZNQTRHQTFVZER3RUIvd1FFCkF3SUNwREFkQmdOVkhTVUVGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXcKQXdFQi96QWRCZ05WSFE0RUZnUVUrT21yWVNhYnpRYWFHL1FrMGd2bmpSbHB6OUF3RFFZSktvWklodmNOQVFFTApCUUFEZ2dFQkFFQXVvYk5xRURoSDhJQTdJMVUweWdxVzl2MzZ6Z1ZXZEFBV1Q1TTlPT3V3TVJXNFB1d0lUOURMClBKVW12TW9JQmhkYzBEbTNJRzFkOW9YbkdQY0YraU4yUXdlYlM4RzkzTVN1eWRneXFsNEFzcERQQXFFTUMrUnAKZk41ZUk5eGVRSkxNVUgwYkJCUjVxUVJWTjZUTVhwWDlVT3UrNUlwK0UvVDQyTHhpQUVrU3EzdnZNemZHd21LaApveVBCVFZwb0VLY25aKzY2ZlltVmlrMHBvTzB5UWpyOWhBOStra3FQd0VWbC9jRlBEWC9pLzJmdXM5M0RQL3RyCk1oZ3Ftd3Byc1hZSW83K2YzYzNPTFg5MjQwUEhqL2x1czNMUTFUTEo1bkdpT2lRY2c3cXg5RDAzalYxUzRENkUKdWJqVEhqdy9TZ2l1ayszZXlBQlBQK1RRbzRPWXhBMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-        ca.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBdHFTdW1PMzJXcXNoaGU5a3Y2Y0kyQVNTbGVCd2ZTa0RqSUszSGU4eW5uV0NyRVV6CkFpb0dwOUtySkRDRktqT1laVVdPZU9KMlc1eUgxSGpURlNNcmNpdjBEdm5vcmZsQmpBbHB3ZVFZMlBBU25nTEkKcXdHUlQ4eXFtbjRjYWIrcEJwTThJc1dmSHNGRFIwNG9GUW1TelBsYXc4Njl0OGNkU1V0UGs2Mndza1p4NHpZRgppN041Q2l5OENSbm9YS1F1eXBIRmtJOCtDb05wU2d4a0FJd05ycStNMFQwNTNvNnJmSFNyZEtwSnNBNGZZWW9BCjV0Um5FY2Z1akNpRlJHMUVlckE0b1U0QzhhTlZVS3dvMFF4YXJzelFkT1VSY3VxR3AvaTFlU0tYU3M4WU92d3IKR2VRYnJFcFhnNFExZFJuU3JZWUcyTXZjdnZzZTNHY3BUanpLa1FJREFRQUJBb0lCQUFoTVlva2M3citKM1BrUAo1Unoyd3Vad1lXbjJpNXMwTWk2LzFhckNMbmp0VCtXY2lKMGE1R013VURSUnZBc3NmWi9FVVowdWRPcmovc3ZwCmtzcjRFUnViNGFLTjVPNHYrclFaSXJsUTJzd29oRUFIcDY4VllDWjhYeGdCT050RDA3TXljZ2l4RlVka0hUYkYKTEtSZ0RmcDFnejZOb0gyK3lld3dSQitxbVp6NmxoVThDTEpKR09vU01McGR2MDJiaENOT0Q1QXpJNGxhbFMwNgp3ZGNzMTJDY2pRTTdMbzJBOE4wWUhGd25abWJWUjhkdnhhZkYxQmRkeGFuS1pSb2NCVUx2cTYrOEVydnZPdnJNCm4wUEk4ekwwckFoZVRXT2RjUzVGNk4rZU9ZNmcyVmFpbXNrbks2aGpFWG1hVUFtSmZiTm9URVo5N1JjbWt1K3AKdG8vMU5SRUNnWUVBMjdBdUtGNXVGNGtJVC9PUCt3M0JuNXRNZ05oOWlEZVVyOWczRVVlU2dXVDVYTzd3SWp3bwozVmVwVktWTXY5eksrTk5Vbmp2blZNUmJDUDZUWFppQnM1TU1NZjJUamJTMm4yQXhTWjBqS0EyaTVQT0VwaC9lClVDNjRPbXVZMTZvZ3pOdTZRLzlIUlpkbHBZYzBrUFhGUDM3MWpLSFoycTYwOUJoRGNYc2xoMzBDZ1lFQTFOVCsKbGJTY1htVWJJQzNiWnAxZGxKWnpQekcvUVgwQmw4bTBLUGxXd01BRVpkWXcyclRQbEFYUlFzaTh4eHF0R21aNApXY3RUT0RNdnhHQlR0YmFvQkRMbTQybTNqVWY5VnUrdTRWaUVZWXpwN1pnTGVFR1V1aldWUkRhOVVVZDJnQ1dTCi95c3VPOFRSZ2FPNE1EN2tFcHBuV2lMUGJPU29PZjNpN3A0dUE2VUNnWUJuWDNGNHdXWmdZTFN1bWxjbnRRTmwKRFBoa3NIbnhQT1lVRUZOcEtCcUNGSGRhQ1h5cFAxR2pSWHFDUC8zclVnT1lMaWpsQkI4SVBoVHdHSXBUUWszVgpwOTNYTUJEY1h5cUh1QVc1TTkyMUhTV0hRaWNxM0ZnSnR0SXRleS9DVzJWdnYvelh2aWxWVDdZZXU0NDZuOHNlCjQ2aTdjZlZHOTJwaWFZQml4NldUS1FLQmdRQ002MDU1enpGdDZ1SHdCNHpxdjYxVGtkNVM3RnhuUHg3TDR0aXYKL0kvdFpmWkRlM096aTk2WmN0U2d0SXNTQmQ2eHlVRk1xeXk1M0dKM1V4UjZENnZsdzlKT3B4UEtydXpXSURNWgpyK05QTjk4MzJ1RlZTWTd4VUVNNS9FaVR4WTUzd09rNG5OMnE0MkdZeGM5UjJvSm1zdWRWcmhETFdBYnZCdVMzCisvSVpwUUtCZ1FDTXhXYk5SOEg5RzAxVG0xSnI1MkY3RWdjQVdXRXZTTUVZUWZKb00rRDA5VnFqNVRiR3FCNXIKTUo2YStRcWFLVGdKMXM1amxrMzNYb2M2clRpUFB0QU5yRHFWYnpqaGt3N21Wbm9BdzNIZUQra3dIREQxejdPagp6TmJsSm5ENmdVN2pIUnYvZXNTQkZwb1FIVjU2TWxtaDVqV01xM1pJa1hBZ2twU0J1SnAwNUE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+        ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFekNDQWZ1Z0F3SUJBZ0lRSUV0T3dzM1hJeTZWMytFVy9vWTdpVEFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05Nall3TnpJd01EZ3lORFUwV2hjTk1qa3dOekU1TURneQpORFUwV2pBVU1SSXdFQVlEVlFRREV3bERhV3hwZFcwZ1EwRXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCCkR3QXdnZ0VLQW9JQkFRQ3pmaEJCbGJqMEl1RlAzaWVsdGpacERWb1QvdXd2SFdIOGFwVWNhQktydDA5NzlRWlAKVnMrVE1pOUpiZ0lySFZBaGZlUWdRa1ovNVFSd2tMb0hkeGxvMGhwU21EWjJINERnY2FSUCtFS0ZtbDAzb2FFTgpPN0lKSnk2RVJHQ1NuOTdyR0dTc2J4YkVMVW1yek1odURId0kwaEFZcDN2bUhBM2NWVFFYZ1RROFdIVkQ4WHIwCmtnTHI4VUU4bFFMWXVmMzE4ckhOVmlYY0xUcThhK2djNUFzMjNQa3Fxem4rT1dMSnZuZ0xIdnJVbTh3K0xFN2sKMkxwc2p6T2J2ZEplR3Vjazc2ZUtNRHhDK0kxNUU2Ri8rTDdhNnl6UExkL3U0b0pFUzYzZ3N4QXNySjlWWW1EcAp1TXV1K2ozYWViMWszTWJSNGkyalRueExxaW9DeDZCWmtPeUZBZ01CQUFHallUQmZNQTRHQTFVZER3RUIvd1FFCkF3SUNwREFkQmdOVkhTVUVGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXcKQXdFQi96QWRCZ05WSFE0RUZnUVVHZFdVU2xVMmYxbEdvWUVKZnlGbTdCUkhnTEV3RFFZSktvWklodmNOQVFFTApCUUFEZ2dFQkFBalo1eGlYUUJnOHBQZVVrYlQxNWp0VE5aTFNhYldKbnNzTzcvUmpzRVF4ZWdaK25MRDJrc2FICnE5VUUrN2RkWW1GRWxNdUtLdjMvbjg1SUpiQ1N4MitOdUNieGJYQ0tvQ3dxNXd1czVYOUhGeEowbnN0WEsyakcKR05RVENRRGJwOCtkaFlQTDFGKzl6b1AyS3dlV3VGdzZ4Zk9ISTdFZUZJYUJCbFgzNUtCK3hPbmhDc281UVBSawp0ZVR1UW9IamVrQ3hNZ0dNOXlEc0lOeEhQaGFxTkZsc2ZqcUNpVEVKTXRVajdTcVJzU1VPTzJmU3FQNURPKzcvCjlWcXVpeVpaMUJ0K1AzTm45dzBxWmxSdUFOdFJ6N2FhTHZ6Vis3M1EwM2RibXEwNmNqazI2eUhGakdkQjhvT28KQnNVRWhOYjNnWmpEQStwc1JxcnlkTGt3azdPVVBOUT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+        ca.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBczM0UVFaVzQ5Q0xoVDk0bnBiWTJhUTFhRS83c0x4MWgvR3FWSEdnU3E3ZFBlL1VHClQxYlBrekl2U1c0Q0t4MVFJWDNrSUVKR2YrVUVjSkM2QjNjWmFOSWFVcGcyZGgrQTRIR2tUL2hDaFpwZE42R2gKRFR1eUNTY3VoRVJna3AvZTZ4aGtyRzhXeEMxSnE4ekliZ3g4Q05JUUdLZDc1aHdOM0ZVMEY0RTBQRmgxUS9GNgo5SklDNi9GQlBKVUMyTG45OWZLeHpWWWwzQzA2dkd2b0hPUUxOdHo1S3FzNS9qbGl5YjU0Q3g3NjFKdk1QaXhPCjVOaTZiSTh6bTczU1hocm5KTytuaWpBOFF2aU5lUk9oZi9pKzJ1c3N6eTNmN3VLQ1JFdXQ0TE1RTEt5ZlZXSmcKNmJqTHJ2bzkybm05Wk56RzBlSXRvMDU4UzZvcUFzZWdXWkRzaFFJREFRQUJBb0lCQURORWU2SXdBSzhDMDNZNwpqdmwvRFJWK2NjOHFUZzI3QjhUUU1KejNnUFc1R3lQZHZacWx3ZzVhRkRXV0RWcUJPZVVIRDBURGlWMTRiWWMxClgxMUlnR0ozT0h1RTdIRmEyRFhEWDlwVG43U0hmYjZwRk5ZeHljMWhlcURlNHZLZVpVNmpIZ1kraUxNcCtGUHcKM3dMSDRCbW8zbDRjWUlBK1hSc2szd2NqcVdiZXBzWXRISmJHVUUzUTI5RjJMdFJYSnFLbEN6ckJlb2hDZ2FsZAoxZTc3M2wwUW0wclFNM09lR0RYU2NpVjBPMEx5Y0ViY3pyM3JlSjRNeER2d3B4SWpBNng0Z2U1S3F3S2lKeGpwCnZoMEN1YXhubk1DUG02MUxEaG9ubUFqNWRRczFxSDhFak1ncjhqeDJQU0N6bHR2U1dRWDRIMTE2L01wSlRmYWUKa2E4SkNoVUNnWUVBMEROc2x5NURqUWRMSG1JN1lKZ3I4YjZKcGpoY3p0TVR6bnFkYjlKcStOdVltQzg3MWxKVQpHVy9wcjJTbVdCQ1pwVmxodWRMYWZyUi9wM2F1WVRiY0xSeVpFTFdIWVZCTjFrVnYwVVMvSXhwVVRUNy81SEZNCnRVbEh3QTU5ZUc3RngwR3FKOGdybEh6OWJHN3JyUG5kQ1B6S1NiaC9CSU5LTlJuZ1RRU0lWc2NDZ1lFQTNMTmMKTVg4ZjRSSGNBcnpJWUtzNlBlcnBWMHR4UXFsMmdKOU5XZWZLUDFMczJSQ2N4ck9TOWE2LzlLeXN5VHZRVTlDbwp3T0RJdlVPYTFVS29GNzRyN01PQk5pdi82WVc0MkxoMmZhL05EWmJPTUxwQmJTT1dZaVFrb0NYTnZNUmpZWmZVCkgvVWJ5Q0NaVk1kRkNtVWFFZUZpMFBSQmRBU2hOd0cwV2VOcTVsTUNnWUVBblB5cGZMVWRxbEU5aXdOMjBqYnIKcTdTSUJoV3BwU256WFZXSE1MSHdod1RONHJKNjQvZmdBZTRvdmwrZUxma1dZVjhzR1Btc1ZxMnpNNHFCb2p2RAplU0IvS2VJMjJtRzZ6ejQ4T2dja09FdTZGU1RUdm1UUCtrSHZJQm5NOGVwVXB4SVVRenJqNFdyOWk2MTNkMDVRCkpGNjRDUzVjV0FMSENaTWhWZkY4L0RFQ2dZQjNjQTJscjhHRjRVOXFuOVhsRXVWTEd2VTZ5OVk0bUZOTVdtblgKRE96VUJrR3RXeU10R1lPZnQvbWtKVXJCQU1ER2l6YTRZeTNmMTFWVXNtVWJyRXhETHE2ZnJZSXFVN2JzZWkrTgo1M1VXTkpYVG93akRVcTRRNExSOWd0ZnJuM0NWSVVDb0p0THBKRk0yb1R6STJsd1lieHcyTHVtNUtzUkFhNGk1CjJLeENod0tCZ0FvbTd2MkFoWGQvS05uY2JOZFVLaTVuUlBaSEd2V0NmMDYyOWNub1UrSVErU2JhMnU0clg4ei8KLzRUWHJTK00renNjNTFjdXpHajJMOWRlYTdQS3ZKK1QvbFNpNVp5bGY1QnFlL1dYdThjUUxUSTI3dWE3TENnSApJWVJmdW1BbWdMcjZxM0YwdXNJZ0tXU0xQbnVzL3lpbm9vK2dKZ3RUTHd1djlOaEROc1FUCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 
       ---
       # Source: cilium/templates/hubble/tls-helm/server-secret.yaml
@@ -54,11 +56,15 @@ cluster:
       metadata:
         name: hubble-server-certs
         namespace: kube-system
+        labels:
+          cilium.io/helm-template-non-idempotent: "true"
+
+        annotations:
       type: kubernetes.io/tls
       data:
-        ca.crt:  LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFekNDQWZ1Z0F3SUJBZ0lRUUZwSnVuT2YvNkE0SDB3bE44aER2REFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05Nall3TnpFNU1UYzBOelEzV2hjTk1qa3dOekU0TVRjMApOelEzV2pBVU1SSXdFQVlEVlFRREV3bERhV3hwZFcwZ1EwRXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCCkR3QXdnZ0VLQW9JQkFRQzJwSzZZN2ZaYXF5R0Y3MlMvcHdqWUJKS1Y0SEI5S1FPTWdyY2Q3ektlZFlLc1JUTUMKS2dhbjBxc2tNSVVxTTVobFJZNTQ0blpibklmVWVOTVZJeXR5Sy9RTytlaXQrVUdNQ1duQjVCalk4QktlQXNpcgpBWkZQektxYWZoeHB2NmtHa3p3aXhaOGV3VU5IVGlnVkNaTE0rVnJEenIyM3h4MUpTMCtUcmJDeVJuSGpOZ1dMCnMza0tMTHdKR2VoY3BDN0trY1dRano0S2cybEtER1FBakEydXI0elJQVG5lanF0OGRLdDBxa213RGg5aGlnRG0KMUdjUngrNk1LSVZFYlVSNnNEaWhUZ0x4bzFWUXJDalJERnF1ek5CMDVSRnk2b2FuK0xWNUlwZEt6eGc2L0NzWgo1QnVzU2xlRGhEVjFHZEt0aGdiWXk5eSsreDdjWnlsT1BNcVJBZ01CQUFHallUQmZNQTRHQTFVZER3RUIvd1FFCkF3SUNwREFkQmdOVkhTVUVGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXcKQXdFQi96QWRCZ05WSFE0RUZnUVUrT21yWVNhYnpRYWFHL1FrMGd2bmpSbHB6OUF3RFFZSktvWklodmNOQVFFTApCUUFEZ2dFQkFFQXVvYk5xRURoSDhJQTdJMVUweWdxVzl2MzZ6Z1ZXZEFBV1Q1TTlPT3V3TVJXNFB1d0lUOURMClBKVW12TW9JQmhkYzBEbTNJRzFkOW9YbkdQY0YraU4yUXdlYlM4RzkzTVN1eWRneXFsNEFzcERQQXFFTUMrUnAKZk41ZUk5eGVRSkxNVUgwYkJCUjVxUVJWTjZUTVhwWDlVT3UrNUlwK0UvVDQyTHhpQUVrU3EzdnZNemZHd21LaApveVBCVFZwb0VLY25aKzY2ZlltVmlrMHBvTzB5UWpyOWhBOStra3FQd0VWbC9jRlBEWC9pLzJmdXM5M0RQL3RyCk1oZ3Ftd3Byc1hZSW83K2YzYzNPTFg5MjQwUEhqL2x1czNMUTFUTEo1bkdpT2lRY2c3cXg5RDAzalYxUzRENkUKdWJqVEhqdy9TZ2l1ayszZXlBQlBQK1RRbzRPWXhBMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-        tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURWakNDQWo2Z0F3SUJBZ0lRWktsaGxKa25CYUlwVDZON3ZIQ01TekFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05Nall3TnpFNU1UYzBOelEzV2hjTk1qY3dOekU1TVRjMApOelEzV2pBcU1TZ3dKZ1lEVlFRRERCOHFMbVJsWm1GMWJIUXVhSFZpWW14bExXZHljR011WTJsc2FYVnRMbWx2Ck1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBeHcyOHZweWRPVDVQYWZuald6VDUKY1VveXB0UDFYVzZlYWVDOS9xMkRHY21DRExmdHJ1RHA0bDNXY2gxMmtTUlN1UW9TQ2lvVHBQVGJoQXQzODVETgpkd2M5UGlTeWRkR3crbEttQU93WFllbWtuWWlqbFZwcFlXcTBRTWs2ajZuOVh6aTFJN0ZBMDJrTUpxU0FsUEluCnNqZXpGUnd4ckNwSkVNeWVXUUtiSDFUekRZSXNjcXlDZ0U1L3dEMjhJcTdvNWNiM3RiK1lHcjk0TUoyV00xVnkKOWM1ZWdrZ1ordkZhMDBVQjJwK0RBTXFDRGZsbWVkbzZHM084SVN6WHBhTytuQkF5ait2OXpaMjVpNm5ocitKQwoxWEZvbjVVNlErdWY4UUpzcGNNZWtsSC85a0JEZGpJNmFGNWRqWXBrTlJrdFR3cUJuSGhPMmprTG4rVmZWSndZCktRSURBUUFCbzRHTk1JR0tNQTRHQTFVZER3RUIvd1FFQXdJRm9EQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0QKQVFZSUt3WUJCUVVIQXdJd0RBWURWUjBUQVFIL0JBSXdBREFmQmdOVkhTTUVHREFXZ0JUNDZhdGhKcHZOQnBvYgo5Q1RTQytlTkdXblAwREFxQmdOVkhSRUVJekFoZ2g4cUxtUmxabUYxYkhRdWFIVmlZbXhsTFdkeWNHTXVZMmxzCmFYVnRMbWx2TUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFDWWlIYzU2bDlJNEF4ZnJObmhPSnVGbnJIYy9MMzYKcThBcFR4MkptMHlWNkw3cEdmL25IaGdiZmMxblNxL1k3SWFENVN1aFZHZC90Y3JJQml6c3A2Z2hCd3NGb2hNdworY0g0clRoVGJpY1cwbDZHSi9mMXZ4S1ZZM2RDbkRRZGRNODB4Y2orU3RzZ0RuVHFIVFFQSU5lTW5MMHBmS3FvClB5Z2l2RnFreWNETG1CVkVoYzdFc2g3NHEzR0cxL1hjYkEycDQrbkdOS3c1dEorVEl5M0RyTHRRdVpLRFhTMFcKTHdQVGFqQkFuRXJ2MHZLSEpBOVlaNGtOdncrYmsrWUMrVnpmeUZwcWoxZWg5RmdiVTFOVFRvMnQvNnlhVjZydQo3V2RUKzJJdmhGc2N4UmZnMjZ3dVlYbjNnMzFSb01nOG9ld1pXd0tTS01MNUdBODV4b3hEMmtFYgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-        tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBeHcyOHZweWRPVDVQYWZuald6VDVjVW95cHRQMVhXNmVhZUM5L3EyREdjbUNETGZ0CnJ1RHA0bDNXY2gxMmtTUlN1UW9TQ2lvVHBQVGJoQXQzODVETmR3YzlQaVN5ZGRHdytsS21BT3dYWWVta25ZaWoKbFZwcFlXcTBRTWs2ajZuOVh6aTFJN0ZBMDJrTUpxU0FsUEluc2plekZSd3hyQ3BKRU15ZVdRS2JIMVR6RFlJcwpjcXlDZ0U1L3dEMjhJcTdvNWNiM3RiK1lHcjk0TUoyV00xVnk5YzVlZ2tnWit2RmEwMFVCMnArREFNcUNEZmxtCmVkbzZHM084SVN6WHBhTytuQkF5ait2OXpaMjVpNm5ocitKQzFYRm9uNVU2USt1ZjhRSnNwY01la2xILzlrQkQKZGpJNmFGNWRqWXBrTlJrdFR3cUJuSGhPMmprTG4rVmZWSndZS1FJREFRQUJBb0lCQUEyRnJmY3ZTYWFsbmJ5aQppZWduTDE4dzdlNGVNelV1RlFDMjBJUUsvVlM2REhCamxLS0p3TUczWTdYR3NYTU1pZy9CY3N2SGVNNysyNlJsCnFMZitYb0xjbGtrUTNQY1FNQlcxUkhYY0UvNDdZbldFTTlsVnkyMEtLV1Z4b01nNUsvbjFHWDNBKzhQUTNLU0oKdU5BYTFONWJGbnFUa0NsS0NjTFBKUWtCYjdzZlNnMGlOOU1kMytOK29Xb1hRczhtTXpTRUFLdVJuSC9nTGU4Rgpkc3BmME1KSlduMksycDBYeTJibXY1V0lzL1l1Y2JMU1VWZzBzdmNsT1Zxa013WTVRSnQwSHpLWEozRFlhZ0QrClFGQ2hRbGF4ZjYyZUE2UjcxbVZUWllLSm00Yy9YdzVPSS9TandRNTBJc2IrUDhHUVJrYXNGMkxOTHkvb2ZTVVAKdWowWjhjMENnWUVBODhnV1RtazZadk4zWXJwWUxCamp3TFpoSWxOVTREMW83b3V4SFE5Qmp4TDd4RmIzeENxVgo1SGxHQUJsY1hCa1BZU0FmYy9ET1dWQU9yY0M1ZWhhMVZCVDZ5S0Zmem9TdUxJd25BQWR2UTB5ejlQdXhSc0lrCmozQjU2ZnhweDFMeFRrdGVpUDVReFF5QnVsd2ZKNjRkWDBuK1lqUUNYYW5pQldtVDlaLzV6MDBDZ1lFQTBRZkIKU2FleEhuZGVCcU0yOG1uZU1FdDNNQzN4K3lNTmZrOUx4ZVpnck9LVTF2Ry83U294bWd4ckhDRzVJcElNME9HOApvYVRxNXFLUlR1R3pYQW42UE0vZDhNQVNPNFhxSEhnR0djQ2Z5eHcwMDZWbk5PWjMxSG5SU3RpV3lwazBnWTdBCm5LU0NPdUh3VVg3aGk0M2pCRUJNNDc0TUV0VE9uNmZzZUxWNHRrMENnWUJ5R0phZ0VrMzhPejBJSHpEL1NwTGwKOGpZYUM2aHczeTBLWUtUL2RkRjROaWxScG1hR0VHeGhKNFZrckhuMnZOL2UxRnNFTjVOTVo5VEc2Nm1qZzVkUQppQlVyNjZOY2srcTAvTStRQ3VxL005b1I4ZTd4c0JIT2RKVUt0MUdHc2NJd284UFdHRGtUVUp3eTdjVERISkd3CnRIL3oxR1c3RXJTdlZjK2pLVUdSRFFLQmdRQ3E0K2N1MjB6ZmRvRkZkZXczRlR4VVNXNGcwbjh4YlAvY0V1SUUKNGdxSmJSaDMvZDZGKzJmZjVHVXc4NVVTNFVwZS94NGpITnY2UUZBQnFGM2xVamJsdnA5WTh2NDA4WTlyUk9qZgo1dTM4dEl1dnVGci9FYWhINm11a0FCeVBkOTlJU0RmS0dHaHIwVW1TcHVPb0h4REk2ZlN5Z0M0SXV6aE5xSkNZClF1eDBSUUtCZ0FoSm1IZkFJY0ZqMC9xcmNpSXRlejZJVldXek42Qm1JcDBkelN5VVJvZWFBU2YrQVhXWm91cW8KRG9qbUVFaVJyN2ovb2V2UjA1dEQ5ckQ3ZGRyV3NKRWFDditOVHlkbDhTVVJFTTBPRnM2TTVjcGxuYjY1dWNHeQpIbDdhQjRBeXpnSkNHcHJhRWc2TGppOEU4Rm0vc3lhR3F2MFc5VFgvbGJZSEJkaWxXMW0rCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+        ca.crt:  LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFekNDQWZ1Z0F3SUJBZ0lRSUV0T3dzM1hJeTZWMytFVy9vWTdpVEFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05Nall3TnpJd01EZ3lORFUwV2hjTk1qa3dOekU1TURneQpORFUwV2pBVU1SSXdFQVlEVlFRREV3bERhV3hwZFcwZ1EwRXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCCkR3QXdnZ0VLQW9JQkFRQ3pmaEJCbGJqMEl1RlAzaWVsdGpacERWb1QvdXd2SFdIOGFwVWNhQktydDA5NzlRWlAKVnMrVE1pOUpiZ0lySFZBaGZlUWdRa1ovNVFSd2tMb0hkeGxvMGhwU21EWjJINERnY2FSUCtFS0ZtbDAzb2FFTgpPN0lKSnk2RVJHQ1NuOTdyR0dTc2J4YkVMVW1yek1odURId0kwaEFZcDN2bUhBM2NWVFFYZ1RROFdIVkQ4WHIwCmtnTHI4VUU4bFFMWXVmMzE4ckhOVmlYY0xUcThhK2djNUFzMjNQa3Fxem4rT1dMSnZuZ0xIdnJVbTh3K0xFN2sKMkxwc2p6T2J2ZEplR3Vjazc2ZUtNRHhDK0kxNUU2Ri8rTDdhNnl6UExkL3U0b0pFUzYzZ3N4QXNySjlWWW1EcAp1TXV1K2ozYWViMWszTWJSNGkyalRueExxaW9DeDZCWmtPeUZBZ01CQUFHallUQmZNQTRHQTFVZER3RUIvd1FFCkF3SUNwREFkQmdOVkhTVUVGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXcKQXdFQi96QWRCZ05WSFE0RUZnUVVHZFdVU2xVMmYxbEdvWUVKZnlGbTdCUkhnTEV3RFFZSktvWklodmNOQVFFTApCUUFEZ2dFQkFBalo1eGlYUUJnOHBQZVVrYlQxNWp0VE5aTFNhYldKbnNzTzcvUmpzRVF4ZWdaK25MRDJrc2FICnE5VUUrN2RkWW1GRWxNdUtLdjMvbjg1SUpiQ1N4MitOdUNieGJYQ0tvQ3dxNXd1czVYOUhGeEowbnN0WEsyakcKR05RVENRRGJwOCtkaFlQTDFGKzl6b1AyS3dlV3VGdzZ4Zk9ISTdFZUZJYUJCbFgzNUtCK3hPbmhDc281UVBSawp0ZVR1UW9IamVrQ3hNZ0dNOXlEc0lOeEhQaGFxTkZsc2ZqcUNpVEVKTXRVajdTcVJzU1VPTzJmU3FQNURPKzcvCjlWcXVpeVpaMUJ0K1AzTm45dzBxWmxSdUFOdFJ6N2FhTHZ6Vis3M1EwM2RibXEwNmNqazI2eUhGakdkQjhvT28KQnNVRWhOYjNnWmpEQStwc1JxcnlkTGt3azdPVVBOUT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+        tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURWakNDQWo2Z0F3SUJBZ0lRQnB3Q0cwV2xJZzRYTVBDcU9KR1orVEFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05Nall3TnpJd01EZ3lORFUwV2hjTk1qY3dOekl3TURneQpORFUwV2pBcU1TZ3dKZ1lEVlFRRERCOHFMbVJsWm1GMWJIUXVhSFZpWW14bExXZHljR011WTJsc2FYVnRMbWx2Ck1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBeHRRZ0lhLzB2Q0xaY0pxalU3QlAKeWc3VFpsSlFIQVcvb2dEc1J5UmFIWC84cExPa1F4Q3Bad0M0aWRYWEtFSUhWUkpEZHhUZFhRbTFtR04vZW1rdQpWK3g5V1hyOVBTVkpKZmJxK0tvSFVzajNueFZUSkU3QktkdXNMZVlKYUw4RjJVWndYaUZhQ3poaXVuaU85Mmg1CnowWTNBMC9HTVAwak1FZWFZSTI4N3BOUmR0S0RKejR3alBEZVFBWlNVWGx1TjJpRlpmR1BoMkxPWFd5OFZmTjEKNUpSV1QrcmNjdnFIdncyc1YrNy94SUpNekNRb2owVmJQNDRMVmI0Y2Z6RmY1NXV4a25BYm83RlZYTUhXZkJwbwpvYmZpUU9QNDRUbFZCaC94TTV0bnVWYU4zU2lZeEZKRnlCRVh3NFp6TDN6elp1ME4yVnhyWXE0NFhkZ1lFYjA1CmZ3SURBUUFCbzRHTk1JR0tNQTRHQTFVZER3RUIvd1FFQXdJRm9EQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0QKQVFZSUt3WUJCUVVIQXdJd0RBWURWUjBUQVFIL0JBSXdBREFmQmdOVkhTTUVHREFXZ0JRWjFaUktWVFovV1VhaApnUWwvSVdic0ZFZUFzVEFxQmdOVkhSRUVJekFoZ2g4cUxtUmxabUYxYkhRdWFIVmlZbXhsTFdkeWNHTXVZMmxzCmFYVnRMbWx2TUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFCNGpoMHR5V0J6bHo5RkFTMDlGbVZQc2xFTGQ0YVcKVU0wejZmRUVNZnE3clovS3JqYWdIVWFiaHg0a1JFbmNNWVhuMDBVcjZ5V3orbXBOSG1kWENCcFVDQ0RhY2dvdwpRYjZ6cU9IN29VSkt5RUFxUjdwUlJCSTF0c0pWNHV5ZHhyUngzZnNPaUZRclNaVGRvUXcvMW5RdmpLeFlKZm5uCjMrbWxYMWJQMzMzb2M3Y3JrZWxVbkh5ays1dE51RVg3WHlsZll6Vm9YSkNUTGkrRjMwZkJBRUM1VU13UUtkc0EKcmg4N1FNa3RydjIzejhBSGtNeWZwcUZ6a0RCcHkrUUZqZVhlbFdrSlBKTzBFSnpnZ2xCY3JGbStTa0RacEZMeQpuWmVlUDJSZlZ5cURocjdZY1ZCSzllZm5Wa1lYMzJpdjgwb2ZkKzNZWHJKQUVkci9jYjkvdERpagotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBeHRRZ0lhLzB2Q0xaY0pxalU3QlB5ZzdUWmxKUUhBVy9vZ0RzUnlSYUhYLzhwTE9rClF4Q3Bad0M0aWRYWEtFSUhWUkpEZHhUZFhRbTFtR04vZW1rdVYreDlXWHI5UFNWSkpmYnErS29IVXNqM254VlQKSkU3QktkdXNMZVlKYUw4RjJVWndYaUZhQ3poaXVuaU85Mmg1ejBZM0EwL0dNUDBqTUVlYVlJMjg3cE5SZHRLRApKejR3alBEZVFBWlNVWGx1TjJpRlpmR1BoMkxPWFd5OFZmTjE1SlJXVCtyY2N2cUh2dzJzVis3L3hJSk16Q1FvCmowVmJQNDRMVmI0Y2Z6RmY1NXV4a25BYm83RlZYTUhXZkJwb29iZmlRT1A0NFRsVkJoL3hNNXRudVZhTjNTaVkKeEZKRnlCRVh3NFp6TDN6elp1ME4yVnhyWXE0NFhkZ1lFYjA1ZndJREFRQUJBb0lCQUR0U2VBSEZEMmFBbVZLaworTDBUK2tKbG1RSks1ZGJ1aWlZS1UzVElibENsNnBtemRYdURBYUFYVVhmaWd1N2lnSENMNGZBcUcvL1IwVW9WCnlhZWFzVGFQZXpqUzNySzdLSzk0azlPOFd6SUNmd3NLWUVPUmNjV000cnJSQ3hhakE5bzNUM2h1U0FEWUFuRHoKWG1pSDFld1hYWHVSOWlhUXFFcVQyb1liVS9iMEc2cmo4K3BaYm9LbS9rQnJtcmoxbDlmbWtOTG1aNjQycW1SZgpHUWo0NlNZenJqejUwZG9KdExkRmNSRnQwbWJlK29mMmtRVHA0NDMxQlNHSng3SUNVTS96WjhSdVFjdTFubE5zCmRQckNRNE1Uc2o5b0dieDlKYXpEZHcvQ3cwUVFMNHVIWERiN0hRcTJGUkVteER2SzVJMVE1OWNvaEcxekRuWXcKUllFMTlZRUNnWUVBMi9INThIUWhwbi91eUY1dk5MY2Voc1dkTTBnNHpBb0pHSXdWbXBDM1diT2lseXFCWEN0QwpkV281UXdkOTZNbEF5TXU3ZElvU01zY0ZoU3grSkMyeURteUVUNTlFQXRYVHZETm1uelNzWGlJY0VJZ1VYN3NwCkwxQlFod2hIMVFlN001UmxqVzJNMjhUVndTQnR4R0E2dEQ3Z1IybmlhMlJkVk1KbjZXdlluUDhDZ1lFQTUydjkKSEE5WlFBR2NlK3JGRmxzRVhEQkJZLzU3QlBUQkM5Y1JnSGROdm13NmVaL0NQaXdxWWpIUm8wN2w5NEZOaDNJVQozRVhXY0Y1L2tWcXhyaE1qZmNnWTZWdm5WdnlGWnRJM2h4TGNjNFV6OE5kSFZxSFZJQWt1R0FnbVdHcHVaOHJyCmlzWllpZEtYb3FrekdSazZnVER5V0tmaTlBSUR4dFZydjNtZzQ0RUNnWUVBdldlNitpTzMycjh1N1NQTmxsTGYKbWVYUmd4ajl1RkFvRnhpRGZqQ0RoRjdhZEYwcE95c1J0elU3aklxR0ZoSkJsT2xGUzQyZk1GVU5YdXE2MGdMNwo0OG4xZ3UrL1RNWEE2Y0JGN25JWXdaT1VJWFJlUHpaWXVDTHN4ZXdPbDlocGtIaUpuMm9vdEJUa2tzU1BZbDRRCkQ2cFp6NFhTY3ZMaUlKeXRpV2pUQ0JjQ2dZRUFqa2Y1alJmdXNvaUxFakRNVGF0VjZld05PQkpNeGtaSXJpUGoKY2MxbjhneU9neHB6RFZDUUdtRXcxNnY1Zll0MUJESmltdThoSVdNb0lWRFdid1Q3VENrTEQrWmVQRC96TUwxTQpRSEtiTVRjVE1SN2FrR3ZkSWQ0akJjbDA4ZVUxemdDWGduSGlHNUpyZ2lsdTdoNXh0dDVHRWJYZXRsREt5Nk9KCnBHWitRWUVDZ1lCbE83YVJFUU9mTjBPdTA0RzBlbDVaMEp6RlF1SjZiNGUwTGNhdDRuRVc1UkRUck1aYnB2TVkKOVFFZkdIbG9UK0k5emtWL0ZxZ1QxbU93SkNOUTRZMDlPcXIzVmpkQ1p0NUNOVmZCa2d0eWxuc3p3QWNsUm9FUgpmZzZFU3RvRzVQN2RSV3BCYWxPY1YxR05wU01KUVl3OVBVTmFNVENkQUJERWZLT2xFMlpmN2c9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
 
       ---
       # Source: cilium/templates/cilium-configmap.yaml
@@ -175,7 +181,7 @@ cluster:
 
         # Name of the cluster. Only relevant when building a mesh of clusters.
         cluster-name: "default"
-        # Unique ID of the cluster. Must be unique across all conneted clusters and
+        # Unique ID of the cluster. Must be unique across all connected clusters and
         # in the range of 1 and 255. Only relevant when building a mesh of clusters.
         cluster-id: "0"
 
@@ -189,6 +195,7 @@ cluster:
         tunnel-protocol: "vxlan"
         tunnel-source-port-range: "0-0"
         service-no-backend-response: "reject"
+        policy-deny-response: "none"
 
 
         # Enables L7 proxy for L7 policy enforcement and visibility
@@ -210,15 +217,18 @@ cluster:
 
 
 
+        enable-host-firewall: "false"
+
         kube-proxy-replacement: "true"
         kube-proxy-replacement-healthz-bind-address: ""
+        enable-no-service-endpoints-routable: "true"
         bpf-lb-sock: "false"
         enable-health-check-nodeport: "true"
         enable-health-check-loadbalancer-ip: "false"
         node-port-bind-protection: "true"
         enable-auto-protect-node-port-range: "true"
         bpf-lb-acceleration: "disabled"
-        enable-svc-source-range-check: "true"
+        enable-service-topology: "false"
         enable-l2-neigh-discovery: "false"
         k8s-require-ipv4-pod-cidr: "false"
         k8s-require-ipv6-pod-cidr: "false"
@@ -258,6 +268,8 @@ cluster:
         vtep-mac: ""
         # Enable L2 announcements
         enable-l2-announcements: "true"
+
+        packetization-layer-pmtud-mode: "blackhole"
         procfs: "/host/proc"
         bpf-root: "/sys/fs/bpf"
         cgroup-root: "/sys/fs/cgroup"
@@ -269,7 +281,7 @@ cluster:
         remove-cilium-node-taints: "true"
         set-cilium-node-taints: "true"
         set-cilium-is-up-condition: "true"
-        unmanaged-pod-watcher-interval: "15"
+        unmanaged-pod-watcher-interval: "15s"
         # default DNS proxy to transparent mode in non-chaining modes
         dnsproxy-enable-transparent-mode: "true"
         dnsproxy-socket-linger-timeout: "10"
@@ -282,7 +294,7 @@ cluster:
         tofqdns-preallocate-identities:  "true"
         agent-not-ready-taint-key: "node.cilium.io/agent-not-ready"
 
-        mesh-auth-enabled: "true"
+        mesh-auth-enabled: "false"
         mesh-auth-queue-size: "1024"
         mesh-auth-rotated-identities-queue-size: "1024"
         mesh-auth-gc-interval: "5m0s"
@@ -291,27 +303,35 @@ cluster:
         proxy-xff-num-trusted-hops-egress: "0"
         proxy-connect-timeout: "2"
         proxy-initial-fetch-timeout: "30"
+        proxy-max-active-downstream-connections: "50000"
         proxy-max-requests-per-connection: "0"
         proxy-max-connection-duration-seconds: "0"
         proxy-idle-timeout-seconds: "60"
         proxy-max-concurrent-retries: "128"
+        proxy-use-original-source-address: "true"
+        proxy-cluster-max-connections: "1024"
+        proxy-cluster-max-requests: "1024"
         http-retry-count: "3"
+        http-stream-idle-timeout: "300"
 
         external-envoy-proxy: "true"
         envoy-base-id: "0"
         envoy-access-log-buffer-size: "4096"
         envoy-keep-cap-netbindservice: "false"
         max-connected-clusters: "255"
+        clustermesh-cache-ttl: "0s"
         clustermesh-enable-endpoint-sync: "false"
         clustermesh-enable-mcs-api: "false"
-        policy-default-local-cluster: "false"
+        clustermesh-mcs-api-install-crds: "true"
+        policy-default-local-cluster: "true"
 
         nat-map-stats-entries: "32"
         nat-map-stats-interval: "30s"
-        enable-internal-traffic-policy: "true"
         enable-lb-ipam: "true"
         enable-non-default-deny-policies: "true"
         enable-source-ip-verification: "true"
+        enable-dynamic-config: "true"
+        enable-drift-checker: "true"
 
       # Extra config allows adding arbitrary properties to the cilium config.
       # By putting it at the end of the ConfigMap, it's also possible to override existing properties.
@@ -325,7 +345,7 @@ cluster:
       data:
         # Keep the key name as bootstrap-config.json to avoid breaking changes
         bootstrap-config.json: |
-          {"admin":{"address":{"pipe":{"path":"/var/run/cilium/envoy/sockets/admin.sock"}}},"applicationLogConfig":{"logFormat":{"textFormat":"[%Y-%m-%d %T.%e][%t][%l][%n] [%g:%#] %v"}},"bootstrapExtensions":[{"name":"envoy.bootstrap.internal_listener","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.bootstrap.internal_listener.v3.InternalListener"}}],"dynamicResources":{"cdsConfig":{"apiConfigSource":{"apiType":"GRPC","grpcServices":[{"envoyGrpc":{"clusterName":"xds-grpc-cilium"}}],"setNodeOnFirstMessageOnly":true,"transportApiVersion":"V3"},"initialFetchTimeout":"30s","resourceApiVersion":"V3"},"ldsConfig":{"apiConfigSource":{"apiType":"GRPC","grpcServices":[{"envoyGrpc":{"clusterName":"xds-grpc-cilium"}}],"setNodeOnFirstMessageOnly":true,"transportApiVersion":"V3"},"initialFetchTimeout":"30s","resourceApiVersion":"V3"}},"node":{"cluster":"ingress-cluster","id":"host~127.0.0.1~no-id~localdomain"},"overloadManager":{"resourceMonitors":[{"name":"envoy.resource_monitors.global_downstream_max_connections","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig","max_active_downstream_connections":"50000"}}]},"staticResources":{"clusters":[{"circuitBreakers":{"thresholds":[{"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"ingress-cluster","type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"useDownstreamProtocolConfig":{}}}},{"circuitBreakers":{"thresholds":[{"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"egress-cluster-tls","transportSocket":{"name":"cilium.tls_wrapper","typedConfig":{"@type":"type.googleapis.com/cilium.UpstreamTlsWrapperContext"}},"type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"upstreamHttpProtocolOptions":{},"useDownstreamProtocolConfig":{}}}},{"circuitBreakers":{"thresholds":[{"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"egress-cluster","type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"useDownstreamProtocolConfig":{}}}},{"circuitBreakers":{"thresholds":[{"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"ingress-cluster-tls","transportSocket":{"name":"cilium.tls_wrapper","typedConfig":{"@type":"type.googleapis.com/cilium.UpstreamTlsWrapperContext"}},"type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"upstreamHttpProtocolOptions":{},"useDownstreamProtocolConfig":{}}}},{"connectTimeout":"2s","loadAssignment":{"clusterName":"xds-grpc-cilium","endpoints":[{"lbEndpoints":[{"endpoint":{"address":{"pipe":{"path":"/var/run/cilium/envoy/sockets/xds.sock"}}}}]}]},"name":"xds-grpc-cilium","type":"STATIC","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","explicitHttpConfig":{"http2ProtocolOptions":{}}}}},{"connectTimeout":"2s","loadAssignment":{"clusterName":"/envoy-admin","endpoints":[{"lbEndpoints":[{"endpoint":{"address":{"pipe":{"path":"/var/run/cilium/envoy/sockets/admin.sock"}}}}]}]},"name":"/envoy-admin","type":"STATIC"}],"listeners":[{"address":{"socketAddress":{"address":"0.0.0.0","portValue":9964}},"filterChains":[{"filters":[{"name":"envoy.filters.network.http_connection_manager","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager","httpFilters":[{"name":"envoy.filters.http.router","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.http.router.v3.Router"}}],"internalAddressConfig":{"cidrRanges":[{"addressPrefix":"10.0.0.0","prefixLen":8},{"addressPrefix":"172.16.0.0","prefixLen":12},{"addressPrefix":"192.168.0.0","prefixLen":16},{"addressPrefix":"127.0.0.1","prefixLen":32}]},"routeConfig":{"virtualHosts":[{"domains":["*"],"name":"prometheus_metrics_route","routes":[{"match":{"prefix":"/metrics"},"name":"prometheus_metrics_route","route":{"cluster":"/envoy-admin","prefixRewrite":"/stats/prometheus"}}]}]},"statPrefix":"envoy-prometheus-metrics-listener","streamIdleTimeout":"300s"}}]}],"name":"envoy-prometheus-metrics-listener"},{"address":{"socketAddress":{"address":"127.0.0.1","portValue":9878}},"filterChains":[{"filters":[{"name":"envoy.filters.network.http_connection_manager","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager","httpFilters":[{"name":"envoy.filters.http.router","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.http.router.v3.Router"}}],"internalAddressConfig":{"cidrRanges":[{"addressPrefix":"10.0.0.0","prefixLen":8},{"addressPrefix":"172.16.0.0","prefixLen":12},{"addressPrefix":"192.168.0.0","prefixLen":16},{"addressPrefix":"127.0.0.1","prefixLen":32}]},"routeConfig":{"virtual_hosts":[{"domains":["*"],"name":"health","routes":[{"match":{"prefix":"/healthz"},"name":"health","route":{"cluster":"/envoy-admin","prefixRewrite":"/ready"}}]}]},"statPrefix":"envoy-health-listener","streamIdleTimeout":"300s"}}]}],"name":"envoy-health-listener"}]}}
+          {"admin":{"address":{"pipe":{"mode":432,"path":"/var/run/cilium/envoy/sockets/admin.sock"}}},"applicationLogConfig":{"logFormat":{"textFormat":"[%Y-%m-%d %T.%e][%t][%l][%n] [%g:%#] %v"}},"bootstrapExtensions":[{"name":"envoy.bootstrap.internal_listener","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.bootstrap.internal_listener.v3.InternalListener"}}],"dynamicResources":{"cdsConfig":{"apiConfigSource":{"apiType":"GRPC","grpcServices":[{"envoyGrpc":{"clusterName":"xds-grpc-cilium"}}],"setNodeOnFirstMessageOnly":true,"transportApiVersion":"V3"},"initialFetchTimeout":"30s","resourceApiVersion":"V3"},"ldsConfig":{"apiConfigSource":{"apiType":"GRPC","grpcServices":[{"envoyGrpc":{"clusterName":"xds-grpc-cilium"}}],"setNodeOnFirstMessageOnly":true,"transportApiVersion":"V3"},"initialFetchTimeout":"30s","resourceApiVersion":"V3"}},"node":{"cluster":"ingress-cluster","id":"host~127.0.0.1~no-id~localdomain"},"overloadManager":{"resourceMonitors":[{"name":"envoy.resource_monitors.global_downstream_max_connections","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig","max_active_downstream_connections":"50000"}}]},"staticResources":{"clusters":[{"circuitBreakers":{"thresholds":[{"maxConnections":1024,"maxRequests":1024,"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"ingress-cluster","type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"useDownstreamProtocolConfig":{}}}},{"circuitBreakers":{"thresholds":[{"maxConnections":1024,"maxRequests":1024,"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"egress-cluster-tls","transportSocket":{"name":"cilium.tls_wrapper","typedConfig":{"@type":"type.googleapis.com/cilium.UpstreamTlsWrapperContext"}},"type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"upstreamHttpProtocolOptions":{},"useDownstreamProtocolConfig":{}}}},{"circuitBreakers":{"thresholds":[{"maxConnections":1024,"maxRequests":1024,"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"egress-cluster","type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"useDownstreamProtocolConfig":{}}}},{"circuitBreakers":{"thresholds":[{"maxConnections":1024,"maxRequests":1024,"maxRetries":128}]},"cleanupInterval":"2.500s","connectTimeout":"2s","lbPolicy":"CLUSTER_PROVIDED","name":"ingress-cluster-tls","transportSocket":{"name":"cilium.tls_wrapper","typedConfig":{"@type":"type.googleapis.com/cilium.UpstreamTlsWrapperContext"}},"type":"ORIGINAL_DST","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","commonHttpProtocolOptions":{"idleTimeout":"60s","maxConnectionDuration":"0s","maxRequestsPerConnection":0},"upstreamHttpProtocolOptions":{},"useDownstreamProtocolConfig":{}}}},{"connectTimeout":"2s","loadAssignment":{"clusterName":"xds-grpc-cilium","endpoints":[{"lbEndpoints":[{"endpoint":{"address":{"pipe":{"path":"/var/run/cilium/envoy/sockets/xds.sock"}}}}]}]},"name":"xds-grpc-cilium","type":"STATIC","typedExtensionProtocolOptions":{"envoy.extensions.upstreams.http.v3.HttpProtocolOptions":{"@type":"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions","explicitHttpConfig":{"http2ProtocolOptions":{}}}}},{"connectTimeout":"2s","loadAssignment":{"clusterName":"/envoy-admin","endpoints":[{"lbEndpoints":[{"endpoint":{"address":{"pipe":{"path":"/var/run/cilium/envoy/sockets/admin.sock"}}}}]}]},"name":"/envoy-admin","type":"STATIC"}],"listeners":[{"address":{"socketAddress":{"address":"0.0.0.0","portValue":9964}},"filterChains":[{"filters":[{"name":"envoy.filters.network.http_connection_manager","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager","httpFilters":[{"name":"envoy.filters.http.router","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.http.router.v3.Router"}}],"internalAddressConfig":{"cidrRanges":[{"addressPrefix":"10.0.0.0","prefixLen":8},{"addressPrefix":"172.16.0.0","prefixLen":12},{"addressPrefix":"192.168.0.0","prefixLen":16},{"addressPrefix":"127.0.0.1","prefixLen":32}]},"routeConfig":{"virtualHosts":[{"domains":["*"],"name":"prometheus_metrics_route","routes":[{"match":{"prefix":"/metrics"},"name":"prometheus_metrics_route","route":{"cluster":"/envoy-admin","prefixRewrite":"/stats/prometheus"}}]}]},"statPrefix":"envoy-prometheus-metrics-listener","streamIdleTimeout":"300s"}}]}],"name":"envoy-prometheus-metrics-listener"},{"address":{"socketAddress":{"address":"127.0.0.1","portValue":9878}},"filterChains":[{"filters":[{"name":"envoy.filters.network.http_connection_manager","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager","httpFilters":[{"name":"envoy.filters.http.router","typedConfig":{"@type":"type.googleapis.com/envoy.extensions.filters.http.router.v3.Router"}}],"internalAddressConfig":{"cidrRanges":[{"addressPrefix":"10.0.0.0","prefixLen":8},{"addressPrefix":"172.16.0.0","prefixLen":12},{"addressPrefix":"192.168.0.0","prefixLen":16},{"addressPrefix":"127.0.0.1","prefixLen":32}]},"routeConfig":{"virtual_hosts":[{"domains":["*"],"name":"health","routes":[{"match":{"prefix":"/healthz"},"name":"health","route":{"cluster":"/envoy-admin","prefixRewrite":"/ready"}}]}]},"statPrefix":"envoy-health-listener","streamIdleTimeout":"300s"}}]}],"name":"envoy-health-listener"}]}}
 
       ---
       # Source: cilium/templates/cilium-agent/clusterrole.yaml
@@ -630,7 +650,6 @@ cluster:
         - update
         resourceNames:
         - ciliumloadbalancerippools.cilium.io
-        - ciliumbgppeeringpolicies.cilium.io
         - ciliumbgpclusterconfigs.cilium.io
         - ciliumbgppeerconfigs.cilium.io
         - ciliumbgpadvertisements.cilium.io
@@ -690,6 +709,12 @@ cluster:
         - create
         - get
         - update
+      - apiGroups:
+        - cilium.io
+        resources:
+        - ciliumendpointslices
+        verbs:
+        - deletecollection
 
       ---
       # Source: cilium/templates/cilium-agent/clusterrolebinding.yaml
@@ -781,6 +806,29 @@ cluster:
         - delete
         - update
         - patch
+      ---
+      # Source: cilium/templates/cilium-operator/role.yaml
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: cilium-operator-ztunnel
+        namespace: kube-system
+        labels:
+          app.kubernetes.io/part-of: cilium
+      rules:
+      # ZTunnel DaemonSet management permissions
+      # Note: These permissions must always be granted (not conditional on encryption.type)
+      # because the controller needs to clean up stale DaemonSets when ztunnel is disabled.
+      - apiGroups:
+        - apps
+        resources:
+        - daemonsets
+        verbs:
+        - create
+        - delete
+        - get
+        - list
+        - watch
 
       ---
       # Source: cilium/templates/cilium-agent/rolebinding.yaml
@@ -834,6 +882,23 @@ cluster:
       - kind: ServiceAccount
         name: "cilium-operator"
         namespace: kube-system
+      ---
+      # Source: cilium/templates/cilium-operator/rolebinding.yaml
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: cilium-operator-ztunnel
+        namespace: kube-system
+        labels:
+          app.kubernetes.io/part-of: cilium
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: cilium-operator-ztunnel
+      subjects:
+      - kind: ServiceAccount
+        name: "cilium-operator"
+        namespace: kube-system
 
       ---
       # Source: cilium/templates/cilium-envoy/service.yaml
@@ -859,7 +924,7 @@ cluster:
         - name: envoy-metrics
           port: 9964
           protocol: TCP
-          targetPort: envoy-metrics
+          targetPort: 9964
 
       ---
       # Source: cilium/templates/hubble/peer-service.yaml
@@ -918,7 +983,7 @@ cluster:
                 type: Unconfined
             containers:
             - name: cilium-agent
-              image: "quay.io/cilium/cilium:v1.18.0@sha256:dfea023972d06ec183cfa3c9e7809716f85daaff042e573ef366e9ec6a0c0ab2"
+              image: "quay.io/cilium/cilium:v1.19.6@sha256:0df5b2750b64c49843aba1d649e9eaf61467cb0645ad3171db6f6962c095ac92"
               imagePullPolicy: IfNotPresent
               command:
               - cilium-agent
@@ -928,7 +993,7 @@ cluster:
                 httpGet:
                   host: "127.0.0.1"
                   path: /healthz
-                  port: 9879
+                  port: health
                   scheme: HTTP
                   httpHeaders:
                   - name: "brief"
@@ -941,7 +1006,7 @@ cluster:
                 httpGet:
                   host: "127.0.0.1"
                   path: /healthz
-                  port: 9879
+                  port: health
                   scheme: HTTP
                   httpHeaders:
                   - name: "brief"
@@ -956,7 +1021,7 @@ cluster:
                 httpGet:
                   host: "127.0.0.1"
                   path: /healthz
-                  port: 9879
+                  port: health
                   scheme: HTTP
                   httpHeaders:
                   - name: "brief"
@@ -1022,6 +1087,15 @@ cluster:
                   exec:
                     command:
                     - /cni-uninstall.sh
+              ports:
+              - name: health
+                containerPort: 9879
+                hostPort: 9879
+                protocol: TCP
+              - name: peer-service
+                containerPort: 4244
+                hostPort: 4244
+                protocol: TCP
               securityContext:
                 seLinuxOptions:
                   level: s0
@@ -1088,7 +1162,7 @@ cluster:
               
             initContainers:
             - name: config
-              image: "quay.io/cilium/cilium:v1.18.0@sha256:dfea023972d06ec183cfa3c9e7809716f85daaff042e573ef366e9ec6a0c0ab2"
+              image: "quay.io/cilium/cilium:v1.19.6@sha256:0df5b2750b64c49843aba1d649e9eaf61467cb0645ad3171db6f6962c095ac92"
               imagePullPolicy: IfNotPresent
               command:
               - cilium-dbg
@@ -1112,14 +1186,20 @@ cluster:
               - name: tmp
                 mountPath: /tmp
               terminationMessagePolicy: FallbackToLogsOnError
+              securityContext:
+                capabilities:
+                  add:
+                    - NET_ADMIN
+                  drop:
+                    - ALL
             - name: apply-sysctl-overwrites
-              image: "quay.io/cilium/cilium:v1.18.0@sha256:dfea023972d06ec183cfa3c9e7809716f85daaff042e573ef366e9ec6a0c0ab2"
+              image: "quay.io/cilium/cilium:v1.19.6@sha256:0df5b2750b64c49843aba1d649e9eaf61467cb0645ad3171db6f6962c095ac92"
               imagePullPolicy: IfNotPresent
               env:
               - name: BIN_PATH
                 value: /opt/cni/bin
               command:
-              - sh
+              - bash
               - -ec
               # The statically linked Go program binary is invoked to avoid any
               # dependency on utilities like sh that can be missing on certain
@@ -1151,7 +1231,7 @@ cluster:
             # from a privileged container because the mount propagation bidirectional
             # only works from privileged containers.
             - name: mount-bpf-fs
-              image: "quay.io/cilium/cilium:v1.18.0@sha256:dfea023972d06ec183cfa3c9e7809716f85daaff042e573ef366e9ec6a0c0ab2"
+              image: "quay.io/cilium/cilium:v1.19.6@sha256:0df5b2750b64c49843aba1d649e9eaf61467cb0645ad3171db6f6962c095ac92"
               imagePullPolicy: IfNotPresent
               args:
               - 'mount | grep "/sys/fs/bpf type bpf" || mount -t bpf bpf /sys/fs/bpf'
@@ -1167,7 +1247,7 @@ cluster:
                 mountPath: /sys/fs/bpf
                 mountPropagation: Bidirectional
             - name: clean-cilium-state
-              image: "quay.io/cilium/cilium:v1.18.0@sha256:dfea023972d06ec183cfa3c9e7809716f85daaff042e573ef366e9ec6a0c0ab2"
+              image: "quay.io/cilium/cilium:v1.19.6@sha256:0df5b2750b64c49843aba1d649e9eaf61467cb0645ad3171db6f6962c095ac92"
               imagePullPolicy: IfNotPresent
               command:
               - /init-container.sh
@@ -1217,11 +1297,14 @@ cluster:
                 mountPath: /var/run/cilium # wait-for-kube-proxy
             # Install the CNI binaries in an InitContainer so we don't have a writable host mount in the agent
             - name: install-cni-binaries
-              image: "quay.io/cilium/cilium:v1.18.0@sha256:dfea023972d06ec183cfa3c9e7809716f85daaff042e573ef366e9ec6a0c0ab2"
+              image: "quay.io/cilium/cilium:v1.19.6@sha256:0df5b2750b64c49843aba1d649e9eaf61467cb0645ad3171db6f6962c095ac92"
               imagePullPolicy: IfNotPresent
               command:
                 - "/install-plugin.sh"
               resources:
+                limits:
+                  cpu: 1
+                  memory: 1Gi
                 requests:
                   cpu: 100m
                   memory: 10Mi
@@ -1242,6 +1325,7 @@ cluster:
             automountServiceAccountToken: true
             terminationGracePeriodSeconds: 1
             hostNetwork: true
+            
             affinity:
               podAntiAffinity:
                 requiredDuringSchedulingIgnoredDuringExecution:
@@ -1254,7 +1338,7 @@ cluster:
             tolerations:
               - operator: Exists
             volumes:
-              # For sharing configuration between the "config" initContainer and the agent
+            # For sharing configuration between the "config" initContainer and the agent
             - name: tmp
               emptyDir: {}
               # To keep state between restarts / upgrades
@@ -1384,6 +1468,7 @@ cluster:
         selector:
           matchLabels:
             k8s-app: cilium-envoy
+        
         updateStrategy:
           rollingUpdate:
             maxUnavailable: 2
@@ -1400,9 +1485,10 @@ cluster:
             securityContext:
               appArmorProfile:
                 type: Unconfined
+            
             containers:
             - name: cilium-envoy
-              image: "quay.io/cilium/cilium-envoy:v1.34.4-1753677767-266d5a01d1d55bd1d60148f991b98dac0390d363@sha256:231b5bd9682dfc648ae97f33dcdc5225c5a526194dda08124f5eded833bf02bf"
+              image: "quay.io/cilium/cilium-envoy:v1.36.9-1782267392-edeb3f2af56c37c407efa1f63f0b32f595399bbc@sha256:767101fb8a5e38f055778cb43b7aa8eed80450b37f8121effac3d9de9e06dc99"
               imagePullPolicy: IfNotPresent
               command:
               - /usr/bin/cilium-envoy-starter
@@ -1411,6 +1497,7 @@ cluster:
               - '-c /var/run/cilium/envoy/bootstrap-config.json'
               - '--base-id 0'
               - '--log-level info'
+              
               startupProbe:
                 httpGet:
                   host: "127.0.0.1"
@@ -1456,6 +1543,7 @@ cluster:
                 value: "localhost"
               - name: KUBERNETES_SERVICE_PORT
                 value: "7445"
+              
               ports:
               - name: envoy-metrics
                 containerPort: 9964
@@ -1485,12 +1573,14 @@ cluster:
               - name: bpf-maps
                 mountPath: /sys/fs/bpf
                 mountPropagation: HostToContainer
+              
             restartPolicy: Always
             priorityClassName: system-node-critical
             serviceAccountName: "cilium-envoy"
             automountServiceAccountToken: true
             terminationGracePeriodSeconds: 1
             hostNetwork: true
+            
             affinity:
               nodeAffinity:
                 requiredDuringSchedulingIgnoredDuringExecution:
@@ -1539,6 +1629,7 @@ cluster:
               hostPath:
                 path: /sys/fs/bpf
                 type: DirectoryOrCreate
+          
 
       ---
       # Source: cilium/templates/cilium-operator/deployment.yaml
@@ -1585,7 +1676,7 @@ cluster:
                 type: RuntimeDefault
             containers:
             - name: cilium-operator
-              image: "quay.io/cilium/operator-generic:v1.18.0@sha256:398378b4507b6e9db22be2f4455d8f8e509b189470061b0f813f0fabaf944f51"
+              image: "quay.io/cilium/operator-generic:v1.19.6@sha256:0db4ca4e06969d8904ee036617795d0e9c3228cf7b8d902ba74fc2bb98d2d665"
               imagePullPolicy: IfNotPresent
               command:
               - cilium-operator-generic
@@ -1614,6 +1705,9 @@ cluster:
               - name: KUBERNETES_SERVICE_PORT
                 value: "7445"
               ports:
+              - name: health
+                containerPort: 9234
+                hostPort: 9234
               - name: prometheus
                 containerPort: 9963
                 hostPort: 9963
@@ -1622,7 +1716,7 @@ cluster:
                 httpGet:
                   host: "127.0.0.1"
                   path: /healthz
-                  port: 9234
+                  port: health
                   scheme: HTTP
                 initialDelaySeconds: 60
                 periodSeconds: 10
@@ -1631,7 +1725,7 @@ cluster:
                 httpGet:
                   host: "127.0.0.1"
                   path: /healthz
-                  port: 9234
+                  port: health
                   scheme: HTTP
                 initialDelaySeconds: 0
                 periodSeconds: 5
@@ -1641,6 +1735,7 @@ cluster:
               - name: cilium-config-path
                 mountPath: /tmp/cilium/config-map
                 readOnly: true
+              
               securityContext:
                 allowPrivilegeEscalation: false
                 capabilities:
@@ -1669,6 +1764,8 @@ cluster:
               - key: node-role.kubernetes.io/master
                 operator: Exists
               - key: node.kubernetes.io/not-ready
+                operator: Exists
+              - key: node.cloudprovider.kubernetes.io/uninitialized
                 operator: Exists
               - key: node.cilium.io/agent-not-ready
                 operator: Exists
