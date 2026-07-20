@@ -1,0 +1,32 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: internal-gateway
+spec:
+  infrastructure:
+    annotations:
+      "io.cilium/lb-ipam-ips": "192.168.178.213"
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: proxy-config
+  gatewayClassName: envoy-gateway
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https
+      port: 443
+      protocol: HTTPS
+      hostname: "*.example.com" # set in dns server for testing
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: my-tls-secret
+      allowedRoutes:
+        namespaces:
+          from: All
