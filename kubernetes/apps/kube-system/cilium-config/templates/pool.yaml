@@ -8,6 +8,7 @@ spec:
   - start: "192.168.178.221"
     stop: "192.168.178.230"
   serviceSelector:
+    matchLabels:
+      cilium: "yes"
     matchExpressions:
       - { key: io.cilium/lb-ipam-ips, operator: DoesNotExist }
-      - { key: metallb.io/loadBalancerIPs, operator: DoesNotExist } # Don't pick up metallb services

@@ -2,9 +2,10 @@ kind: Service
 apiVersion: v1
 metadata:
   name: debug-service
+  label:
+    "cilium": "yes"
   annotations:
     "io.cilium/lb-ipam-ips": "192.168.178.225"
-    "my-cilium-annotation": "test"
 spec:
   type: LoadBalancer
   ports:
