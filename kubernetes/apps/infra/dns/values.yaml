@@ -15,4 +15,4 @@ adguard-home:
       type: LoadBalancer
       externalTrafficPolicy: Local
       annotations:
-        metallb.io/loadBalancerIPs: 192.168.1.211
+        metallb.io/loadBalancerIPs: 192.168.178.211
