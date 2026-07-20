@@ -1,7 +1,7 @@
 ingress-nginx:
   controller:
     service:
-      # externalTrafficPolicy: Local
+      externalTrafficPolicy: Local
       annotations:
         io.cilium/lb-ipam-ips: 192.168.178.210
 
