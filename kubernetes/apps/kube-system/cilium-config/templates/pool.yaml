@@ -12,3 +12,4 @@ spec:
       cilium: "yes"
     matchExpressions:
       - { key: io.cilium/lb-ipam-ips, operator: DoesNotExist }
+      - { key: cilium, operator: In, values: [yes]  }
