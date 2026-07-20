@@ -35,6 +35,9 @@ stringData:
 
     filtering:
       rewrites:
+        - domain: '*.example.com'
+          answer: 192.168.178.213
+          enabled: true
         - domain: '*.{{ .Values.vadderung.baseDomain }}'
           answer: 192.168.178.210
           enabled: true
