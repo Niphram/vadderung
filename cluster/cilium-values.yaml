@@ -19,27 +19,14 @@ l2announcements:
 ipam:
   mode: kubernetes
 
-# Enable DSR (Direct Server Return) for better performance
-# loadBalancer:
-#   mode: dsr
-#   # Use the fastest algorithm
-#   algorithm: maglev
+devices: ""
 
-devices: "" # This section replaces Ingress with Gateway API
+# This section replaces Ingress with Gateway API
 gatewayAPI:
-  enabled: true
-  hostNetwork:
-    enabled: true
+  enabled: false
 
 envoy:
-  enabled: true
-  securityContext:
-    capabilities:
-      keepCapNetBindService: true
-      envoy:
-      - NET_ADMIN
-      - BPF
-      - NET_BIND_SERVICE
+  enabled: false
 
 # Talos-specific cgroup settings
 cgroup:

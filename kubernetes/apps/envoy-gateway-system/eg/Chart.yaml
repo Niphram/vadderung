@@ -1,0 +1,7 @@
+apiVersion: v2
+name: eg
+version: 1.0.0
+dependencies:
+- name: gateway-helm
+  version: v1.8.2
+  repository: oci://docker.io/envoyproxy
