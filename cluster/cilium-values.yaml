@@ -25,6 +25,8 @@ ipam:
 #   # Use the fastest algorithm
 #   algorithm: maglev
 
+devices: ""
+
 # Talos-specific cgroup settings
 cgroup:
   autoMount:
