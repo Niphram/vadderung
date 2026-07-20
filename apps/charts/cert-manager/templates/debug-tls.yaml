@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: debug-tls
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: debug-tls-secret
+  issuerRef:
+    name: selfsigned-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - example.com
+    - "*.example.com"

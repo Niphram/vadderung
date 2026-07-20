@@ -26,7 +26,7 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: my-tls-secret
+            name: debug-tls-secret
       allowedRoutes:
         namespaces:
           from: All
