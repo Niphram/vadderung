@@ -35,7 +35,7 @@ spec:
 
   storage:
     storageClass: longhorn-postgres-replica-storage
-    size: 500Mi
+    size: 1Gi
   walStorage:
     storageClass: longhorn-postgres-replica-storage
     size: 2Gi
