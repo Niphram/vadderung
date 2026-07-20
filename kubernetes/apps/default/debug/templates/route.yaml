@@ -7,6 +7,8 @@ spec:
     - name: internal-gateway
       namespace: envoy-gateway-system
       sectionName: https
+      group: gateway.networking.k8s.io	
+      kind: Gateway
   hostnames:
     - debug.example.com
   rules:
@@ -17,3 +19,6 @@ spec:
       backendRefs:
         - name: hello-world-svc
           port: 80
+          group: ''	
+          kind: Service
+          weight: 1

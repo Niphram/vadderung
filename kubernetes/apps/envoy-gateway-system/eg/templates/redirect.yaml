@@ -4,12 +4,18 @@ metadata:
   name: http-to-https-redirect
 spec:
   parentRefs:
-    - name: internal-gateway
-      namespace: envoy-gateway-system
-      sectionName: http
+  - name: internal-gateway
+    namespace: envoy-gateway-system
+    sectionName: http
+    kind: Gateway
+    group: gateway.networking.k8s.io
   rules:
-    - filters:
-        - type: RequestRedirect
-          requestRedirect:
-            scheme: https
-            statusCode: 301
+  - filters:
+    - type: RequestRedirect
+      requestRedirect:
+        scheme: https
+        statusCode: 301
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
