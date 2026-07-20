@@ -1,0 +1,73 @@
+# Cilium with full kube-proxy replacement on Talos Linux
+
+# Enable kube-proxy replacement
+kubeProxyReplacement: true
+
+# The API server address and port
+# Use the control plane endpoint or load balancer address
+k8sServiceHost: localhost
+k8sServicePort: 6443
+
+k8sClientRateLimit:
+  qps: 10
+  burst: 25
+
+l2announcements:
+  enabled: true
+
+# IPAM configuration
+ipam:
+  mode: kubernetes
+
+# Enable DSR (Direct Server Return) for better performance
+# loadBalancer:
+#   mode: dsr
+#   # Use the fastest algorithm
+#   algorithm: maglev
+
+# Talos-specific cgroup settings
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+
+# Security context for Talos Linux
+securityContext:
+  capabilities:
+    ciliumAgent:
+    - CHOWN
+    - KILL
+    - NET_ADMIN
+    - NET_RAW
+    - IPC_LOCK
+    - SYS_ADMIN
+    - SYS_RESOURCE
+    - DAC_OVERRIDE
+    - FOWNER
+    - SETGID
+    - SETUID
+    cleanCiliumState:
+    - NET_ADMIN
+    - SYS_ADMIN
+    - SYS_RESOURCE
+
+# Enable Hubble for observability
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+
+# Enable bandwidth management
+bandwidthManager:
+  enabled: true
+
+# Install on all nodes including control plane
+tolerations:
+- operator: Exists
+  effect: NoSchedule
+
+# Enable health checking
+healthChecking: true
+healthPort: 9879
