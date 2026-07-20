@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: debug-service
+  labels:
+    color: blue
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 1234

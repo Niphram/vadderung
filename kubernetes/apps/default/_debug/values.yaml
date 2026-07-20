@@ -1,6 +1,0 @@
-vadderung:
-  baseDomain: ~
-
-ingress:
-  enabled: true
-  host: ~
