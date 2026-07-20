@@ -8,6 +8,5 @@ spec:
     - start: "192.168.178.221"
       stop: "192.168.178.230"
   serviceSelector:
-    matchExpressions:
-      - { key: io.cilium/lb-ipam-ips, operator: DoesNotExist }
-      - { key: cilium, operator: In, values: [ "yes" ] }
+    matchLabels:
+      lb-pool: cilium
