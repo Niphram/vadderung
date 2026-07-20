@@ -1,7 +1,8 @@
 apiVersion: v2
 name: network
 version: 1.0.0
-dependencies:
-- name: gateway-helm
-  version: 1.8.2
-  repository: oci://docker.io/envoyproxy
+
+# dependencies:
+# - name: gateway-helm
+#   version: 1.8.2
+#   repository: oci://docker.io/envoyproxy
