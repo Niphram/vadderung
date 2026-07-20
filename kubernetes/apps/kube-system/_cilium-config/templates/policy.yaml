@@ -1,7 +1,8 @@
-# apiVersion: "cilium.io/v2alpha1"
-# kind: CiliumL2AnnouncementPolicy
-# metadata:
-#   name: cilium-l2-announce
-# spec:
-#   externalIPs: true
-#   loadBalancerIPs: true
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: cilium-l2-announce
+  namespace: {{ .Release.Namespace }}
+spec:
+  externalIPs: false
+  loadBalancerIPs: true

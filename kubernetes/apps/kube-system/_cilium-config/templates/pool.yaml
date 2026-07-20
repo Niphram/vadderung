@@ -5,8 +5,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   blocks:
-    - start: "192.168.178.221"
-      stop: "192.168.178.230"
-  serviceSelector:
-    matchLabels:
-      lb-pool: cilium
+    - start: "192.168.178.210"
+      stop: "192.168.178.220"

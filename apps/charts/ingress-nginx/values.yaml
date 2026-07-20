@@ -3,7 +3,7 @@ ingress-nginx:
     service:
       externalTrafficPolicy: Local
       annotations:
-        metallb.io/loadBalancerIPs: 192.168.178.210
+        io.cilium/lb-ipam-ips: 192.168.178.210
 
     allowSnippetAnnotations: true
     config:
