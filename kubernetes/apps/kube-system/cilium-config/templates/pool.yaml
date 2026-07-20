@@ -10,4 +10,4 @@ spec:
   serviceSelector:
     matchExpressions:
       - { key: io.cilium/lb-ipam-ips, operator: DoesNotExist }
-      - { key: my-cilium-annotation, operator: Exists }
+      - { key: metallb.io/loadBalancerIPs, operator: DoesNotExist } # Don't pick up metallb services
