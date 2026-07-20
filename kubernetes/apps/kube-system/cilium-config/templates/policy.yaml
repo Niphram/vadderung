@@ -4,5 +4,7 @@ metadata:
   name: cilium-l2-announce
   namespace: {{ .Release.Namespace }}
 spec:
-  externalIPs: false
+  externalIPs: true
   loadBalancerIPs: true
+  interfaces:
+  - ^eth[0-9]+
