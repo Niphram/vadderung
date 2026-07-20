@@ -27,6 +27,7 @@ spec:
         certificateRefs:
           - kind: Secret
             name: debug-tls-secret
+            namespace: cert-manager
       allowedRoutes:
         namespaces:
           from: All
