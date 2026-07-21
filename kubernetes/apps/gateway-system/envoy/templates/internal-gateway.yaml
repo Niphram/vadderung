@@ -22,13 +22,14 @@ spec:
     - name: https
       port: 443
       protocol: HTTPS
-      hostname: "*.example.com" # set in dns server for testing
+      hostname: "*.{{ .Values.vadderung.baseDomain }}" # set in dns server for testing
       tls:
         mode: Terminate
         certificateRefs:
           - group: ''
             kind: Secret
-            name: debug-tls-secret
+            name: default-tls
+            namespace: cert-manager
       allowedRoutes:
         namespaces:
           from: All
