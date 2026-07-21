@@ -1,0 +1,26 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: argo-route
+  labels:
+    protected: "false"
+spec:
+  parentRefs:
+    - name: internal-gateway
+      namespace: gateway-system
+      sectionName: https
+      group: gateway.networking.k8s.io	
+      kind: Gateway
+  hostnames:
+    - "argocd.{{ .Values.vadderung.baseDomain }}"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: argo-cd-argocd-server
+          port: 80
+          group: ''	
+          kind: Service
+          weight: 1
