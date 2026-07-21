@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: http-https
-      image: mendhak/http-https@latest
+      image: mendhak/http-https-echo:41
       ports:
         - containerPort: 8080
