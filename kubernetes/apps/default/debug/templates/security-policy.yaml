@@ -4,10 +4,13 @@ metadata:
   name: 'authelia-extauthz-policy'
   namespace: {{ .Release.Namespace }}
 spec:
-  targetRefs:
+  targetSelectors:
   - group: gateway.networking.k8s.io
     kind: HTTPRoute
-    name: debug-route
+    namespaces:
+      from: All
+    matchLabels:
+      protected: "true"
   mergeType: StrategicMerge
   extAuth:
     headersToExtAuth:
