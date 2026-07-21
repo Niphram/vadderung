@@ -7,6 +7,8 @@ spec:
   targetSelectors:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
+      namespaces:
+        from: All
       matchLabels:
         protected: "true"
   mergeType: StrategicMerge
