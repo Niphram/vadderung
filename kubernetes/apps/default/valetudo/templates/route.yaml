@@ -25,6 +25,12 @@ spec:
           group: ''	
           kind: Service
           weight: 1
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: gateway.envoyproxy.io
+            kind: HTTPRouteFilter
+            name: valetudo-credential-injection
 ---
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
