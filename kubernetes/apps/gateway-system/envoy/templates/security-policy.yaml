@@ -21,9 +21,12 @@ spec:
     failOpen: false
     http:
       backendRefs:
-      - name: 'authelia'
+      - name: 'authelia-service'
         namespace: 'auth'
         port: 80
+        group: ''	
+        kind: Service
+        weight: 1
       path: '/api/authz/ext-authz/'
       headersToBackend:
       - Remote-User
