@@ -7,7 +7,7 @@ spec:
   from:
     - group: 'gateway.envoyproxy.io'
       kind: 'SecurityPolicy'
-      namespace: 'gateways'
+      namespace: 'gateway-system'
   to:
     - group: ''
       kind: 'Service'
