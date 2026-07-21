@@ -20,6 +20,7 @@ spec:
             value: /
       backendRefs:
         - name: authelia-service
+          namespace: auth
           port: 80
           group: ''	
           kind: Service

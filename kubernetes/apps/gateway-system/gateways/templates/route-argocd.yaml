@@ -3,7 +3,7 @@ kind: HTTPRoute
 metadata:
   name: argo-route
   labels:
-    protected: "false"
+    protected: "true"
 spec:
   parentRefs:
     - name: internal-gateway
@@ -20,6 +20,7 @@ spec:
             value: /
       backendRefs:
         - name: argo-cd-argocd-server
+          namespace: argocd
           port: 80
           group: ''	
           kind: Service

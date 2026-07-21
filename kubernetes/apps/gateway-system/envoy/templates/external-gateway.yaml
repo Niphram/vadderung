@@ -1,12 +1,12 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: internal-gateway
+  name: external-gateway
   namespace: {{ .Release.Namespace }}
 spec:
   infrastructure:
     annotations:
-      "io.cilium/lb-ipam-ips": "192.168.178.213"
+      "io.cilium/lb-ipam-ips": "192.168.178.214"
     parametersRef:
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
