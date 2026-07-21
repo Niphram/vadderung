@@ -1,14 +1,14 @@
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
 metadata:
-  name: 'gateway-tls-secret'
+  name: allow-gateway-tls-secrets
   namespace: {{ .Release.Namespace }}
 spec:
   from:
-    - group: 'gateway.envoyproxy.io'
-      kind: 'Gateway'
-      namespace: 'gateway-system'
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    namespace: gateway-system
   to:
-    - group: ''
-      kind: 'Secret'
-      name: 'default-tls'
+  - group: ""
+    kind: Secret
+    name: default-tls
