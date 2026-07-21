@@ -8,7 +8,6 @@ spec:
     - group: 'gateway.envoyproxy.io'
       kind: 'SecurityPolicy'
       namespace: 'gateway-system'
-      name: 'authelia-extauthz-by-route'
   to:
     - group: ''
       kind: 'Service'
