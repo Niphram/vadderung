@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world-svc
+  name: echo-svc
 spec:
   selector:
-    app: hello-world
+    app: echo
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 8080
   type: ClusterIP

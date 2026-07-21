@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: echo
+  labels:
+    app: echo
+spec:
+  containers:
+    - name: http-https
+      image: mendhak/http-https@latest
+      ports:
+        - containerPort: 8080
