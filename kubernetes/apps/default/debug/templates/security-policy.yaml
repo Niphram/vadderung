@@ -1,16 +1,13 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: 'authelia-extauthz-by-route'
+  name: 'authelia-extauthz-policy'
   namespace: {{ .Release.Namespace }}
 spec:
-  targetSelectors:
+  targetRefs:
   - group: gateway.networking.k8s.io
     kind: HTTPRoute
-    namespaces:
-      from: All
-    matchLabels:
-      protected: "true"
+    name: debug-route
   mergeType: StrategicMerge
   extAuth:
     headersToExtAuth:

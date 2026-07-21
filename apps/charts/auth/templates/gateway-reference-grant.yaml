@@ -8,6 +8,9 @@ spec:
     - group: 'gateway.envoyproxy.io'
       kind: 'SecurityPolicy'
       namespace: 'gateway-system'
+    - group: 'gateway.envoyproxy.io'
+      kind: 'SecurityPolicy'
+      namespace: 'default'
   to:
     - group: ''
       kind: 'Service'
