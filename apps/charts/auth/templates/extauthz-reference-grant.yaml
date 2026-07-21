@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
 metadata:
   name: 'extauthz-auth-svc'
-  namespace: auth # Namespace of the service
+  namespace: {{ .Release.Namespace }}
 spec:
   from:
     - group: 'gateway.envoyproxy.io'
