@@ -3,7 +3,7 @@ kind: HTTPRoute
 metadata:
   name: authelia-http-route
   labels:
-    protected: false
+    protected: "false"
 spec:
   parentRefs:
     - name: internal-gateway

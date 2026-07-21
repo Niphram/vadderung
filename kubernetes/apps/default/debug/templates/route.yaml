@@ -3,7 +3,7 @@ kind: HTTPRoute
 metadata:
   name: debug-route
   labels:
-    protected: true
+    protected: "true"
 spec:
   parentRefs:
     - name: internal-gateway

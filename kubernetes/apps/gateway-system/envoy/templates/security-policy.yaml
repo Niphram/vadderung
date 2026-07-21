@@ -10,7 +10,7 @@ spec:
     namespaces:
       from: All
     matchLabels:
-      protected: true
+      protected: "true"
   extAuth:
     headersToExtAuth:
     - 'accept'
