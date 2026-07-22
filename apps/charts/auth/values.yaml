@@ -10,7 +10,7 @@ twoFactorGroups:
 - dns
 
 authelia:
-  image: ghcr.io/authelia/authelia:4.39.6
+  image: ghcr.io/authelia/authelia:4.39.20
   pgsecrets: authelia-db-app
   timezone: Europe/Berlin
 
