@@ -1,0 +1,14 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: ClientTrafficPolicy
+metadata:
+  name: 'forwarded-for-header-policy'
+  namespace: {{ .Release.Namespace }}
+spec:
+  targetRefs:
+    - name: internal-gateway
+      kind: Gateway
+      group: gateway.networking.k8s.io
+      sectionName: http
+  clientIPDetection:
+    xForwardedFor:
+      numTrustedHops: 0
