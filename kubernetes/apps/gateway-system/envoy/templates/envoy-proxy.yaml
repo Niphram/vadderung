@@ -7,9 +7,12 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
+      # Cilium currently doesn't check where backend pods are when announcing L2 services
+      # As a workaround, deploy envoy on every node so traffic will always directly reach a pod
+      envoyDaemonSet: {}
       envoyService:
         patch:
           type: StrategicMerge
           value:
             spec:
-              externalTrafficPolicy: Cluster
+              externalTrafficPolicy: Local
