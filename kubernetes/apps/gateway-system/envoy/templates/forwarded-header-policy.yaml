@@ -9,6 +9,10 @@ spec:
       kind: Gateway
       group: gateway.networking.k8s.io
       sectionName: http
+    - name: internal-gateway
+      kind: Gateway
+      group: gateway.networking.k8s.io
+      sectionName: https
   clientIPDetection:
     xForwardedFor:
       numTrustedHops: 0
