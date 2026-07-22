@@ -13,6 +13,7 @@ adguard-home:
   service:
     dns:
       type: LoadBalancer
+      # Set this to "Local" after this PR is merged and cilium is updated https://github.com/cilium/cilium/pull/46399
       externalTrafficPolicy: Cluster
       annotations:
         io.cilium/lb-ipam-ips: 192.168.178.211

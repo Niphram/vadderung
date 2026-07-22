@@ -1,0 +1,43 @@
+{{ $currentScope := .}}
+{{ range $path, $_ :=  .Files.Glob  "error-pages/*.html" }}
+{{- with $currentScope}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 'error-page-{{ $path | base | trimSuffix ".html" }}-cm'
+  namespace: {{ .Release.Namespace }}
+data:
+  response.body: |- {{ .Files.Get $path | nindent 4 }}
+---
+{{- end }}
+{{ end }}
+
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: local-response-override
+  namespace: {{ .Release.Namespace }}
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: internal-gateway
+  responseOverride:
+{{- $currentScope := .}}
+{{- range $path, $_ :=  .Files.Glob  "error-pages/*.html" }}
+{{- with $currentScope}}
+    - match:
+        statusCodes:
+          - type: Value
+            value: {{ $path | base | trimSuffix ".html" }}
+      source: Local
+      response:
+        contentType: text/html
+        body:
+          type: ValueRef
+          valueRef:
+            group: ""
+            kind: ConfigMap
+            name: 'error-page-{{ $path | base | trimSuffix ".html" }}-cm'
+{{- end }}
+{{ end }}
