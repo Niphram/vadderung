@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-route
   namespace: {{ .Release.Namespace }}
   labels:
-    protected: "true"
+    protected: "false"
 spec:
   parentRefs:
     - name: internal-gateway
@@ -30,6 +30,7 @@ spec:
           requestHeaderModifier:
             remove:
               - "Authorization"
+              - "foo"
 ---
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
