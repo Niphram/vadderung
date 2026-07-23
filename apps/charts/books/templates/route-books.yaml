@@ -25,13 +25,14 @@ spec:
           group: ''	
           kind: Service
           weight: 1
-      filters:
-        # Remove authorization header from incoming requests.
-        # CWA is configured to authorize using the headers coming from the reverse proxy, but only if no authorization header is sent
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            remove:
-              - "Authorization"
+      # Good idea, doesn't work with calibre-web-companion
+      # Remove authorization header from incoming requests.
+      # CWA is configured to authorize using the headers coming from the reverse proxy, but only if no authorization header is sent
+      # filters:
+      #   - type: RequestHeaderModifier
+      #     requestHeaderModifier:
+      #       remove:
+      #         - "Authorization"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
