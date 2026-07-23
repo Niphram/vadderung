@@ -16,7 +16,8 @@ spec:
     headersToExtAuth:
       - 'accept'
       - 'cookie'
-      - 'authorization'
+      # Don't send authorization header when using forward auth
+      # - 'authorization'
       - 'proxy-authorization'
       - 'x-forwarded-proto'
     failOpen: false
