@@ -1,0 +1,7 @@
+apiVersion: v2
+name: grafana
+version: 1.0.0
+dependencies:
+- name: kube-prometheus-stack
+  version: 87.21.0
+  repository: oci://ghcr.io/prometheus-community/charts
