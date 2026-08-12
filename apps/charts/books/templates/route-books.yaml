@@ -61,6 +61,8 @@ spec:
           group: ''	
           kind: Service
           weight: 1
+      timeouts:
+        request: "60s"
 ---
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
