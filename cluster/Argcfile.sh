@@ -98,4 +98,7 @@ upgrade-k8s() {
 #     --set k8sServicePort=7445 > cilium.yaml
 
 
+# helm template cilium cilium/cilium -n kube-system  --version 1.19.6 -f cilium-values.yaml > cilium.yaml
+
+
 eval "$(argc --argc-eval "$0" "$@")"

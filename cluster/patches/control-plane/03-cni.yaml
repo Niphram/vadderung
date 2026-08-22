@@ -1172,7 +1172,7 @@ cluster:
                     resource: limits.memory
                     divisor: '1'
               - name: KUBERNETES_SERVICE_HOST
-                value: "localhost"
+                value: "192.168.178.200"
               - name: KUBERNETES_SERVICE_PORT
                 value: "6443"
               - name: KUBE_CLIENT_BACKOFF_BASE
@@ -1299,7 +1299,7 @@ cluster:
                     apiVersion: v1
                     fieldPath: metadata.namespace
               - name: KUBERNETES_SERVICE_HOST
-                value: "localhost"
+                value: "192.168.178.200"
               - name: KUBERNETES_SERVICE_PORT
                 value: "6443"
               volumeMounts:
@@ -1391,7 +1391,7 @@ cluster:
                     key: write-cni-conf-when-ready
                     optional: true
               - name: KUBERNETES_SERVICE_HOST
-                value: "localhost"
+                value: "192.168.178.200"
               - name: KUBERNETES_SERVICE_PORT
                 value: "6443"
               terminationMessagePolicy: FallbackToLogsOnError
@@ -1638,7 +1638,7 @@ cluster:
                     name: cilium-config
                     optional: true
               - name: KUBERNETES_SERVICE_HOST
-                value: "localhost"
+                value: "192.168.178.200"
               - name: KUBERNETES_SERVICE_PORT
                 value: "6443"
               ports:

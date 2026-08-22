@@ -5,4 +5,3 @@ provisioning:
   diskSelector:
     match: "!system_disk"
   minSize: 1TB
-  maxSize: 1TB
