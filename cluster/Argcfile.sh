@@ -107,9 +107,13 @@ cilium-preflight() {
         --set k8sServicePort="${argc_controlport}"
     )
 
-    trap "kubectl delete -f - <<< ${PREFLIGHT_YAML@Q} > /dev/null" EXIT
+    trap "echo \"Deleting pre-flight-check resources.\"; kubectl delete -f - <<< ${PREFLIGHT_YAML@Q} > /dev/null" EXIT
+
+    echo "Creating pre-flight-check resources."
 
     kubectl create -f - <<< "${PREFLIGHT_YAML}"
+
+    echo "Waiting for resources to be ready."
 
     kubectl rollout status daemonset \
         cilium-pre-flight-check \
@@ -121,29 +125,27 @@ cilium-preflight() {
         -n kube-system \
         --timeout 60s
 
-    echo "pre-flight-check done."
+    echo "Pre-flight-check done."
 }
 
-# Cilium config
-# helm template \
-#     cilium \
-#     cilium/cilium \
-#     --version 1.19.6 \
-#     --namespace kube-system \
-#     --set ipam.mode=kubernetes \
-#     --set kubeProxyReplacement=true \
-#     --set l2announcements.enabled=true \
-#     --set k8sClientRateLimit.qps=10 \
-#     --set k8sClientRateLimit.burst=25 \
-#     --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
-#     --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
-#     --set cgroup.autoMount.enabled=false \
-#     --set cgroup.hostRoot=/sys/fs/cgroup \
-#     --set k8sServiceHost=localhost \
-#     --set k8sServicePort=7445 > cilium.yaml
+# @cmd
+# @meta require-tools helm,kubectl,yq
+# @arg ciliumversion! <cilium_version>
+# @option --controlpane! $CONTROL_PANE <ip> bind-env
+# @option --controlport! $CONTROL_PORT <port> bind-env
+upgrade-cilium() {
+    CILIUM_YAML=$(
+        helm template cilium/cilium \
+        --version "${argc_ciliumversion}" \
+        --namespace kube-system \
+        --set k8sServiceHost="${argc_controlpane}" \
+        --set k8sServicePort="${argc_controlport}" \
+        -f cilium-values.yaml
+    )
 
+    kubectl apply -f - <<< "${CILIUM_YAML}"
 
-# helm template cilium cilium/cilium -n kube-system  --version 1.19.6 -f cilium-values.yaml > cilium.yaml
-
+    inline_manifest=$CILIUM_YAML yq eval -i '(.cluster.inlineManifests.[] | select(.name = "cilium") | .contents) = strenv(inline_manifest)' patches/control-plane/03-cni.yaml
+}
 
 eval "$(argc --argc-eval "$0" "$@")"
