@@ -1,5 +1,8 @@
 # Cilium with full kube-proxy replacement on Talos Linux
 
+# Version that was initially installed on this cluster. Do not change
+upgradeCompatibility: "1.19"
+
 # Enable kube-proxy replacement
 kubeProxyReplacement: true
 
