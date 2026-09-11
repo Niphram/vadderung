@@ -5,6 +5,7 @@ set -e
 # @meta dotenv .env
 
 # @cmd
+# @describe Opens the talosctl dashboard for all nodes.
 # @option --controlnodes+, $CONTROL_NODES <nodes> bind-env
 # @option --workernodes*, $WORKER_NODES <nodes> bind-env
 dashboard() {
@@ -14,6 +15,7 @@ dashboard() {
 }
 
 # @cmd
+# @describe Reboots all nodes at the same time (need to rework this to be sequential)
 # @option --nodes+, $CONTROL_NODES <nodes> bind-env
 reboot-all() {
     nodes=$(IFS=, ; echo "${argc_nodes[*]}")
@@ -21,6 +23,7 @@ reboot-all() {
 }
 
 # @cmd
+# @describe Generate the talos config.
 # @option --talosversion! $TALOS_VERSION <version> bind-env
 # @option --k8sversion! $KUBERNETES_VERSION <version> bind-env
 # @option --cluster! $CLUSTER_NAME <name> bind-env
@@ -57,6 +60,7 @@ gen-config() {
 }
 
 # @cmd
+# @describe Applies the talos config to all nodes.
 # @option --controlnodes+, $CONTROL_NODES <nodes> bind-env
 # @option --workernodes*, $WORKER_NODES <nodes> bind-env
 apply-config() {
@@ -80,6 +84,7 @@ apply-config() {
 }
 
 # @cmd
+# @describe Upgrade k8s on all control nodes.
 # @option --controlnodes+, $CONTROL_NODES <nodes> bind-env
 upgrade-k8s() {
     for cn in "${argc_controlnodes[@]}"
@@ -92,11 +97,12 @@ upgrade-k8s() {
 }
 
 # @cmd
+# @describe Runs the cilium pre-flight-checks for the given version.
 # @meta require-tools helm,kubectl
 # @arg ciliumversion! <cilium_version>
 # @option --controlpane! $CONTROL_PANE <ip> bind-env
 # @option --controlport! $CONTROL_PORT <port> bind-env
-cilium-preflight() {
+cilium-preflightcheck() {
     PREFLIGHT_YAML=$(
         helm template cilium/cilium --version "${argc_ciliumversion}" \
         --namespace kube-system \
@@ -129,6 +135,8 @@ cilium-preflight() {
 }
 
 # @cmd
+# @describe Upgrades the cilium installation to the specified version and adds the generated files to the patches.
+# Make sure to first read the upgrade-notes and run the pre-flight-check first.
 # @meta require-tools helm,kubectl,yq
 # @arg ciliumversion! <cilium_version>
 # @option --controlpane! $CONTROL_PANE <ip> bind-env
