@@ -25,6 +25,8 @@ spec:
           group: ''	
           kind: Service
           weight: 1
+      timeouts:
+        request: 0s
       # Remove authorization header from incoming requests.
       # CWA is configured to authorize using the headers coming from the reverse proxy, but only if no authorization header is sent
       filters:
