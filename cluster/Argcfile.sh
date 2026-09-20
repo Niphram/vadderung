@@ -124,12 +124,12 @@ cilium-preflightcheck() {
     kubectl rollout status daemonset \
         cilium-pre-flight-check \
         -n kube-system \
-        --timeout 60s
+        --timeout 300s
 
     kubectl rollout status deployment \
         cilium-pre-flight-check \
         -n kube-system \
-        --timeout 60s
+        --timeout 300s
 
     echo "Pre-flight-check done."
 }
