@@ -24,4 +24,4 @@ spec:
   source:
     chart: dragonfly-operator
     repoURL: ghcr.io/dragonflydb/dragonfly-operator/helm
-    targetRevision: v1.3.0
+    targetRevision: v1.6.1
