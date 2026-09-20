@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-env-cm
 data:
-  PAPERLESS_REDIS: "redis://{{ .Release.Name }}-dragonfly-cluster.default.svc.cluster.local"
+  PAPERLESS_REDIS: "redis://{{ .Release.Name }}-dragonfly-cluster:6379"
   PAPERLESS_URL: "https://paperless.{{ .Values.vadderung.baseDomain}}"
   
   PAPERLESS_OCR_LANGUAGE: deu
