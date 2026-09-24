@@ -1,0 +1,9 @@
+apiVersion: ha.homeassistant.io/v1
+kind: HomeAssistantConfiguration
+metadata:
+  name: {{ .Release.Name }}-configuration
+spec:
+  homeAssistantRef:
+    name: {{ .Release.Name }}-home
+  configuration: |
+    default_config:

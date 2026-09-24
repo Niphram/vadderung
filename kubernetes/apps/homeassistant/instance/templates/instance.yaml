@@ -1,0 +1,11 @@
+apiVersion: ha.homeassistant.io/v1
+kind: HomeAssistant
+metadata:
+  name: {{ .Release.Name }}-home
+spec:
+  version: "2025.6"
+  storage:
+    size: 5Gi
+    storageClassName: longhorn-3
+  service:
+    type: ClusterIP
