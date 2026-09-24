@@ -12,13 +12,13 @@ spec:
   bootstrap:
     enabled: true
     location:
-        name: {{ .Values.homeassistant.location.name }}
-        latitude: {{ .Values.homeassistant.location.latitude }}
-        longitude: {{ .Values.homeassistant.location.longitude }}
+        name: {{ .Values.homeassistant.location.name | quote }}
+        latitude: {{ .Values.homeassistant.location.latitude | quote }}
+        longitude: {{ .Values.homeassistant.location.longitude | quote }}
         elevation: {{ .Values.homeassistant.location.elevation }}
-        unitSystem: {{ .Values.homeassistant.location.unitSystem }}
-        currency: {{ .Values.homeassistant.location.currency }}
-        timeZone: {{ .Values.homeassistant.location.timeZone }}
+        unitSystem: {{ .Values.homeassistant.location.unitSystem | quote }}
+        currency: {{ .Values.homeassistant.location.currency | quote }}
+        timeZone: {{ .Values.homeassistant.location.timeZone | quote }}
     credentials:
       secretRef:
         name: homeassistant-admin
