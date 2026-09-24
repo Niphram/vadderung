@@ -4,4 +4,4 @@ version: 1.0.0
 dependencies:
 - name: homeassistant-operator
   version: 1.5.0
-  repository: oci://ghcr.io/przemekhys/charts/homeassistant-operator
+  repository: oci://ghcr.io/przemekhys/charts
