@@ -6,5 +6,5 @@ spec:
   homeAssistantRef:
     name: {{ .Release.Name }}-home
   category: integration
-  repository: https://github.com/jibrilsharafi/homeassistant-energyme
+  repository: jibrilsharafi/homeassistant-energyme
   ref: v1.2.0
