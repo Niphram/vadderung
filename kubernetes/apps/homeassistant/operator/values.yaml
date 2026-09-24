@@ -1,2 +1,3 @@
 homeassistant-operator:
-  watchNamespaces: homeassistant
+  watchNamespaces:
+  - homeassistant
