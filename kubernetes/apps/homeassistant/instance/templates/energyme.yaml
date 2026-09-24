@@ -1,0 +1,10 @@
+apiVersion: ha.homeassistant.io/v1alpha1
+kind: HomeAssistantCommunityRepository
+metadata:
+  name: energyme-homeassistant
+spec:
+  homeAssistantRef:
+    name: {{ .Release.Name }}-home
+  category: integration
+  repository: https://github.com/jibrilsharafi/homeassistant-energyme
+  ref: v1.2.0
