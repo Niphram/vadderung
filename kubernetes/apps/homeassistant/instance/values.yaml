@@ -1,2 +1,12 @@
 vadderung:
   baseDomain: ~
+
+homeassistant:
+  location:
+    name: ~
+    latitude: ~
+    longitude: ~
+    elevation: ~
+    unitSystem: ~
+    currency: ~
+    timeZone: ~

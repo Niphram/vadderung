@@ -9,3 +9,10 @@ spec:
     storageClassName: longhorn-3
   service:
     type: ClusterIP
+  bootstrap:
+    enabled: true
+    location: {{ .Values.homeassistant.location }}
+    credentials:
+      secretRef:
+        name: homeassistant-admin
+    createApiToken: true
