@@ -11,7 +11,14 @@ spec:
     type: ClusterIP
   bootstrap:
     enabled: true
-    location: {{ .Values.homeassistant.location }}
+    location:
+        name: {{ .Values.homeassistant.location.name }}
+        latitude: {{ .Values.homeassistant.location.latitude }}
+        longitude: {{ .Values.homeassistant.location.longitude }}
+        elevation: {{ .Values.homeassistant.location.elevation }}
+        unitSystem: {{ .Values.homeassistant.location.unitSystem }}
+        currency: {{ .Values.homeassistant.location.currency }}
+        timeZone: {{ .Values.homeassistant.location.timeZone }}
     credentials:
       secretRef:
         name: homeassistant-admin
