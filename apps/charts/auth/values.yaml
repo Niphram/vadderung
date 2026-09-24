@@ -8,6 +8,7 @@ twoFactorGroups:
 - longhorn
 - argocd
 - dns
+- energy
 
 authelia:
   image: ghcr.io/authelia/authelia:4.39.20
