@@ -1,0 +1,10 @@
+apiVersion: ha.homeassistant.io/v1alpha1
+kind: HomeAssistantCommunityRepository
+metadata:
+  name: valetudo-map-card-homeassistant
+spec:
+  homeAssistantRef:
+    name: {{ .Release.Name }}-home
+  category: plugin
+  repository: Hypfer/lovelace-valetudo-map-card
+  ref: v2023.04.0
