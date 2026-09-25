@@ -8,3 +8,14 @@ spec:
   category: integration
   repository: Hypfer/hass-valetudo
   ref: "2026.08.0"
+---
+apiVersion: ha.homeassistant.io/v1alpha1
+kind: HomeAssistantCommunityRepository
+metadata:
+  name: valetudo-map-card-homeassistant
+spec:
+  homeAssistantRef:
+    name: {{ .Release.Name }}-home
+  category: plugin
+  repository: Hypfer/lovelace-valetudo-map-card
+  ref: "v2022.12.0"
