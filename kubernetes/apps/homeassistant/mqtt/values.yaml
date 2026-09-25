@@ -10,6 +10,8 @@ mosquitto:
 
   broker:
     replicaCount: 3
+    persistence:
+      storageClass: longhorn-postgres-replica-storage
 
   pdb:
     enabled: true
