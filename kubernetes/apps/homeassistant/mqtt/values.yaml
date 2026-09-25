@@ -4,6 +4,9 @@ mosquitto:
 
   auth:
     enabled: true
+    existingSecret: homeassistant-mqtt
+    existingSecretUsernameKey: username
+    existingSecretPasswordKey: password
 
   broker:
     replicaCount: 3
