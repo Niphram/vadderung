@@ -1,3 +1,5 @@
 homeassistant-operator:
+  namespace:
+    create: true
   watchNamespaces:
   - homeassistant
