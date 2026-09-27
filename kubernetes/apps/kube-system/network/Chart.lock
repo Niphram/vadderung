@@ -1,0 +1,6 @@
+dependencies:
+- name: dynamic-prefix-operator
+  repository: oci://ghcr.io/jr42/dynamic-prefix-operator/helm
+  version: 0.0.2
+digest: sha256:495eeb911175547118b1304678f7a885267da270e1080b2df92590fe08d0f61a
+generated: "2026-09-27T11:43:38.026763393+02:00"

@@ -1,0 +1,27 @@
+apiVersion: dynamic-prefix.io/v1alpha1
+kind: DynamicPrefix
+metadata:
+  name: external-gateway-ipv6
+spec:
+  acquisition:
+    routerAdvertisement:
+      interface: eth0
+      enabled: true
+  addressRanges:
+    # single ip
+    - name: loadbalancers
+      start: "::214"
+      end: "::214"
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: external-gateway-ipv6-pool
+  annotations:
+    dynamic-prefix.io/name: external-gateway-ipv6
+    dynamic-prefix.io/address-range: loadbalancers
+spec:
+  serviceSelector:
+    matchLabels:
+      ip-pool: external-gateway-ipv6-pool
+  blocks: []  # Operator manages this
