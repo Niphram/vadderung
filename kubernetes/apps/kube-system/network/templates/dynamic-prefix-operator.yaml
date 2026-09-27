@@ -667,6 +667,7 @@ spec:
         app.kubernetes.io/name: dynamic-prefix-operator
         control-plane: controller-manager
     spec:
+      hostNetwork: true
       containers:
       - args:
         - --metrics-bind-address=:8443
