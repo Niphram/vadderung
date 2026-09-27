@@ -5,7 +5,7 @@ metadata:
 spec:
   acquisition:
     routerAdvertisement:
-      interface: net0
+      interface: eth0
       enabled: true
   addressRanges:
     # single ip
