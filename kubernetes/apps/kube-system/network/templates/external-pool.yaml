@@ -9,9 +9,9 @@ spec:
       enabled: true
   addressRanges:
     # single ip
-    - name: loadbalancers
+    - name: external-gateway
       start: "::214"
-      end: "::214"
+      end: "::220"
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
@@ -19,7 +19,7 @@ metadata:
   name: external-gateway-ipv6-pool
   annotations:
     dynamic-prefix.io/name: external-gateway-ipv6
-    dynamic-prefix.io/address-range: loadbalancers
+    dynamic-prefix.io/address-range: external-gateway
 spec:
   serviceSelector:
     matchLabels:
