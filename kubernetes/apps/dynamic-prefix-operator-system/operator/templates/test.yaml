@@ -5,7 +5,7 @@ metadata:
 spec:
   acquisition:
     routerAdvertisement:
-      interface: net0
+      interface: enp0s31f6
       enabled: true
 
   # Reserve ::f000:0:0:0 through ::ffff:ffff:ffff:ffff for Kubernetes services
