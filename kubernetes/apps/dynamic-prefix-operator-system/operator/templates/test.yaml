@@ -1,0 +1,26 @@
+apiVersion: dynamic-prefix.io/v1alpha1
+kind: DynamicPrefix
+metadata:
+  name: home-ipv6
+spec:
+  acquisition:
+    routerAdvertisement:
+      interface: eth0
+      enabled: true
+
+  # Reserve ::f000:0:0:0 through ::ffff:ffff:ffff:ffff for Kubernetes services
+  # Configure your router to NOT assign addresses in this range via SLAAC/DHCPv6
+  addressRanges:
+    - name: loadbalancers
+      start: "::f000:0:0:0"
+      end: "::ffff:ffff:ffff:ffff"
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: ipv6-lb-pool
+  annotations:
+    dynamic-prefix.io/name: home-ipv6
+    dynamic-prefix.io/address-range: loadbalancers
+spec:
+  blocks: []  # Operator manages this
