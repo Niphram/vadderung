@@ -5,20 +5,19 @@ firefly-iii:
   persistence:
     storageClassName: longhorn-3
 
-  existingSecret: default-budget-env
-
-  env:
-    APP_KEY_FILE: /run/secrets/app-secret/app_key
-    DB_HOST_FILE: /run/secrets/db-secret/host
-    DB_CONNECTION: pgsql
-    DB_PORT_FILE: /run/secrets/db-secret/port
-    DB_DATABASE_FILE: /run/secrets/db-secret/dbname
-    DB_USERNAME_FILE: /run/secrets/db-secret/user
-    DB_PASSWORD_FILE: /run/secrets/db-secret/password
-    TZ: Europe/Berlin
-    AUTHENTICATION_GUARD: remote_user_guard
-    AUTHENTICATION_GUARD_HEADER: Remote-User
-    AUTHENTICATION_GUARD_EMAIL: Remote-Email
+  config:
+    env:
+      APP_KEY_FILE: "/run/secrets/app-secret/app_key"
+      DB_HOST_FILE: "/run/secrets/db-secret/host"
+      DB_CONNECTION: "pgsql"
+      DB_PORT_FILE: "/run/secrets/db-secret/port"
+      DB_DATABASE_FILE: "/run/secrets/db-secret/dbname"
+      DB_USERNAME_FILE: "/run/secrets/db-secret/user"
+      DB_PASSWORD_FILE: "/run/secrets/db-secret/password"
+      TZ: "Europe/Berlin"
+      AUTHENTICATION_GUARD: "remote_user_guard"
+      AUTHENTICATION_GUARD_HEADER: "Remote-User"
+      AUTHENTICATION_GUARD_EMAIL: "Remote-Email"
 
   extraVolumes:
   - name: db-secret
