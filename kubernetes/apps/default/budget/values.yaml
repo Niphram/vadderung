@@ -19,10 +19,10 @@ firefly-iii:
       AUTHENTICATION_GUARD: "remote_user_guard"
       AUTHENTICATION_GUARD_HEADER: "Remote-User"
       AUTHENTICATION_GUARD_EMAIL: "Remote-Email"
-      DB_HOST: null
-      DB_PORT: null
-      DB_DATABASE: null
-      DB_USERNAME: null
+      DB_HOST: ~
+      DB_PORT: ~
+      DB_DATABASE: ~
+      DB_USERNAME: ~
 
   extraVolumes:
   - name: db-secret
