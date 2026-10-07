@@ -5,6 +5,8 @@ firefly-iii:
   image:
     tag: version-6.7.7
 
+  deploymentStrategyType: Recreate
+
   persistence:
     storageClassName: longhorn-3
 
