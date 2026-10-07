@@ -24,8 +24,7 @@ firefly-iii:
       DB_PASSWORD_FILE: "/run/secrets/db-secret/password"
       TZ: "Europe/Berlin"
       AUTHENTICATION_GUARD: "remote_user_guard"
-      AUTHENTICATION_GUARD_HEADER: "HTTP_REMOTE_USER"
-      AUTHENTICATION_GUARD_EMAIL: "HTTP_REMOTE_EMAIL"
+      AUTHENTICATION_GUARD_HEADER: "HTTP_REMOTE_EMAIL"
       DB_PORT: ~
       DB_DATABASE: ~
       DB_USERNAME: ~
