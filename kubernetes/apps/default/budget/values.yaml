@@ -6,8 +6,9 @@ firefly-iii:
     storageClassName: longhorn-3
 
   config:
+    existingSecret: default-budget-secret
+
     env:
-      APP_KEY_FILE: "/run/secrets/app-secret/app_key"
       DB_HOST_FILE: "/run/secrets/db-secret/host"
       DB_CONNECTION: "pgsql"
       DB_PORT_FILE: "/run/secrets/db-secret/port"
@@ -23,14 +24,8 @@ firefly-iii:
   - name: db-secret
     secret:
       secretName: default-budget-db-app
-  - name: app-secret
-    secret:
-      secretName: default-budget-secret
 
   extraVolumeMounts:
   - name: db-secret
     mountPath: /run/secrets/db-secret
-    readOnly: true
-  - name: app-secret
-    mountPath: /run/secrets/app-secret
     readOnly: true
