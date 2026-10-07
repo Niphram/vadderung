@@ -156,4 +156,24 @@ upgrade-cilium() {
     inline_manifest=$CILIUM_YAML yq eval -i '(.cluster.inlineManifests.[] | select(.name = "cilium") | .contents) = strenv(inline_manifest)' patches/control-plane/03-cni.yaml
 }
 
+# @cmd
+# @describe Rotates talos CA.
+# Do this every 10 years.
+# @meta require-tools helm,kubectl,yq
+# @option --controlpane! $CONTROL_PANE <ip> bind-env
+rotate-ca() {
+    talosctl -e "${argc_controlpane}" rotate-ca --dry-run=true --talos=true
+}
+
+# @cmd
+# @describe Rotates talos and kubernetes certificates.
+# Only works when certificates are still valid.
+# @meta require-tools helm,kubectl,yq
+# @option --controlpane! $CONTROL_PANE <ip> bind-env
+rotate-certificates() {
+    talosctl -n "${argc_controlpane}" config new talosconfig
+
+    talosctl kubeconfig -f -n "${argc_controlpane}"
+}
+
 eval "$(argc --argc-eval "$0" "$@")"

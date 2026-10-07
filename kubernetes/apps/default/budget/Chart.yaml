@@ -1,0 +1,7 @@
+apiVersion: v2
+name: budget
+version: 1.0.0
+dependencies:
+- name: firefly-iii
+  version: 1.10.1
+  repository: https://firefly-iii.github.io/kubernetes
