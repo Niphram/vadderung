@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-importer
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-importer-app
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-importer-app
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-importer-app
+          image: benkl/firefly-iii-fints-importer
+          ports:
+            - name: http
+              containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-importer-app-service
+spec:
+  selector:
+    app: {{ .Release.Name }}-importer-app
+  ports:
+    - protocol: TCP
+      targetPort: 8080
+      port: 80
