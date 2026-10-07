@@ -2,6 +2,9 @@ vadderung:
   baseDomain: ~
 
 firefly-iii:
+  image:
+    tag: version-6.7.7
+
   persistence:
     storageClassName: longhorn-3
 
@@ -34,19 +37,3 @@ firefly-iii:
   - name: db-secret
     mountPath: /run/secrets/db-secret
     readOnly: true
-
-  livenessProbe:
-    httpGet:
-      httpHeaders:
-      - name: "Remote-User"
-        value: "health-probe"
-  readinessProbe:
-    httpGet:
-      httpHeaders:
-      - name: "Remote-User"
-        value: "health-probe"
-  startupProbe:
-    httpGet:
-      httpHeaders:
-      - name: "Remote-User"
-        value: "health-probe"
