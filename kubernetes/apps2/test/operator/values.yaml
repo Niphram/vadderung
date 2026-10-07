@@ -1,0 +1,3 @@
+dynamic-prefix-operator:
+  network:
+    dnsPolicy: ClusterFirstWithHostNet
