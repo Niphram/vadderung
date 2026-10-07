@@ -34,3 +34,7 @@ firefly-iii:
   - name: db-secret
     mountPath: /run/secrets/db-secret
     readOnly: true
+  # temporarily
+  livenessProbe: ~
+  readinessProbe: ~
+  startupProbe: ~
