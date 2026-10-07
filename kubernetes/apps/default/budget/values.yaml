@@ -9,7 +9,9 @@ firefly-iii:
     existingSecret: default-budget-secret
 
     env:
-      DB_HOST_FILE: "/run/secrets/db-secret/host"
+      # I don't like this
+      # DB_HOST_FILE: "/run/secrets/db-secret/host"
+      DB_HOST: "default-budget-db-rw"
       DB_CONNECTION: "pgsql"
       DB_PORT_FILE: "/run/secrets/db-secret/port"
       DB_DATABASE_FILE: "/run/secrets/db-secret/dbname"
@@ -19,7 +21,6 @@ firefly-iii:
       AUTHENTICATION_GUARD: "remote_user_guard"
       AUTHENTICATION_GUARD_HEADER: "Remote-User"
       AUTHENTICATION_GUARD_EMAIL: "Remote-Email"
-      DB_HOST: " "
       DB_PORT: ~
       DB_DATABASE: ~
       DB_USERNAME: ~
