@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: importer
-            image: gared/firefly-iii-fints-console-importer:2.0.0
+            image: gared/firefly-iii-fints-console-importer:v2.0.0
             imagePullPolicy: IfNotPresent
             command:
             - bin/console
@@ -38,7 +38,7 @@ spec:
         spec:
           containers:
           - name: importer
-            image: gared/firefly-iii-fints-console-importer:2.0.0
+            image: gared/firefly-iii-fints-console-importer:v2.0.0
             imagePullPolicy: IfNotPresent
             command:
             - bin/console
