@@ -31,9 +31,9 @@ metadata:
   name: {{ .Release.Name }}-setup
 spec:
   schedule: "@yearly" # Suspended, should never be scheduled
+  suspend: true
   jobTemplate:
     spec:
-      suspend: true
       template:
         spec:
           containers:
