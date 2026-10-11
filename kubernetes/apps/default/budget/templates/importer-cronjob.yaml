@@ -33,9 +33,9 @@ spec:
   schedule: "0 0 30 2 *" # Never schedule
   jobTemplate:
     spec:
+      suspend: true
       template:
         spec:
-          suspend: true
           containers:
           - name: importer
             image: gared/firefly-iii-fints-console-importer:2.0.0
