@@ -15,7 +15,8 @@ spec:
             command:
             - bin/console
             - import-transactions
-            - --config data/config/config.json
+            - --config
+            - data/config/config.json
             volumeMounts:
               - name: data
                 mountPath: /app/data/
