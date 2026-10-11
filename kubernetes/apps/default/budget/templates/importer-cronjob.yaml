@@ -19,10 +19,10 @@ spec:
             volumeMounts:
               - name: data
                 mountPath: /app/data/
-        volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-importer-pvc
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: {{ .Release.Name }}-importer-pvc
           restartPolicy: Never
 ---
 apiVersion: batch/v1
@@ -46,10 +46,10 @@ spec:
             volumeMounts:
               - name: data
                 mountPath: /app/data/
-        volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-importer-pvc
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: {{ .Release.Name }}-importer-pvc
           restartPolicy: Never
 ---
 apiVersion: v1
