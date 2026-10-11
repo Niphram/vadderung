@@ -30,7 +30,7 @@ kind: CronJob
 metadata:
   name: {{ .Release.Name }}-setup
 spec:
-  schedule: "0 0 30 2 *" # Never schedule
+  schedule: "@yearly" # Suspended, should never be scheduled
   jobTemplate:
     spec:
       suspend: true
