@@ -1,6 +1,6 @@
 dependencies:
 - name: mosquitto
   repository: oci://ghcr.io/helmforgedev/helm
-  version: 1.5.0
-digest: sha256:2032daff11a0fe4bebb74d5720d1de0dd23bcad976f5680e4a00e5b723e005c3
-generated: "2026-09-25T16:46:39.134655605+02:00"
+  version: 1.5.1
+digest: sha256:bb1da61933521d05a2db943dd959a45c59a7c0ab70cebfd684034d2c7c914dea
+generated: "2026-10-27T20:48:43.346755103+01:00"

@@ -3,7 +3,7 @@ kind: HomeAssistant
 metadata:
   name: {{ .Release.Name }}-home
 spec:
-  version: "2025.6"
+  version: "2026.10"
   storage:
     size: 5Gi
     storageClassName: longhorn-3
