@@ -1,6 +1,6 @@
 dependencies:
 - name: adguard-home
   repository: oci://ghcr.io/helmforgedev/helm
-  version: 1.4.13
-digest: sha256:1131681a470317b4c2075725e202f8b0203fbfbb08cebe98a4243ed52e55994d
-generated: "2026-07-14T10:51:34.883923707+02:00"
+  version: 1.5.3
+digest: sha256:90833ee0300f2d5ec000bdaed4fe1f6d104b6c8ebff3dbaa3aa0db99f34d064d
+generated: "2026-10-27T20:46:01.523207307+01:00"
