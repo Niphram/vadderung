@@ -7,6 +7,7 @@ longhorn:
     defaultDataPath: /var/mnt/data-vol-1/longhorn/
     storageReservedPercentageForDefaultDisk: "10"
     defaultBackupBlockSize: "16"
+    concurrentAutomaticEngineUpgradePerNodeLimit: "1"
   defaultBackupStore:
     backupTarget: s3://vadderung-3njqmakzogh34tmo8cyiae9lex21g83n8qjmivl1xhb9pnsyzjyps@eu-west/longhorn/
     backupTargetCredentialSecret: backup-s3-secret
