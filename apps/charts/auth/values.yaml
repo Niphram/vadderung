@@ -11,10 +11,10 @@ twoFactorGroups:
 - energy
 
 authelia:
-  image: ghcr.io/authelia/authelia:4.39.20
+  image: ghcr.io/authelia/authelia:4.39.28
   pgsecrets: authelia-db-app
   timezone: Europe/Berlin
 
 lldap:
-  image: ghcr.io/lldap/lldap:2025-10-14-alpine
+  image: ghcr.io/lldap/lldap:2026-09-22-alpine
   timezone: Europe/Berlin
