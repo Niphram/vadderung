@@ -3,5 +3,5 @@ name: envoy
 version: 1.0.0
 dependencies:
 - name: gateway-helm
-  version: v1.8.2
+  version: v1.9.3
   repository: oci://docker.io/envoyproxy

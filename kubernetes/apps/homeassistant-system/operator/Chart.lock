@@ -1,6 +1,6 @@
 dependencies:
 - name: homeassistant-operator
   repository: oci://ghcr.io/przemekhys/charts
-  version: 1.5.0
-digest: sha256:99ed7d00e8cb4813015257c7ea934c4c0a857a64b2b21af2a5bb343a58052e04
-generated: "2026-09-24T20:26:56.441233603+02:00"
+  version: 1.6.1
+digest: sha256:af6d0ab4d32e82ba73f752172dccfec8c1c6cdd749a5ab8acb57ae45d4ca1135
+generated: "2026-10-27T20:47:37.725730337+01:00"
