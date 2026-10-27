@@ -3,7 +3,7 @@ vadderung:
 
 firefly-iii:
   image:
-    tag: version-6.7.7
+    tag: version-6.7.9
 
   deploymentStrategyType: Recreate
 
@@ -25,9 +25,9 @@ firefly-iii:
       TZ: "Europe/Berlin"
       AUTHENTICATION_GUARD: "remote_user_guard"
       AUTHENTICATION_GUARD_HEADER: "HTTP_REMOTE_EMAIL"
-      DB_PORT: ~
-      DB_DATABASE: ~
-      DB_USERNAME: ~
+      DB_PORT: null
+      DB_DATABASE: null
+      DB_USERNAME: null
 
   extraVolumes:
   - name: db-secret
