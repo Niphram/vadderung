@@ -16,18 +16,18 @@ firefly-iii:
     env:
       # I don't like this
       # DB_HOST_FILE: "/run/secrets/db-secret/host"
+      #DB_PORT_FILE: "/run/secrets/db-secret/port"
+      # DB_DATABASE_FILE: "/run/secrets/db-secret/dbname"
+      # DB_USERNAME_FILE: "/run/secrets/db-secret/user"
       DB_HOST: "default-budget-db-rw"
+      DB_PORT: 5432
+      DB_USERNAME: app
       DB_CONNECTION: "pgsql"
-      DB_PORT_FILE: "/run/secrets/db-secret/port"
-      DB_DATABASE_FILE: "/run/secrets/db-secret/dbname"
-      DB_USERNAME_FILE: "/run/secrets/db-secret/user"
+      DB_DATABASE: app
       DB_PASSWORD_FILE: "/run/secrets/db-secret/password"
       TZ: "Europe/Berlin"
       AUTHENTICATION_GUARD: "remote_user_guard"
       AUTHENTICATION_GUARD_HEADER: "HTTP_REMOTE_EMAIL"
-      DB_PORT: null
-      DB_DATABASE: null
-      DB_USERNAME: null
 
   extraVolumes:
   - name: db-secret
